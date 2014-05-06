@@ -15,7 +15,7 @@ namespace Screenwriter.Controllers
 
 		public ActionResult About()
 		{
-			ViewBag.Message = "Your application description page.";
+			ViewBag.Message = "blabla.Your application description page.";
 
 			return View();
 		}
