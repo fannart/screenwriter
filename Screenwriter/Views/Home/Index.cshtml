@@ -2,22 +2,48 @@
     ViewBag.Title = "Home Page";
 }
 <style>
-    .row 
+    .row > div 
     {
         border: 1px solid black;
         padding: 5px;
+    }
+    table,td
+    {
+        width:100%;
+        height:50px;
+        padding: 15px;
     }
 </style>
 
 <div class="container">
     <div class="row">
-        <div class="col-md-9">
+        <div class="col-md-8">
             <h1>Instructions</h1>
             <p class="lead">This is where the instructions will be</p>
         </div>
-        <div class="col-md-3">
-            <h2>login and registering</h2>
-            <p>here the login and registering will be</p>
+        <div class="col-md-4">
+            <div class="col-md-6">
+                <form>
+                    <h3>login</h3>
+                    <p>User name:</p>
+                    <input type="text" /><br />
+                    <p>Password:</p>
+                    <input type="text" /><br />
+                    <button>Login</button>
+                    <p>Login with</p>
+                    <button>Facebook</button><br />
+                    <button>Google</button>
+                </form>
+            </div>
+            <div class="col-md-6">
+                <form>
+                    <h3>Register</h3>
+                    <button>Sign up here</button><br />
+                    <p>You can also register via</p>
+                    <button>Facebook</button><br />
+                    <button>Google</button>
+                </form>
+            </div>
         </div>
     </div>
     <div class="row">
@@ -28,7 +54,44 @@
 </div>
 
 <div>
-    <p>here we will have language categories</p>
+    <table>
+         <tr>
+             <td>Language</td>
+             <td>Language</td>
+             <td>Language</td>
+             <td>Language</td>
+         </tr>
+        <tr>
+            <td>Language</td>
+            <td>Language</td>
+            <td>Language</td>
+            <td>Language</td>
+        </tr>
+        <tr>
+            <td>Language</td>
+            <td>Language</td>
+            <td>Language</td>
+            <td>Language</td>
+        </tr>
+        <tr>
+            <td>Language</td>
+            <td>Language</td>
+            <td>Language</td>
+            <td>Language</td>
+        </tr>
+        <tr>
+            <td>Language</td>
+            <td>Language</td>
+            <td>Language</td>
+            <td>Language</td>
+        </tr>
+        <tr>
+            <td>Language</td>
+            <td>Language</td>
+            <td>Language</td>
+            <td>Language</td>
+        </tr>
+    </table>
 </div>
 
 <div>
