@@ -2,16 +2,17 @@
     ViewBag.Title = "Home Page";
 }
 <style>
-    .row > div 
+    .row
     {
-        border: 1px solid black;
         padding: 5px;
     }
+
     table,td
     {
         width:100%;
         height:50px;
         padding: 15px;
+        table-layout:fixed;
     }
 </style>
 
@@ -49,6 +50,7 @@
     <div class="row">
         <div class="col-md-6 col-md-offset-4">
             <input type="text" size="200"/>
+            <button>Search</button>
         </div>
     </div>
 </div>
