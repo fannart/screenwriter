@@ -14,11 +14,25 @@
         padding: 15px;
         table-layout:fixed;
     }
+    #divwithborders
+    {
+        border: 2px solid black;
+    }
+    #mostpopular 
+    {
+        border: 2px solid black;
+        background: #B0B0B0;
+    }
+    #textboxinput
+    {
+        height:auto;
+        width:200px;
+    }
 </style>
 
 <div class="container">
     <div class="row">
-        <div class="col-md-8">
+        <div class="col-md-8" id="introduction">
             <h1>Instructions</h1>
             <p class="lead">This is where the instructions will be</p>
         </div>
@@ -49,7 +63,7 @@
     </div>
     <div class="row">
         <div class="col-md-6 col-md-offset-4">
-            <input type="text" size="200"/>
+            <input type="text" id= textboxinput />
             <button>Search</button>
         </div>
     </div>
@@ -96,6 +110,46 @@
     </table>
 </div>
 
-<div>
-    <p>here we will have the top lists</p>
+<div id="mostpopular">
+    <table>
+        <thead>
+            Most Popular
+        </thead>
+        <tr>
+            <td>Title</td>
+            <td>Title</td>
+            <td>Title</td>
+            <td>Title</td>
+        </tr>
+        <tr>
+            <td>Title</td>
+            <td>Title</td>
+            <td>Title</td>
+            <td>Title</td>
+        </tr>
+        <tr>
+            <td>Title</td>
+            <td>Title</td>
+            <td>Title</td>
+            <td>Title</td>
+        </tr>
+        <tr>
+            <td>Title</td>
+            <td>Title</td>
+            <td>Title</td>
+            <td>Title</td>
+        </tr>
+        <tr>
+            <td>Title</td>
+            <td>Title</td>
+            <td>Title</td>
+            <td>Title</td>
+        </tr>
+        <tr>
+            <td>Title</td>
+            <td>Title</td>
+            <td>Title</td>
+            <td>Title</td>
+        </tr>
+    </table>
 </div>
