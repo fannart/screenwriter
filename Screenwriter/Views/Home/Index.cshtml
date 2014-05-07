@@ -1,32 +1,36 @@
 ﻿@{
     ViewBag.Title = "Home Page";
 }
-<div>
-    <div class="instructions">
-        <h1>Instructions</h1>
-        <p class="lead">This is where the instructions will be</p>
-    </div>
+<style>
+    .row 
+    {
+        border: 1px solid black;
+        padding: 5px;
+    }
+</style>
 
-    <div class="login">
-        <p>here we will have the login and register part</p>
+<div class="container">
+    <div class="row">
+        <div class="col-md-9">
+            <h1>Instructions</h1>
+            <p class="lead">This is where the instructions will be</p>
+        </div>
+        <div class="col-md-3">
+            <h2>login and registering</h2>
+            <p>here the login and registering will be</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 col-md-offset-4">
+            <input type="text" size="200"/>
+        </div>
     </div>
 </div>
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Jón Helgi var hér!</h2>
-        <img src="https://scontent-a-ams.xx.fbcdn.net/hphotos-ash3/t1.0-9/1538767_10152114724598611_1549960332_n.jpg" width="65%"></div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-    </div>
+
+<div>
+    <p>here we will have language categories</p>
+</div>
+
+<div>
+    <p>here we will have the top lists</p>
 </div>
