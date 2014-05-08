@@ -218,6 +218,7 @@
     <Content Include="Views\Home\LoggedInHomePage.cshtml" />
     <Content Include="Views\Home\Mostpopular.cshtml" />
     <Content Include="Views\Home\MostPopularAndMostRequested.cshtml" />
+    <Content Include="Views\Home\ViewRequests.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
