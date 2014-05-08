@@ -26,5 +26,9 @@ namespace Screenwriter.Controllers
 
 			return View();
 		}
+        public ActionResult LoggedInHomePage()
+        {
+            return View();
+        }
 	}
 }
