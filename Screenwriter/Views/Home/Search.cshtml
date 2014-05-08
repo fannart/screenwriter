@@ -11,10 +11,46 @@
 </p>
 <table class="table">
     <tr>
-        <th></th>
+        <th>Most Downloaded</th>
     </tr>
 
     @foreach (var item in Model.MostDownloaded)
+    {
+        <tr>
+            <td>
+                @item.Media.Title
+            </td>
+            <td>
+                @item.Language.Name
+            </td>
+        </tr>
+    }
+
+</table>
+<table class="table">
+    <tr>
+        <th>Newest Subtitles</th>
+    </tr>
+
+    @foreach (var item in Model.NewestSubtitles)
+    {
+        <tr>
+            <td>
+                @item.Media.Title
+            </td>
+            <td>
+                @item.Language.Name
+            </td>
+        </tr>
+    }
+
+</table>
+<table class="table">
+    <tr>
+        <th>Most Requested</th>
+    </tr>
+
+    @foreach (var item in Model.MostRequested)
     {
         <tr>
             <td>

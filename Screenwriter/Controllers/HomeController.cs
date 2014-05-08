@@ -52,20 +52,29 @@ namespace Screenwriter.Controllers
 									join lang in repo.GetAllLanguages().ToList()
 									on sub.LanguageID equals lang.ID
 									join m in repo.GetAllMedia().ToList()
-									on sub.MediaId equals m.ID
-									orderby sub.DateAdded descending)
+									on sub.MediaID equals m.ID
+									orderby sub.DateAdded descending
+									select new TopTen
+									{
+										Subtitle = sub,
+										Language = lang,
+										Media = m
+									}).Take(10).ToList();
 
 			model.MostRequested = (from sub in repo.GetAllSubtitles().ToList()
+								   where sub.TranslationIsCompleted == false
 								   join lang in repo.GetAllLanguages().ToList()
 								   on sub.LanguageID equals lang.ID
 								   join m in repo.GetAllMedia().ToList()
 								   on sub.MediaID equals m.ID
-								   orderby repo.
+								   orderby repo.NumberOfRequests(sub.ID) descending
+								   select new TopTen
+								   {
+									   Subtitle = sub,
+									   Language = lang,
+									   Media = m
+								   }).Take(10).ToList();
 
-			
-			
-
-			
 			return View(model);
 		}
 	}
