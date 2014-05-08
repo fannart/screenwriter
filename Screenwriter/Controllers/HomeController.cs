@@ -1,4 +1,5 @@
 ﻿using Screenwriter.Models;
+using Screenwriter.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,16 +33,21 @@ namespace Screenwriter.Controllers
 
 		public ActionResult Search()
 		{
-			var model = (from sub in repo.GetAllSubtitles()
-							 join lang in repo.GetAllLanguages()
-							 on sub.LanguageID equals lang.ID
-							 orderby sub.DownloadCount descending
-							 select new
-							 {
-								 subtitle = sub,
-								 language = lang
-							 }
-										).Take(10).ToList();
+			List<TopTen> mostDownloaded = (from sub in repo.GetAllSubtitles()
+										   join lang in repo.GetAllLanguages()
+										   on sub.LanguageID equals lang.ID
+										   join m in repo.GetAllMedia() on sub.MediaID equals m.ID
+										   orderby sub.DownloadCount descending
+										   select new TopTen
+										   {
+											   Subtitle = sub,
+											   Language = lang,
+											   Media = m
+										   }).Take(10).ToList();
+			SearchViewModel model = new SearchViewModel();
+			model.MostDownloaded = mostDownloaded;
+
+			
 			return View(model);
 		}
 	}
