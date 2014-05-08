@@ -35,6 +35,7 @@ namespace Screenwriter.Controllers
 		{
 			SearchViewModel model = new SearchViewModel();
 			model.MostDownloaded = (from sub in repo.GetAllSubtitles().ToList()
+									where sub.TranslationIsCompleted == true
 										   join lang in repo.GetAllLanguages().ToList()
 										   on sub.LanguageID equals lang.ID
 											join m in repo.GetAllMedia().ToList()
@@ -46,6 +47,13 @@ namespace Screenwriter.Controllers
 											   Language = lang,
 											   Media = m
 										   }).Take(10).ToList();
+			model.NewestSubtitles = (from sub in repo.GetAllSubtitles().ToList()
+									 where sub.TranslationIsCompleted == true
+									join lang in repo.GetAllLanguages().ToList()
+									on sub.LanguageID equals lang.ID
+									join m in repo.GetAllMedia().ToList()
+									on sub.MediaId equals m.ID
+									orderby sub.DateAdded descending)
 
 			model.MostRequested = (from sub in repo.GetAllSubtitles().ToList()
 								   join lang in repo.GetAllLanguages().ToList()
@@ -53,6 +61,8 @@ namespace Screenwriter.Controllers
 								   join m in repo.GetAllMedia().ToList()
 								   on sub.MediaID equals m.ID
 								   orderby repo.
+
+			
 			
 
 			
