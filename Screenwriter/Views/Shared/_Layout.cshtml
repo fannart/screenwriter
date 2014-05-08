@@ -15,6 +15,7 @@
                 @Html.ActionLink("Screenwriter", "Index", "Home", null, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
+                @Html.ActionLink("Profile", "UserProfile", "Account")
                 @Html.Partial("_LoginPartial")
             </div>
         </div>
