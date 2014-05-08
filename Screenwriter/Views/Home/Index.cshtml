@@ -44,7 +44,7 @@
                     <input type="text" /><br />
                     <p>Password:</p>
                     <input type="text" /><br />
-                    @Html.ActionLink("Login", "LoggedInHomePage", "Home")
+                    @Html.ActionLink("Log in", "LoggedInHomePage", "Home", routeValues: null, htmlAttributes: new { id = "loginLink" })
                     <p>Login with</p>
                     <button>Facebook</button><br />
                     <button>Google</button>
@@ -53,7 +53,7 @@
             <div class="col-md-6">
                 <form>
                     <h3>Register</h3>
-                    <button>Sign up here</button><br />
+                    @Html.ActionLink("Sign up here", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })
                     <p>You can also register via</p>
                     <button>Facebook</button><br />
                     <button>Google</button>
