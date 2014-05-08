@@ -33,10 +33,12 @@ namespace Screenwriter.Controllers
 
 		public ActionResult Search()
 		{
-			List<TopTen> mostDownloaded = (from sub in repo.GetAllSubtitles()
-										   join lang in repo.GetAllLanguages()
+			SearchViewModel model = new SearchViewModel();
+			model.MostDownloaded = (from sub in repo.GetAllSubtitles().ToList()
+										   join lang in repo.GetAllLanguages().ToList()
 										   on sub.LanguageID equals lang.ID
-										   join m in repo.GetAllMedia() on sub.MediaID equals m.ID
+											join m in repo.GetAllMedia().ToList()
+											on sub.MediaID equals m.ID
 										   orderby sub.DownloadCount descending
 										   select new TopTen
 										   {
@@ -44,8 +46,14 @@ namespace Screenwriter.Controllers
 											   Language = lang,
 											   Media = m
 										   }).Take(10).ToList();
-			SearchViewModel model = new SearchViewModel();
-			model.MostDownloaded = mostDownloaded;
+
+			model.MostRequested = (from sub in repo.GetAllSubtitles().ToList()
+								   join lang in repo.GetAllLanguages().ToList()
+								   on sub.LanguageID equals lang.ID
+								   join m in repo.GetAllMedia().ToList()
+								   on sub.MediaID equals m.ID
+								   orderby repo.
+			
 
 			
 			return View(model);
