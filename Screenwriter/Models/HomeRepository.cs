@@ -36,17 +36,25 @@ namespace Screenwriter.Models
 			InitializeMockData();
 		}
 
-		public IEnumerable<Subtitle> GetAllSubtitles()
+		public int NumberOfRequests(int subtitleId)
 		{
-			var result = from sub in subtitles
-						 select sub;
+			int result = (from req in requests
+						  where req.SubtitleID == subtitleId
+						  select req).Count();
+			return 0;
+		}
+
+		public IQueryable<Subtitle> GetAllSubtitles()
+		{
+			var result = (from sub in subtitles
+						  select sub).AsQueryable();
 			return result;
 		}
-		public IEnumerable<Subtitle> GetSubtitlesByLanguageId(int id)
+		public IQueryable<Subtitle> GetSubtitlesByLanguageId(int id)
 		{
-			var result = from sub in subtitles
-						 where sub.LanguageID == id
-						 select sub;
+			var result = (from sub in subtitles
+						  where sub.LanguageID == id
+						  select sub).AsQueryable();
 			return result;
 		}
 		public Subtitle GetSubtitleById(int id)
@@ -56,23 +64,23 @@ namespace Screenwriter.Models
 						  select sub).FirstOrDefault();
 			return result;
 		}
-		public IEnumerable<Language> GetAllLanguages()
+		public IQueryable<Language> GetAllLanguages()
 		{
-			var result = from lang in languages
-						 select lang;
+			var result = (from lang in languages
+						  select lang).AsQueryable();
 			return result;
 		}
-		public IEnumerable<Entry> GetAllEntiesBySubtitleId(int id)
+		public IQueryable<Entry> GetAllEntiesBySubtitleId(int id)
 		{
-			var result = from entry in entries
-						 where entry.SubtitleID == id
-						 select entry;
+			var result = (from entry in entries
+						  where entry.SubtitleID == id
+						  select entry).AsQueryable();
 			return result;
 		}
-		public IEnumerable<Media> GetAllMedia()
+		public IQueryable<Media> GetAllMedia()
 		{
-			var result = from m in media
-						 select m;
+			var result = (from m in media
+						  select m).AsQueryable();
 			return result;
 		}
 		public void Save()
