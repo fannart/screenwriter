@@ -216,6 +216,7 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Home\View1.cshtml" />
     <Content Include="Views\Home\LoggedInHomePage.cshtml" />
+    <Content Include="Views\Home\Mostpopular.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
