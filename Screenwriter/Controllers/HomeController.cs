@@ -30,11 +30,19 @@ namespace Screenwriter.Controllers
 			return View();
 		}
 
-		public ActionResult Test()
+		public ActionResult Search()
 		{
-			List<Media> media = repo.GetAllMedia().ToList();
-
-			return View(media);
+			var model = (from sub in repo.GetAllSubtitles()
+							 join lang in repo.GetAllLanguages()
+							 on sub.LanguageID equals lang.ID
+							 orderby sub.DownloadCount descending
+							 select new
+							 {
+								 subtitle = sub,
+								 language = lang
+							 }
+										).Take(10).ToList();
+			return View(model);
 		}
 	}
 }
