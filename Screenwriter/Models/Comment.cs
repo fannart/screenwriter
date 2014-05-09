@@ -10,8 +10,8 @@ namespace Screenwriter.Models
 	public class Comment
 	{
 		public int ID { get; set; }
-		public int EntryID { get; set; }
-		public int SubtitleID { get; set; }
+		public int? EntryID { get; set; }
+		public int? SubtitleID { get; set; }
 		public string Text { get; set; }
 		public DateTime TimeStamp { get; set; }
 		public ApplicationUser User { get; set; }

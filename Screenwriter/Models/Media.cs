@@ -11,11 +11,8 @@ namespace Screenwriter.Models
 	public abstract class Media
 	{
 		public int ID { get; set; }
+		public int LanguageID { get; set; }
 		public string Title { get; set; }
-		/// <summary>
-		/// The language that the media is in. This is the language 
-		/// that needs to be translated from.</summary>
-		public Language Language { get; set; }
 		/// <summary>
 		/// The lengt of the media represented in minutes.</summary>
 		public int length { get; set; }

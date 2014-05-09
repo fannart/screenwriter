@@ -46,7 +46,7 @@ namespace Screenwriter.Models
 
 		public IQueryable<Subtitle> GetAllSubtitles()
 		{
-			var result = (from sub in subtitles
+			var result = (from sub in db.Subtitles
 						  select sub).AsQueryable();
 			return result;
 		}
@@ -139,10 +139,10 @@ namespace Screenwriter.Models
 			this.requests.Add(new Request { ID = 9, SubtitleID = 7, ApplicationUserID = 2 });
 
 			this.comments = new List<Comment>();
-			this.comments.Add(new Comment { ID = 1, User = fannar, SubtitleID = 4, Text = "Geggjað" });
-			this.comments.Add(new Comment { ID = 2, User = fannar, SubtitleID = 4, Text = "WAT!" });
-			this.comments.Add(new Comment { ID = 3, User = fannar, SubtitleID = 6, Text = "Ekki aftur?" });
-			this.comments.Add(new Comment { ID = 4, User = fannar, SubtitleID = 2, Text = "No way!" });
+			this.comments.Add(new Comment { ID = 1, SubtitleID = 4, Text = "Geggjað" });
+			this.comments.Add(new Comment { ID = 2, SubtitleID = 4, Text = "WAT!" });
+			this.comments.Add(new Comment { ID = 3, SubtitleID = 6, Text = "Ekki aftur?" });
+			this.comments.Add(new Comment { ID = 4, SubtitleID = 2, Text = "No way!" });
 		}
 	}
 }
