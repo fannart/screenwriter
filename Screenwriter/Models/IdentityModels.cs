@@ -6,7 +6,6 @@ namespace Screenwriter.Models
     public class ApplicationUser : IdentityUser
     {
         public string Email { get; set; }
-        public string ConfirmEmail { get; set; }
     }
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
