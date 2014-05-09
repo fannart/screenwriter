@@ -222,6 +222,7 @@
     <Content Include="Views\Home\History.cshtml" />
     <Content Include="Views\Home\SearchResults.cshtml" />
     <Content Include="Views\Home\Request.cshtml" />
+    <Content Include="Views\Home\PendingRequests.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

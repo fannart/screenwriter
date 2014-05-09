@@ -50,5 +50,9 @@ namespace Screenwriter.Controllers
         {
             return View();
         }
+        public ActionResult PendingRequests()
+        {
+            return View();
+        }
 	}
 }
