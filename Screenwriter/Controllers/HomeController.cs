@@ -42,5 +42,13 @@ namespace Screenwriter.Controllers
         {
             return View();
         }
+        public ActionResult SearchResults()
+        {
+            return View();
+        }
+        public ActionResult Request()
+        {
+            return View();
+        }
 	}
 }
