@@ -34,7 +34,13 @@ namespace Screenwriter.Controllers
 			HomeRepository repo = new HomeRepository();
 
 			SearchViewModel model = new SearchViewModel();
-			foreach(var subtitle in repo.GetAllSubtitles().ToList())
+
+			List<Subtitle> mostDownloadedSubtitles = repo.GetAllSubtitles()
+				.Where(s => s.TranslationIsCompleted)
+				.OrderByDescending(s => s.DownloadCount)
+				.Take(10)
+				.ToList();
+			foreach(var subtitle in mostDownloadedSubtitles)
 			{
 				var language = repo.GetAllLanguages()
 					.Where(l => l.ID == subtitle.LanguageID)
@@ -43,6 +49,48 @@ namespace Screenwriter.Controllers
 					.Where(m => m.ID == subtitle.MediaID)
 					.FirstOrDefault();
 				model.MostDownloaded.Add(new TopTen
+				{
+					Subtitle = subtitle, 
+					Language = language,
+					Media = media
+				});
+			}
+
+			List<Subtitle> newestSubtitles = repo.GetAllSubtitles()
+				.Where(s => s.TranslationIsCompleted)
+				.OrderByDescending(s => s.DateCompleted)
+				.Take(10)
+				.ToList();
+			foreach(var subtitle in newestSubtitles)
+			{
+				var language = repo.GetAllLanguages()
+					.Where(l => l.ID == subtitle.LanguageID)
+					.FirstOrDefault();
+				var media = repo.GetAllMedia()
+					.Where(m => m.ID == subtitle.MediaID)
+					.FirstOrDefault();
+				model.NewestSubtitles.Add(new TopTen
+				{
+					Subtitle = subtitle, 
+					Language = language,
+					Media = media
+				});
+			}
+
+			List<Subtitle> mostRequestedSubtitles = repo.GetAllSubtitles()
+				.Where(s => s.TranslationIsCompleted)
+				.OrderByDescending(s => s.DateCompleted)
+				.Take(10)
+				.ToList();
+			foreach(var subtitle in mostRequestedSubtitles)
+			{
+				var language = repo.GetAllLanguages()
+					.Where(l => l.ID == subtitle.LanguageID)
+					.FirstOrDefault();
+				var media = repo.GetAllMedia()
+					.Where(m => m.ID == subtitle.MediaID)
+					.FirstOrDefault();
+				model.MostRequested.Add(new TopTen
 				{
 					Subtitle = subtitle, 
 					Language = language,
