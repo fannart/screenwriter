@@ -12,7 +12,7 @@ namespace Screenwriter.Migrations
         public Configuration()
         {
             AutomaticMigrationsEnabled = true;
-			AutomaticMigrationDataLossAllowed = false;
+			AutomaticMigrationDataLossAllowed = true;
         }
 
         protected override void Seed(Screenwriter.DAL.HomeContext context)
@@ -29,6 +29,7 @@ namespace Screenwriter.Migrations
             //      new Person { FullName = "Rowan Miller" }
             //    );
 			//
+
 			context.Languages.AddOrUpdate(
 				new Language { ID = 1, Name = "English" },
 				new Language { ID = 2, Name = "Icelandic" },
@@ -38,7 +39,12 @@ namespace Screenwriter.Migrations
 			context.Media.AddOrUpdate(
 				new Movie { ID = 1, LanguageID = 1, Title = "12 Years a Slave", publishDate = DateTime.Now },
 				new Movie { ID = 2, LanguageID = 1, Title = "Argo", publishDate = DateTime.Now },
-				new Movie { ID = 3, LanguageID = 1, Title = "The Artist", publishDate = DateTime.Now }
+				new Movie { ID = 3, LanguageID = 1, Title = "The Artist", publishDate = DateTime.Now },
+				new Lecture { ID = 4, LanguageID = 2, Title = "Verklegt námskeið 2014 - kynning", YoutubeIdentifier = "-02FatEYyLo", Lecturer = "Daníel Brandur Sigurgeirsson", School = "HR", publishDate = DateTime.Now },
+				new TVShow { ID = 5, LanguageID = 3, Title = "One Piece", publishDate = DateTime.Now, ImdbURL = "//www.imdb.com/title/tt1046719/", Season = 8, Episode = 1 },
+				new Movie { ID = 6, LanguageID = 3, Title = "Seven Samurai", publishDate = DateTime.Now, ImdbURL = "//www.imdb.com/title/tt0047478/" },
+				new Movie { ID = 7, LanguageID = 3, Title = "Spirited Away", publishDate = DateTime.Now, ImdbURL = "//www.imdb.com/title/tt0245429/" },
+				new TVShow { ID = 8, LanguageID = 2, Title = "The Night Watch", publishDate = DateTime.Now, ImdbURL = "//www.imdb.com/title/tt1823510/", Season = 1, Episode = 1 }
 			);
 
 			context.Subtitles.AddOrUpdate(
@@ -138,22 +144,22 @@ namespace Screenwriter.Migrations
 			);
 
 			context.Requests.AddOrUpdate(
-				new Request { ID = 1, SubtitleID = 2, UserID = 1 },
-				new Request { ID = 2, SubtitleID = 1, UserID = 2 },
-				new Request { ID = 3, SubtitleID = 3, UserID = 1 },
-				new Request { ID = 4, SubtitleID = 2, UserID = 2 },
-				new Request { ID = 5, SubtitleID = 3, UserID = 2 },
-				new Request { ID = 6, SubtitleID = 4, UserID = 2 },
-				new Request { ID = 7, SubtitleID = 5, UserID = 2 },
-				new Request { ID = 8, SubtitleID = 6, UserID = 2 },
-				new Request { ID = 9, SubtitleID = 7, UserID = 2 }
+				new Request { ID = 1, SubtitleID = 2, UserID = "e99ed7d6-69ee-4902-b751-e90e49504620" },
+				new Request { ID = 2, SubtitleID = 1, UserID = "d8b7faf3-a9f3-4c18-8398-edefb021a688" },
+				new Request { ID = 3, SubtitleID = 3, UserID = "e99ed7d6-69ee-4902-b751-e90e49504620" },
+				new Request { ID = 4, SubtitleID = 2, UserID = "d8b7faf3-a9f3-4c18-8398-edefb021a688" },
+				new Request { ID = 5, SubtitleID = 3, UserID = "d8b7faf3-a9f3-4c18-8398-edefb021a688" },
+				new Request { ID = 6, SubtitleID = 4, UserID = "d8b7faf3-a9f3-4c18-8398-edefb021a688" },
+				new Request { ID = 7, SubtitleID = 5, UserID = "d8b7faf3-a9f3-4c18-8398-edefb021a688" },
+				new Request { ID = 8, SubtitleID = 6, UserID = "d8b7faf3-a9f3-4c18-8398-edefb021a688" },
+				new Request { ID = 9, SubtitleID = 7, UserID = "d8b7faf3-a9f3-4c18-8398-edefb021a688" }
 			);
 			
 			context.Comments.AddOrUpdate(
-				new Comment() { ID = 1, SubtitleID = 4, TimeStamp = DateTime.Now, UserId = "Fannar", Text = "Geggjað" },
-				new Comment() { ID = 2, SubtitleID = 4, TimeStamp = DateTime.Now, UserId = "Fannar", Text = "WAT!" },
-				new Comment() { ID = 3, EntryID = 1, TimeStamp = DateTime.Now, UserId = "Fannar", Text = "Ekki aftur?" },
-				new Comment() { ID = 4, EntryID = 1, TimeStamp = DateTime.Now, UserId = "Fannar", Text = "No way!" }
+				new Comment() { ID = 1, SubtitleID = 4, TimeStamp = DateTime.Now, UserId = "d8b7faf3-a9f3-4c18-8398-edefb021a688", Text = "Geggjað" },
+				new Comment() { ID = 2, SubtitleID = 4, TimeStamp = DateTime.Now, UserId = "d8b7faf3-a9f3-4c18-8398-edefb021a688", Text = "WAT!" },
+				new Comment() { ID = 3, EntryID = 1, TimeStamp = DateTime.Now, UserId = "d8b7faf3-a9f3-4c18-8398-edefb021a688", Text = "Ekki aftur?" },
+				new Comment() { ID = 4, EntryID = 1, TimeStamp = DateTime.Now, UserId = "d8b7faf3-a9f3-4c18-8398-edefb021a688", Text = "No way!" }
 			);
         }
     }

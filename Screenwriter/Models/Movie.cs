@@ -11,7 +11,7 @@ namespace Screenwriter.Models
 	{
 		/// <summary>
 		/// The ID imdb uses to identify movies.</summary>
-		public int ImdbID { get; set; }
+		public string ImdbID { get; set; }
 		/// <summary>
 		/// The URL to the imdb website for this movie.</summary>
 		public string ImdbURL { get; set; }
