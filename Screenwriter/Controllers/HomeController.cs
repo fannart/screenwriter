@@ -10,8 +10,6 @@ namespace Screenwriter.Controllers
 {
 	public class HomeController : Controller
 	{
-		public HomeRepository repo = new HomeRepository();
-
 		public ActionResult Index()
 		{
 			return View();
@@ -33,22 +31,61 @@ namespace Screenwriter.Controllers
 
 		public ActionResult Search()
 		{
-			List<TopTen> mostDownloaded = (from sub in repo.GetAllSubtitles()
-										   join lang in repo.GetAllLanguages()
-										   on sub.LanguageID equals lang.ID
-										   join m in repo.GetAllMedia() on sub.MediaID equals m.ID
-										   orderby sub.DownloadCount descending
-										   select new TopTen
-										   {
-											   Subtitle = sub,
-											   Language = lang,
-											   Media = m
-										   }).Take(10).ToList();
-			SearchViewModel model = new SearchViewModel();
-			model.MostDownloaded = mostDownloaded;
+			HomeRepository repo = new HomeRepository();
 
-			
+			SearchViewModel model = new SearchViewModel();
+			foreach(var subtitle in repo.GetAllSubtitles().ToList())
+			{
+				var language = repo.GetAllLanguages()
+					.Where(l => l.ID == subtitle.LanguageID)
+					.FirstOrDefault();
+				var media = repo.GetAllMedia()
+					.Where(m => m.ID == subtitle.MediaID)
+					.FirstOrDefault();
+				model.MostDownloaded.Add(new TopTen
+				{
+					Subtitle = subtitle, 
+					Language = language,
+					Media = media
+				});
+			}
+
 			return View(model);
 		}
+
+        public ActionResult LoggedInHomePage()
+        {
+            return View();
+        }
+
+        public ActionResult ViewRequests()
+        {
+            return View();
+        }
+
+        public ActionResult Create()
+        {
+            return View();
+        }
+
+        public ActionResult History()
+        {
+            return View();
+        }
+
+        public ActionResult SearchResults()
+        {
+            return View();
+        }
+
+        public ActionResult Request()
+        {
+            return View();
+        }
+
+        public ActionResult PendingRequests()
+        {
+            return View();
+        }
 	}
 }

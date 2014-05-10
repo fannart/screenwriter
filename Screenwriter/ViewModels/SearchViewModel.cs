@@ -18,5 +18,12 @@ namespace Screenwriter.ViewModels
 		public List<TopTen> MostDownloaded { get; set; }
 		public List<TopTen> NewestSubtitles { get; set; }
 		public List<TopTen> MostRequested { get; set; }
+
+		public SearchViewModel()
+		{
+			MostDownloaded = new List<TopTen>();
+			NewestSubtitles = new List<TopTen>();
+			MostRequested = new List<TopTen>();
+		}
 	}
 }

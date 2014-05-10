@@ -207,7 +207,9 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -234,6 +236,15 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Home\Test.cshtml" />
     <Content Include="Views\Home\Search.cshtml" />
+    <Content Include="Views\Home\LoggedInHomePage.cshtml" />
+    <Content Include="Views\Home\Mostpopular.cshtml" />
+    <Content Include="Views\Home\MostPopularAndMostRequested.cshtml" />
+    <Content Include="Views\Home\ViewRequests.cshtml" />
+    <Content Include="Views\Home\Create.cshtml" />
+    <Content Include="Views\Home\History.cshtml" />
+    <Content Include="Views\Home\SearchResults.cshtml" />
+    <Content Include="Views\Home\Request.cshtml" />
+    <Content Include="Views\Home\PendingRequests.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

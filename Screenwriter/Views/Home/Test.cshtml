@@ -1,7 +1,7 @@
-﻿@model IEnumerable<Screenwriter.Models.Media>
+﻿@model IEnumerable<Screenwriter.Models.Subtitle>
 
 @{
-    ViewBag.Title = "Test";
+    ViewBag.Title = "Subtitle Test";
 }
 
 <h2>Test</h2>
@@ -10,14 +10,6 @@
     @Html.ActionLink("Create New", "Create")
 </p>
 <table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.ID)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Title)
-        </th>
-    </tr>
 
 @foreach (var item in Model) {
     <tr>
@@ -25,7 +17,19 @@
             @Html.DisplayFor(modelItem => item.ID)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Title)
+            @Html.DisplayFor(modelItem => item.LanguageID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MediaID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TranslationIsCompleted)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DownloadCount)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DateAdded)
         </td>
     </tr>
 }
