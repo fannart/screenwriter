@@ -12,7 +12,7 @@ namespace Screenwriter.Migrations
         public Configuration()
         {
             AutomaticMigrationsEnabled = true;
-			AutomaticMigrationDataLossAllowed = true;
+			AutomaticMigrationDataLossAllowed = false;
         }
 
         protected override void Seed(Screenwriter.DAL.HomeContext context)

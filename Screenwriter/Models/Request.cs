@@ -12,7 +12,7 @@ namespace Screenwriter.Models
 	{
 		public int ID { get; set; }
 		public int SubtitleID { get; set; }
-		public int UserID { get; set; }
+		public string UserID { get; set; }
 
 		public virtual Subtitle Subtitle { get; set; }
 		public virtual IdentityUser User { get; set; }
