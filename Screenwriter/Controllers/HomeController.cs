@@ -78,8 +78,8 @@ namespace Screenwriter.Controllers
 			}
 
 			List<Subtitle> mostRequestedSubtitles = repo.GetAllSubtitles()
-				.Where(s => s.TranslationIsCompleted)
-				.OrderByDescending(s => s.DateCompleted)
+				.Where(s => !s.TranslationIsCompleted && s.Requests.Count > 0)
+				.OrderByDescending(s => s.Requests.Count)
 				.Take(10)
 				.ToList();
 			foreach(var subtitle in mostRequestedSubtitles)

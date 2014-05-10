@@ -152,7 +152,21 @@ namespace Screenwriter.Migrations
 				new Request { ID = 6, SubtitleID = 4, UserID = "d8b7faf3-a9f3-4c18-8398-edefb021a688" },
 				new Request { ID = 7, SubtitleID = 5, UserID = "d8b7faf3-a9f3-4c18-8398-edefb021a688" },
 				new Request { ID = 8, SubtitleID = 6, UserID = "d8b7faf3-a9f3-4c18-8398-edefb021a688" },
-				new Request { ID = 9, SubtitleID = 7, UserID = "d8b7faf3-a9f3-4c18-8398-edefb021a688" }
+				new Request { ID = 9, SubtitleID = 7, UserID = "d8b7faf3-a9f3-4c18-8398-edefb021a688" },
+				new Request { SubtitleID = 1, UserID = "8104a076-a79b-43ad-b538-cfc8dcb3adc3" },
+				new Request { SubtitleID = 2, UserID = "8104a076-a79b-43ad-b538-cfc8dcb3adc3" },
+				new Request { SubtitleID = 3, UserID = "8104a076-a79b-43ad-b538-cfc8dcb3adc3" },
+				new Request { SubtitleID = 5, UserID = "8104a076-a79b-43ad-b538-cfc8dcb3adc3" },
+				new Request { SubtitleID = 7, UserID = "8104a076-a79b-43ad-b538-cfc8dcb3adc3" },
+				new Request { SubtitleID = 3, UserID = "8104a076-a79b-43ad-b538-cfc8dcb3adc3" },
+				new Request { SubtitleID = 5, UserID = "8104a076-a79b-43ad-b538-cfc8dcb3adc3" },
+				new Request { SubtitleID = 6, UserID = "8104a076-a79b-43ad-b538-cfc8dcb3adc3" },
+				new Request { SubtitleID = 6, UserID = "921cb03a-3f37-4f17-8dc3-f82f8b7bd58c" },
+				new Request { SubtitleID = 5, UserID = "921cb03a-3f37-4f17-8dc3-f82f8b7bd58c" },
+				new Request { SubtitleID = 3, UserID = "921cb03a-3f37-4f17-8dc3-f82f8b7bd58c" },
+				new Request { SubtitleID = 6, UserID = "fc814617-65ea-4fa2-a39f-e70c54fe5c31" },
+				new Request { SubtitleID = 3, UserID = "fc814617-65ea-4fa2-a39f-e70c54fe5c31" },
+				new Request { SubtitleID = 5, UserID = "fc814617-65ea-4fa2-a39f-e70c54fe5c31" }
 			);
 			
 			context.Comments.AddOrUpdate(

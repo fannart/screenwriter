@@ -20,8 +20,7 @@ namespace Screenwriter.Models
 
 		public IQueryable<Subtitle> GetAllSubtitles()
 		{
-			var result = (from sub in db.Subtitles
-						  select sub).AsQueryable();
+			var result = db.Subtitles.AsQueryable();
 			
 			return result;
 		}
@@ -42,6 +41,7 @@ namespace Screenwriter.Models
 		public IQueryable<Language> GetAllLanguages()
 		{
 			var result = (from lang in db.Languages
+						  orderby lang.Name ascending
 						  select lang).AsQueryable();
 			return result;
 		}
@@ -54,8 +54,7 @@ namespace Screenwriter.Models
 		}
 		public IQueryable<Media> GetAllMedia()
 		{
-			var result = (from m in db.Media
-						  select m).AsQueryable();
+			var result = db.Media.AsQueryable();
 			return result;
 		}
 		public void Save()
