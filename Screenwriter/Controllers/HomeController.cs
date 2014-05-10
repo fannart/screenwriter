@@ -34,32 +34,33 @@ namespace Screenwriter.Controllers
 		public ActionResult Search()
 		{
 			SearchViewModel model = new SearchViewModel();
+
 			model.MostDownloaded = (from sub in repo.GetAllSubtitles().ToList()
 									where sub.TranslationIsCompleted == true
-										   join lang in repo.GetAllLanguages().ToList()
-										   on sub.LanguageID equals lang.ID
-											join m in repo.GetAllMedia().ToList()
-											on sub.MediaID equals m.ID
-										   orderby sub.DownloadCount descending
-										   select new TopTen
-										   {
-											   Subtitle = sub,
-											   Language = lang,
-											   Media = m
-										   }).Take(10).ToList();
-			model.NewestSubtitles = (from sub in repo.GetAllSubtitles().ToList()
-									 where sub.TranslationIsCompleted == true
 									join lang in repo.GetAllLanguages().ToList()
 									on sub.LanguageID equals lang.ID
 									join m in repo.GetAllMedia().ToList()
 									on sub.MediaID equals m.ID
-									orderby sub.DateAdded descending
+									orderby sub.DownloadCount descending
 									select new TopTen
 									{
 										Subtitle = sub,
 										Language = lang,
-										Media = m
+										Media = m,
 									}).Take(10).ToList();
+			model.NewestSubtitles = (from sub in repo.GetAllSubtitles().ToList()
+									 where sub.TranslationIsCompleted == true
+									 join lang in repo.GetAllLanguages().ToList()
+									 on sub.LanguageID equals lang.ID
+									 join m in repo.GetAllMedia().ToList()
+									 on sub.MediaID equals m.ID
+									 orderby sub.DateAdded descending
+									 select new TopTen
+									 {
+										 Subtitle = sub,
+										 Language = lang,
+										 Media = m,
+									 }).Take(10).ToList();
 
 			model.MostRequested = (from sub in repo.GetAllSubtitles().ToList()
 								   where sub.TranslationIsCompleted == false
@@ -72,10 +73,51 @@ namespace Screenwriter.Controllers
 								   {
 									   Subtitle = sub,
 									   Language = lang,
-									   Media = m
+									   Media = m,
 								   }).Take(10).ToList();
 
+
+			
 			return View(model);
+
 		}
+		private Screenwriter.ViewModels.MultiSelectList GetCountries(string[] selectedValues);
+		
+		public ActionResult SearchResults(string titleSearch, string[] selectedValues)
+		{
+			SearchResultsViewModel result = new SearchResultsViewModel();
+
+			result.LangSearch = repo.GetAllLanguages().ToList();
+
+			if (!String.IsNullOrEmpty(titleSearch)) {
+				result.Results = (from m in repo.GetAllMedia().ToList()
+								  join sub in repo.GetAllSubtitles().ToList()
+								  on m.ID equals sub.MediaID
+								  join lang in repo.GetAllLanguages().ToList()
+								  on sub.LanguageID equals lang.ID
+								where m.Title.Contains(titleSearch)
+								  orderby m.Title ascending
+								  select new SearchResult
+								  {
+									  Title= m.Title,
+									  Published = m.publishDate
+								  }).ToList();
+			}
+			else result.Results = (from sub in repo.GetAllSubtitles().ToList()
+								   where sub.TranslationIsCompleted == false
+								   join lang in repo.GetAllLanguages().ToList()
+								   on sub.LanguageID equals lang.ID
+								   join m in repo.GetAllMedia().ToList()
+								   on sub.MediaID equals m.ID
+								   orderby repo.NumberOfRequests(sub.ID) descending
+								   select new SearchResult
+								   {
+									   Title = m.Title,
+									   Published = m.publishDate
+								   }).ToList();
+
+			return View(result);
+		}
+		
 	}
 }

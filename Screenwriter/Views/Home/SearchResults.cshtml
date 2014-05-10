@@ -1,0 +1,38 @@
+﻿@model Screenwriter.ViewModels.SearchResultsViewModel
+
+@{
+    ViewBag.Title = "Search Results";
+ }
+
+@using (Html.BeginForm())
+{
+    
+    <p>
+        Title: @Html.TextBox("titleSearch")
+        @foreach (var l in Model.LangSearch)
+        {
+            @l.Name @Html.CheckBox("@l.Name", "isChecked")
+        }
+       
+        <input type="submit" value="Search" />
+    </p>
+}
+
+<table class="table">
+    <tr>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model.Results)
+    {
+        <tr>
+            <td>
+                @item.Title
+            </td>
+            <td>
+                <p>Year</p>
+            </td>
+        </tr>
+    }
+
+</table>
