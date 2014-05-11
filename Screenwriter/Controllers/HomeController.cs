@@ -29,6 +29,13 @@ namespace Screenwriter.Controllers
 			return View();
 		}
 
+		[Authorize]
+		public ActionResult UpvoteSubtitleRequest(int? id)
+		{
+			var model = 9;
+			return Json(model, JsonRequestBehavior.AllowGet);
+		}
+
 		public ActionResult Search()
 		{
 			HomeRepository repo = new HomeRepository();
@@ -125,12 +132,12 @@ namespace Screenwriter.Controllers
         {
             return View();
         }
-
+		/*
         public ActionResult Request()
         {
             return View();
         }
-
+		*/
         public ActionResult PendingRequests()
         {
             return View();
