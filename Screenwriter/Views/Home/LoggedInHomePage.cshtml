@@ -53,7 +53,7 @@
             </ol>
         </div>
         <div class="col-md-4">
-            @Html.ActionLink("View Requests", "ViewRequests", "Home")<br />
+            @Html.ActionLink("View Requests", "PendingRequests", "Home")<br />
             @Html.ActionLink("Create", "Create", "Home")<br />
             @Html.ActionLink("History", "History", "Home")
         </div>
@@ -61,7 +61,7 @@
     <div class="row">
         <div class="col-md-6 col-md-offset-4">
             <input type="text" id=textboxinput />
-            <button>Search</button>
+           @Html.ActionLink("Search", "SearchResults", "Home")
         </div>
     </div>
 </div>
