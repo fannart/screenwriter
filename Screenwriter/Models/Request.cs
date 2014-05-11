@@ -7,7 +7,8 @@ using System.Web;
 namespace Screenwriter.Models
 {
 	/// <summary>
-	/// Represents a request by a user for a specific subtitle.</summary>
+	/// Represents a request by a user for a specific subtitle. 
+	/// Shows the relationship between users and subtitles.</summary>
 	public class Request
 	{
 		public int ID { get; set; }

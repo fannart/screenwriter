@@ -14,7 +14,11 @@ namespace Screenwriter.Models
 		public int? EntryID { get; set; }
 		public int? SubtitleID { get; set; }
 		public string UserId { get; set; }
+		/// <summary>
+		/// The text containing the actual comment.</summary>
 		public string Text { get; set; }
+		/// <summary>
+		/// The time the comment was posted.</summary>
 		public DateTime TimeStamp { get; set; }
 
 		public virtual Entry Entry { get; set; }
