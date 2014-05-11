@@ -217,7 +217,6 @@
     <Content Include="Views\Home\LoggedInHomePage.cshtml" />
     <Content Include="Views\Home\Mostpopular.cshtml" />
     <Content Include="Views\Home\MostPopularAndMostRequested.cshtml" />
-    <Content Include="Views\Home\ViewRequests.cshtml" />
     <Content Include="Views\Home\Create.cshtml" />
     <Content Include="Views\Home\History.cshtml" />
     <Content Include="Views\Home\SearchResults.cshtml" />
