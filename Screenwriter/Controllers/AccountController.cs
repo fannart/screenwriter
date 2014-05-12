@@ -77,8 +77,8 @@ namespace Screenwriter.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Register(RegisterViewModel model)
         {
-            if (ModelState.IsValid)
-            {
+            //if (ModelState.IsValid)
+            //{
                 var user = new ApplicationUser()
                 {
                     UserName = model.UserName,
@@ -94,7 +94,7 @@ namespace Screenwriter.Controllers
                 {
                     AddErrors(result);
                 }
-            }
+           // }
             // If we got this far, something failed, redisplay form
             return View(model);
         }
