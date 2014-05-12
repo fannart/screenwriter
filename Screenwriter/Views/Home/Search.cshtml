@@ -1,65 +1,112 @@
 ﻿@model Screenwriter.ViewModels.SearchViewModel
 
 @{
-    ViewBag.Title = "Search";
+ViewBag.Title = "Search";
 }
 
 <h2>Search</h2>
+<div class="col-md-4">
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<h4>Most Downloaded</h4>
+		</div>
+		<table class="table">
+			@foreach (var item in Model.MostDownloaded)
+			{
+			<tr>
+				<td>
+					@Html.ActionLink(@item.Media.Title, "Subtitle", new { id = item.Subtitle.ID })
+				</td>
+				<td>
+					@item.Language.Name
+				</td>
+				<td>
+					@item.Subtitle.DownloadCount
+				</td>
+				<td>
+					@Html.ActionLink("Download", "Download", new { id = item.Subtitle.ID })
+				</td>
+			</tr>
+			}
+		</table>
+	</div>
+</div>
+<div class="col-md-4">
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<h4>Latest Subtitles</h4>
+		</div>
+		<table class="table">
+			@foreach (var item in Model.NewestSubtitles)
+			{
+			<tr>
+				<td>
+					@Html.ActionLink(@item.Media.Title, "Subtitle", new { id = item.Subtitle.ID })
+				</td>
+				<td>
+					@item.Language.Name
+				</td>
+				<td>
+					@{TimeSpan days = (DateTime.Now - item.Subtitle.DateCompleted);}
+					@days.Minutes minutes ago
+				</td>
+				<td>
+					@Html.ActionLink("Download", "Download", new { id = item.Subtitle.ID })
+				</td>
+			</tr>
+			}
+		</table>
+	</div>
+</div>
+<div class="col-md-4">
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<h4>Most Requested</h4>
+		</div>
+		<table class="table">
+			@foreach (var item in Model.MostRequested)
+			{
+			<tr>
+				<td>
+					@Html.ActionLink(@item.Media.Title, "Subtitle", new { id = item.Subtitle.ID })
+				</td>
+				<td>
+					@item.Language.Name
+				</td>
+				<td>
+					@item.Subtitle.Requests.Count
+				</td>
+				<td>
+					@Html.ActionLink("Request", "UpvoteSubtitleRequest",
+						new { id = item.Subtitle.ID },
+						new { @class = "requestSubtitle", data_id = item.Subtitle.ID })
+				</td>
+			</tr>
+			}
+		</table>
+	</div>
+</div>
+<div class="clearfix"></div>
 
-@Html.TextBox("titleSearch")
-<input type="submit" value=" Search" />
 
-<table class="table">
-    <tr>
-        <th>Most Downloaded</th>
-    </tr>
 
-    @foreach (var item in Model.MostDownloaded)
-    {
-        <tr>
-            <td>
-                @item.Media.Title
-            </td>
-            <td>
-                @item.Language.Name
-            </td>
-        </tr>
-    }
-
-</table>
-<table class="table">
-    <tr>
-        <th>Newest Subtitles</th>
-    </tr>
-
-    @foreach (var item in Model.NewestSubtitles)
-    {
-        <tr>
-            <td>
-                @item.Media.Title
-            </td>
-            <td>
-                @item.Language.Name
-            </td>
-        </tr>
-    }
-
-</table>
-<table class="table">
-    <tr>
-        <th>Most Requested</th>
-    </tr>
-
-    @foreach (var item in Model.MostRequested)
-    {
-        <tr>
-            <td>
-                @item.Media.Title
-            </td>
-            <td>
-                @item.Language.Name
-            </td>
-        </tr>
-    }
-
-</table>
+<!-- TODO: Make pop up Error Window partial and use for other errors -->
+<div class="modal fade" id="registerToRequestError" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h4 class="modal-title" id="registerToRequestErrorLabel">
+					Request Error - Unregistered User
+				</h4>
+			</div>
+			<div class="modal-body">
+				You have to register to be able to request subtitles.
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { @class = "btn btn-primary" })
+			</div>
+		</div>
+	</div>
+</div>

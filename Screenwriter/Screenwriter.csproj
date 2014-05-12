@@ -186,10 +186,6 @@
     <Compile Include="ViewModels\SearchViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\Screenwriter_DB.mdf" />
-    <Content Include="App_Data\Screenwriter_DB_log.ldf">
-      <DependentUpon>Screenwriter_DB.mdf</DependentUpon>
-    </Content>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="favicon.ico" />
@@ -238,7 +234,6 @@
     <Content Include="Views\Account\Manage.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Home\Test.cshtml" />
     <Content Include="Views\Home\Search.cshtml" />
     <Content Include="Views\Home\LoggedInHomePage.cshtml" />
     <Content Include="Views\Home\Mostpopular.cshtml" />
@@ -250,7 +245,9 @@
     <Content Include="Views\Home\Request.cshtml" />
     <Content Include="Views\Home\PendingRequests.cshtml" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
