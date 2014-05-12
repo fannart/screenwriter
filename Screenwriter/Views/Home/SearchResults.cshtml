@@ -7,34 +7,33 @@
 @using (Html.BeginForm())
 {
     
-    <p>
-        Title: @Html.TextBox("titleSearch")
-        @foreach (var l in Model.LangSearch)
-        {
-            @l.Name @Html.CheckBox("@l.Name", "isChecked")
-        }
-		<button type="button" class="btn btn-default" id="advSearchButton">
-			<span class="glyphicon glyphicon-zoom-in"></span>
-		</button>
-       
-		<button type="submit" class="btn btn-default">
-			<span class="glyphicon glyphicon-search"></span>
-		</button>
-    </p>
+		<h3>
+			Title @Html.TextBox("titleSearch")
+			<button type="button" class="btn btn-default" id="advSearchButton">
+				<span class="glyphicon glyphicon-zoom-in"></span>
+			</button>
 
-<div id="advancedSearch" class="container-fluid">
+			<button type="submit" class="btn btn-default">
+				<span class="glyphicon glyphicon-search"></span>
+			</button>
+		</h3>
+}
+<div id="advancedSearch" class="container">
 	<div class="form-group">
-		<p>@Html.TextBox("YearPublished")
-		@Html.DropDownList("MediaLanguage")
-		@{/*Html.DropDownList("SearchGenre")*/}</p>
+		<h4>
+			Year Published @Html.TextBox("YearPublished")
+			Media Language @Html.DropDownList("MediaLanguage", "All Languages")
+			Media Genre @Html.DropDownList("SearchGenre", "All Genres")
+		</h4>
 	</div>
 	<div class="form-group">
-		@Html.DropDownList("MediaType")
-		@Html.TextBox("Season")
-		@Html.TextBox("Episode")
+	<h4>
+		Season @Html.TextBox("Season")
+		Episode @Html.TextBox("Episode")
+	</h4>
 	</div>
 </div>
-}
+
 <table class="table">
 		<tr>
 			<th></th>

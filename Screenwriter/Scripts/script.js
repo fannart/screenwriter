@@ -1,14 +1,9 @@
 
-$(document).ready(function () {
-	$('#advSearchButton').click(function () {
-		if ($('#advancedSearch').is(':visible')) {
-			$('#advancedSearch').slideUp('slow');
-		}
-		else {
-			$('#advancedSearch').slideDown('slow');
-		}
+$(function () {
+	$( '#advSearchButton' ).on('click', function() {
+		$('#advancedSearch').slideToggle('slow');
 	});
-	// Handles all actions to request an existing subtitle.
+	/* Handles all actions to request an existing subtitle.
 	$('.requestSubtitle').on('click', function (e) {
 		e.preventDefault();
 		$this = $(this);
@@ -29,5 +24,5 @@ $(document).ready(function () {
 				$('#registerToRequestError').modal();
 			}
 		});
-	});
+	});*/
 });

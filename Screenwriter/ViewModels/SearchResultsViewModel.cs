@@ -30,10 +30,9 @@ namespace Screenwriter.ViewModels
 		public List<SelectListItem> LangSearch { get; set; }
 		public List<SearchResult> Results { get; set; }
 		public string Title { get; set; }
-		public List<SelectListItem> SubLanguage { get; set; }
 		public List<SelectListItem> MediaLanguage { get; set; }
 		public List<SelectListItem> SearchGenre { get; set; }
-		public List<Media> MediaType { get; set; }
+		public List<SelectListItem> MediaType { get; set; }
 		public string YearPublished { get; set; }
 		public int Season { get; set; }
 		public int Episode { get; set; }

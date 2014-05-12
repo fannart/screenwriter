@@ -134,8 +134,9 @@ namespace Screenwriter.Controllers
 		{
 			SearchResultsViewModel result = new SearchResultsViewModel();
 			HomeRepository repo = new HomeRepository();
-
-			foreach (var item in repo.GetAllLanguages())
+			//WIP!!!!!!Lang Search - puting list of languages into SelectedListItems List for dropdown for subtitle languages
+			result.LangSearch = new List<SelectListItem>();
+			foreach (var item in repo.GetAllLanguages()) //NEED TO GET MULTIPLE SELECTION TO WORK!
 			{
 				result.LangSearch.Add(new SelectListItem
 				{
@@ -144,7 +145,8 @@ namespace Screenwriter.Controllers
 					Selected = false
 				});
 			}
-
+			//Media Language - puting in languages for dropdown selection to chose media language
+			result.MediaLanguage = new List<SelectListItem>();
 			foreach (var item in repo.GetAllLanguages())
 			{
 				result.MediaLanguage.Add(new SelectListItem
@@ -154,22 +156,25 @@ namespace Screenwriter.Controllers
 					Selected = false
 				});
 			}
-
-			foreach (var item in repo.GetAllMedia())
-			{
-				result.MediaLanguage.Add(new SelectListItem
-				{
-					Text = item.length.ToString(),
-					Value = item.ID.ToString(),
-					Selected = false
-				});
-			}
-
+			//Search Genre puting genres in dropdown to search by
+			result.SearchGenre = new List<SelectListItem>();
 			foreach (var item in repo.GetAllMedia())
 			{
 				result.SearchGenre.Add(new SelectListItem
 				{
 					Text = item.MediaGenres.ToString(),
+					Value = item.ID.ToString(),
+					Selected = false
+				});
+			}
+
+			//WIP!!!!!!!Media Type - puting types in dropdown to search by
+			result.MediaType = new List<SelectListItem>();
+			foreach (var item in repo.GetAllMedia())
+			{
+				result.SearchGenre.Add(new SelectListItem
+				{
+					Text = item.ID.ToString(), //NEED TO FIND A WAY TO ACCES MEDIA TYPE
 					Value = item.ID.ToString(),
 					Selected = false
 				});
