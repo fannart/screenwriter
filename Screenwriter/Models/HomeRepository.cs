@@ -75,6 +75,13 @@ namespace Screenwriter.Models
 			var result = db.Media.AsQueryable();
 			return result;
 		}
+		public Media GetMediaById(int id)
+		{
+			var result = (from m in db.Media
+						  where m.ID == id
+						  select m).SingleOrDefault();
+			return result;
+		}
 		public void Save()
 		{
 			db.SaveChanges();

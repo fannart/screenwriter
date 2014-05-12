@@ -30,30 +30,20 @@ namespace Screenwriter.Controllers
 			return View();
 		}
 
-		[Authorize]
-		public ActionResult UpvoteSubtitleRequest(int? id)
+		public ActionResult Media(int? id)
 		{
-			bool requestCreated = false;
-			// ID of current logged in user.
-			string userID = User.Identity.GetUserId();
-			// Repository to access database.
-			HomeRepository repo = new HomeRepository();
-			// Make sure request is for a specific subtitle.
-			if(id.HasValue)
+			// TODO: Create MediaViewModel for the view and recreate the view.
+
+			// Make sure request is for a specific media.
+			if (id.HasValue)
 			{
-				// ID of requested subtitle.
-				int subtitleID = id.Value;
-				// Check if user has not requested current subtitle.
-				if (!repo.RequestExists(subtitleID, userID))
-				{
-					// Create new request from the current user.
-					repo.AddRequest(subtitleID, userID);
-					requestCreated = true;
-				}
-				// Get number of requests for the subtitle
-				int requestCount = repo.NumberOfRequests(subtitleID);
-				var model = new { requestCreated = requestCreated, requestCount = requestCount };
-				return Json(model, JsonRequestBehavior.AllowGet);
+				// Repository to access database.
+				HomeRepository repo = new HomeRepository();
+				// ID of requested media.
+				int mediaID = id.Value;
+				Media media = repo.GetMediaById(mediaID);
+
+				return View(media);
 			}
 			// Getting this far means an unexpected error.
 			return View("Error");
@@ -129,6 +119,35 @@ namespace Screenwriter.Controllers
 			}
 
 			return View(model);
+		}
+
+		[Authorize]
+		public ActionResult UpvoteSubtitleRequest(int? id)
+		{
+			bool requestCreated = false;
+			// ID of current logged in user.
+			string userID = User.Identity.GetUserId();
+			// Make sure request is for a specific subtitle.
+			if (id.HasValue)
+			{
+				// Repository to access database.
+				HomeRepository repo = new HomeRepository();
+				// ID of requested subtitle.
+				int subtitleID = id.Value;
+				// Check if user has not requested current subtitle.
+				if (!repo.RequestExists(subtitleID, userID))
+				{
+					// Create new request from the current user.
+					repo.AddRequest(subtitleID, userID);
+					requestCreated = true;
+				}
+				// Get number of requests for the subtitle
+				int requestCount = repo.NumberOfRequests(subtitleID);
+				var model = new { requestCreated = requestCreated, requestCount = requestCount };
+				return Json(model, JsonRequestBehavior.AllowGet);
+			}
+			// Getting this far means an unexpected error.
+			return View("Error");
 		}
 
         public ActionResult LoggedInHomePage()
