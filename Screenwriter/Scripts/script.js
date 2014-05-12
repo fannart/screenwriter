@@ -3,7 +3,7 @@ $(function () {
 	$( '#advSearchButton' ).on('click', function() {
 		$('#advancedSearch').slideToggle('slow');
 	});
-	/* Handles all actions to request an existing subtitle.
+	// Handles all actions to request an existing subtitle.
 	$('.requestSubtitle').on('click', function (e) {
 		e.preventDefault();
 		$this = $(this);
@@ -24,5 +24,5 @@ $(function () {
 				$('#registerToRequestError').modal();
 			}
 		});
-	});*/
+	});
 });
