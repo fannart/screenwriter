@@ -20,7 +20,7 @@
         box-shadow:10px 10px 5px #808080;
         position: relative;
         left: -100px;
-        top: -2px;
+        top: 6px;
         background-image: url(http://demo.templateworld.com/zero/in_action/mCube/images/footBg.png);
     }
     #textboxinput
@@ -82,7 +82,10 @@
             <div class="col-md-6">
                 <form>
                     <h3>Register</h3>
-                    @Html.ActionLink("Sign up here", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })
+                    @using (Html.BeginForm("Register", "Home"))
+                    {
+                        <input type="submit" value="Register" />
+                    }
                     <p>You can also register via</p>
                     <button>Facebook</button><br />
                     <button>Google</button>
@@ -91,7 +94,7 @@
         </div>
     </div>
     <div class="row">
-        <div id="textbox">
+        <div class="col-md-offset-4" id="textbox">
             <input type="text" id= textboxinput />
             @Html.ActionLink("Search", "SearchResults", "Home")
         </div>

@@ -5,23 +5,78 @@
 
 @Html.Partial("Header")
 
+<style>
+    td
+    {
+        padding:10px;
+    }
+</style>
+
 <h2>Search Results</h2>
 
-<p></p>
-<p>TitleName..GeneralInfoAboutTitle..SpokenLanguage..SubtitleLanguage <button>Download</button> </p>
-<p>TitleName..GeneralInfoAboutTitle..SpokenLanguage..SubtitleLanguage <button>Download</button> </p>
-<p>TitleName..GeneralInfoAboutTitle..SpokenLanguage..SubtitleLanguage <button>Download</button> </p>
-<p>TitleName..GeneralInfoAboutTitle..SpokenLanguage..SubtitleLanguage <button>Download</button> </p>
-<p>TitleName..GeneralInfoAboutTitle..SpokenLanguage..SubtitleLanguage <button>Download</button> </p>
-<p>TitleName..GeneralInfoAboutTitle..SpokenLanguage..SubtitleLanguage  <button>Download</button> </p>
- 
+<table>
+    <tr>
+        <td>TitleName..GeneralInfoAboutTitle..SpokenLanguage..SubtitleLanguage</td>
+        <td>
+            <button>Download</button>
+        </td>
+    </tr>
+    <tr>
+        <td>TitleName..GeneralInfoAboutTitle..SpokenLanguage..SubtitleLanguage</td>
+        <td>
+            <button>Download</button>
+        </td>
+    </tr>
+    <tr>
+        <td>TitleName..GeneralInfoAboutTitle..SpokenLanguage..SubtitleLanguage</td>
+        <td>
+            <button>Download</button>
+        </td>
+    </tr>
+    <tr>
+        <td>TitleName..GeneralInfoAboutTitle..SpokenLanguage..SubtitleLanguage</td>
+        <td>
+            <button>Download</button>
+        </td>
+    </tr>
+    <tr>
+        <td>TitleName..GeneralInfoAboutTitle..SpokenLanguage..SubtitleLanguage</td>
+        <td>
+            <button>Download</button>
+        </td>
+    </tr>
+</table>
+
 <h2>Pending Requests</h2>
 
-<p>RequestName..<button>Upvote</button></p>
-<p>RequestName..<button>Upvote</button></p>
-<p>RequestName..<button>Upvote</button></p>
-<p>RequestName..<button>Upvote</button></p>
-<p>RequestName..<button>Upvote</button></p>
-<p>RequestName..<button>Upvote</button></p>
+<table>
+    <tr>
+        <td>RequestName</td>
+        <td>
+            <button>Upvote</button>
+        </td>
+    </tr>
+    <tr>
+        <td>RequestName</td>
+        <td>
+            <button>Upvote</button>
+        </td>
+    </tr>
+    <tr>
+        <td>RequestName</td>
+        <td>
+            <button>Upvote</button>
+        </td>
+    </tr>
+    <tr>
+        <td>RequestName</td>
+        <td>
+            <button>Upvote</button>
+        </td>
+    </tr>
+</table>
 
-@Html.ActionLink("Request", "Request", "Home")
+@using(Html.BeginForm("Request", "Home"))
+{
+    <input type="submit" value="Request" />
+}

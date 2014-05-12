@@ -31,6 +31,15 @@
         top: -2px;
         background-image: url(http://demo.templateworld.com/zero/in_action/mCube/images/footBg.png);
     }
+    #button {
+        padding: 10px;
+        margin: 10px;
+        width: 200px;
+        box-shadow: 10px 10px 5px #808080;
+        background-image: url(http://demo.templateworld.com/zero/in_action/mCube/images/footBg.png);
+        border-radius: 10px;
+        color:grey;
+    }
   
 </style>
 
@@ -53,9 +62,18 @@
             </ol>
         </div>
         <div class="col-md-4">
-            @Html.ActionLink("View Requests", "PendingRequests", "Home")<br />
-            @Html.ActionLink("Create", "Create", "Home")<br />
-            @Html.ActionLink("History", "History", "Home")
+            @using (Html.BeginForm("PendingRequests", "Home"))
+            {
+                <input type="submit" value="View Requests" id="button"/>
+            }
+            @using (Html.BeginForm("Create", "Home"))
+            {
+                <input type="submit" value="Create" id="button" />
+            }
+            @using (Html.BeginForm("History", "Home"))
+            {
+                <input type="submit" value="History" id="button" />
+            }
         </div>
     </div>
     <div class="row">
