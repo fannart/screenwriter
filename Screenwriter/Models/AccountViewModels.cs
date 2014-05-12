@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace Screenwriter.Models
 {
@@ -41,6 +42,11 @@ namespace Screenwriter.Models
 
         [Display(Name = "Remember me?")]
         public bool RememberMe { get; set; }
+
+        [DataType(DataType.DateTime)]
+        [Display(Name = "Last activity")]
+        public DateTime LastActivityDate { get; set; } // user last activity
+
     }
 
     public class RegisterViewModel
@@ -66,8 +72,6 @@ namespace Screenwriter.Models
         [Display(Name = "Country")]
         public string Country { get; set; }
 
-
-
         [Required]
         [Display(Name = "User Name")]
         public string UserName { get; set; }
@@ -82,5 +86,13 @@ namespace Screenwriter.Models
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+        
+    }
+
+    public class DataCountViewModel
+    {
+        public int DownloadCount { get; set; } // how many downloads user has made
+
+        public int UploadCount { get; set; } // how many uploads user has made
     }
 }
