@@ -11,8 +11,9 @@
 			url: href,
 			dataType: 'json',
 			success: function (value) {
-				//TODO: Keep an eye on this functionality if the markup changes.
-				$this.parent().prev().text(value);
+				// TODO: Keep an eye on this functionality if the markup changes.
+				// TODO: if value.requestCreated == false, activate error.
+				$this.parent().prev().text(value.requestCount);
 			},
 			error: function () {
 				// Error handling for when a user is not registered.

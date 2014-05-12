@@ -10,12 +10,30 @@ namespace Screenwriter.Models
 	{
 		HomeContext db = new HomeContext();
 
+		public void AddRequest(int subtitleId, string userId)
+		{
+			db.Requests.Add(new Request { SubtitleID = subtitleId, UserID = userId });
+			db.SaveChanges();
+		}
+
+		public bool RequestExists(int subtitleId, string userId)
+		{
+			var requests = from req in db.Requests
+						   select req;
+			int result = (from req in db.Requests
+						  where req.SubtitleID == subtitleId
+						  && req.UserID == userId
+						  select req).Count();
+			bool res = result > 0;
+			return res;
+		}
+
 		public int NumberOfRequests(int subtitleId)
 		{
 			int result = (from req in db.Requests
 						  where req.SubtitleID == subtitleId
 						  select req).Count();
-			return 0;
+			return result;
 		}
 
 		public IQueryable<Subtitle> GetAllSubtitles()
