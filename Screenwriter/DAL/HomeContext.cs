@@ -1,4 +1,5 @@
-﻿using Screenwriter.Models;
+﻿using Microsoft.AspNet.Identity.EntityFramework;
+using Screenwriter.Models;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -8,7 +9,7 @@ using System.Web;
 
 namespace Screenwriter.DAL
 {
-	public class HomeContext : DbContext
+	public class HomeContext : IdentityDbContext
 	{
 		public HomeContext() : base("HomeContext")
 		{
@@ -25,6 +26,20 @@ namespace Screenwriter.DAL
 		protected override void OnModelCreating(DbModelBuilder modelBuilder)
 		{
 			modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
+
+			modelBuilder.Entity<Comment>()
+				.HasOptional(p => p.Entry)
+				.WithMany(p => p.Comments)
+				.HasForeignKey(p => p.EntryID)
+				.WillCascadeOnDelete(false);
+
+			modelBuilder.Entity<Comment>()
+				.HasOptional(p => p.Subtitle)
+				.WithMany(p => p.Comments)
+				.HasForeignKey(p => p.SubtitleID)
+				.WillCascadeOnDelete(false);
+
+			base.OnModelCreating(modelBuilder);
 		}
 	}
 }

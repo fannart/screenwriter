@@ -22,8 +22,12 @@ namespace Screenwriter.ViewModels
 		public int Season { get; set; }
 		public int Episode { get; set; }
 	}
-	public class SearchInput
+
+
+	public class SearchResultsViewModel
 	{
+		public List<Language> LangSearch { get; set; }
+		public List<SearchResult> Results { get; set; }
 		public string Title { get; set; }
 		public List<Language> SubLanguage { get; set; }
 		public List<Language> MediaLanguage { get; set; }
@@ -32,12 +36,5 @@ namespace Screenwriter.ViewModels
 		public string YearPublished { get; set; }
 		public int Season { get; set; }
 		public int Episode { get; set; }
-	}
-
-	public class SearchResultsViewModel
-	{
-		public SearchInput SearchInstance { get; set; }
-		public List<Language> LangSearch { get; set; }
-		public List<SearchResult> Results { get; set; }
 	}
 }

@@ -10,8 +10,6 @@ namespace Screenwriter.Controllers
 {
 	public class HomeController : Controller
 	{
-		public HomeRepository repo = new HomeRepository();
-
 		public ActionResult Index()
 		{
 			return View();
@@ -33,66 +31,87 @@ namespace Screenwriter.Controllers
 
 		public ActionResult Search()
 		{
+			HomeRepository repo = new HomeRepository();
+
 			SearchViewModel model = new SearchViewModel();
 
-			model.MostDownloaded = (from sub in repo.GetAllSubtitles().ToList()
-									where sub.TranslationIsCompleted == true
-									join lang in repo.GetAllLanguages().ToList()
-									on sub.LanguageID equals lang.ID
-									join m in repo.GetAllMedia().ToList()
-									on sub.MediaID equals m.ID
-									orderby sub.DownloadCount descending
-									select new TopTen
-									{
-										Subtitle = sub,
-										Language = lang,
-										Media = m,
-									}).Take(10).ToList();
-			model.NewestSubtitles = (from sub in repo.GetAllSubtitles().ToList()
-									 where sub.TranslationIsCompleted == true
-									 join lang in repo.GetAllLanguages().ToList()
-									 on sub.LanguageID equals lang.ID
-									 join m in repo.GetAllMedia().ToList()
-									 on sub.MediaID equals m.ID
-									 orderby sub.DateAdded descending
-									 select new TopTen
-									 {
-										 Subtitle = sub,
-										 Language = lang,
-										 Media = m,
-									 }).Take(10).ToList();
+			List<Subtitle> mostDownloadedSubtitles = repo.GetAllSubtitles()
+				.Where(s => s.TranslationIsCompleted)
+				.OrderByDescending(s => s.DownloadCount)
+				.Take(10)
+				.ToList();
+			foreach(var subtitle in mostDownloadedSubtitles)
+			{
+				var language = repo.GetAllLanguages()
+					.Where(l => l.ID == subtitle.LanguageID)
+					.FirstOrDefault();
+				var media = repo.GetAllMedia()
+					.Where(m => m.ID == subtitle.MediaID)
+					.FirstOrDefault();
+				model.MostDownloaded.Add(new TopTen
+				{
+					Subtitle = subtitle, 
+					Language = language,
+					Media = media
+				});
+			}
 
-			model.MostRequested = (from sub in repo.GetAllSubtitles().ToList()
-								   where sub.TranslationIsCompleted == false
-								   join lang in repo.GetAllLanguages().ToList()
-								   on sub.LanguageID equals lang.ID
-								   join m in repo.GetAllMedia().ToList()
-								   on sub.MediaID equals m.ID
-								   orderby repo.NumberOfRequests(sub.ID) descending
-								   select new TopTen
-								   {
-									   Subtitle = sub,
-									   Language = lang,
-									   Media = m,
-								   }).Take(10).ToList();
+			List<Subtitle> newestSubtitles = repo.GetAllSubtitles()
+				.Where(s => s.TranslationIsCompleted)
+				.OrderByDescending(s => s.DateCompleted)
+				.Take(10)
+				.ToList();
+			foreach(var subtitle in newestSubtitles)
+			{
+				var language = repo.GetAllLanguages()
+					.Where(l => l.ID == subtitle.LanguageID)
+					.FirstOrDefault();
+				var media = repo.GetAllMedia()
+					.Where(m => m.ID == subtitle.MediaID)
+					.FirstOrDefault();
+				model.NewestSubtitles.Add(new TopTen
+				{
+					Subtitle = subtitle, 
+					Language = language,
+					Media = media
+				});
+			}
 
-
-
+			List<Subtitle> mostRequestedSubtitles = repo.GetAllSubtitles()
+				.Where(s => !s.TranslationIsCompleted && s.Requests.Count > 0)
+				.OrderByDescending(s => s.Requests.Count)
+				.Take(10)
+				.ToList();
+			foreach(var subtitle in mostRequestedSubtitles)
+			{
+				var language = repo.GetAllLanguages()
+					.Where(l => l.ID == subtitle.LanguageID)
+					.FirstOrDefault();
+				var media = repo.GetAllMedia()
+					.Where(m => m.ID == subtitle.MediaID)
+					.FirstOrDefault();
+				model.MostRequested.Add(new TopTen
+				{
+					Subtitle = subtitle, 
+					Language = language,
+					Media = media
+				});
+			}
 			return View(model);
-
 		}
 
 		public ActionResult SearchResults(string titleSearch)
 		{
 			SearchResultsViewModel result = new SearchResultsViewModel();
+			HomeRepository repo = new HomeRepository();
 
 			result.LangSearch = repo.GetAllLanguages().ToList();
 
-			result.SearchInstance.MediaLanguage = repo.GetAllLanguages().ToList();
+			result.MediaLanguage = repo.GetAllLanguages().ToList();
 
-			result.SearchInstance.MediaType = repo.GetAllMedia().ToList();
+			result.MediaType = repo.GetAllMedia().ToList();
 
-			result.SearchInstance.SearchGenre = new List<MediaGenre>();
+			//result.SearchGenre = repo.get
 
 
 			if (!String.IsNullOrEmpty(titleSearch))
@@ -126,5 +145,34 @@ namespace Screenwriter.Controllers
 			return View(result);
 		}
 
+        public ActionResult LoggedInHomePage()
+        {
+            return View();
+        }
+
+        public ActionResult ViewRequests()
+        {
+            return View();
+        }
+
+        public ActionResult Create()
+        {
+            return View();
+        }
+
+        public ActionResult History()
+        {
+            return View();
+        }
+
+        public ActionResult Request()
+        {
+            return View();
+        }
+
+        public ActionResult PendingRequests()
+        {
+            return View();
+        }
 	}
 }

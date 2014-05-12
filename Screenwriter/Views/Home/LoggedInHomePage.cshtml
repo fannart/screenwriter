@@ -1,0 +1,110 @@
+﻿
+@{
+    ViewBag.Title = "LoggedInHomePage";
+}
+<style>
+    .row {
+        padding: 5px;
+    }
+
+    table, td {
+        width: 100%;
+        height: 50px;
+        padding: 15px;
+        table-layout: fixed;
+    }
+
+    #introduction {
+        border: 2px solid black;
+    }
+    #textboxinput {
+        height: 30px;
+        width: 600px;
+    }
+    .linkbutton
+    {
+        border:4px outset;
+        padding:2px;
+        text-decoration:none;
+    }
+</style>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-8" id="introduction">
+            <h1>Instructions</h1>
+            <ol>
+                <li>
+                    Step
+                    <p> something happens</p>
+                </li>
+                <li>
+                    Step
+                    <p>Something else happens</p>
+                </li>
+                <li>
+                    Step
+                    <p>Something else happens</p>
+                </li>
+                <li>
+                    Step
+                    <p>Something else happens</p>
+                </li>
+            </ol>
+        </div>
+        <div class="col-md-4">
+            @Html.ActionLink("View Requests", "ViewRequests", "Home")<br />
+            @Html.ActionLink("Create", "Create", "Home")<br />
+            @Html.ActionLink("History", "History", "Home")
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 col-md-offset-4">
+            <input type="text" id=textboxinput />
+            <button>Search</button>
+        </div>
+    </div>
+</div>
+
+<div>
+    <table>
+        <tr>
+            <td>Language</td>
+            <td>Language</td>
+            <td>Language</td>
+            <td>Language</td>
+        </tr>
+        <tr>
+            <td>Language</td>
+            <td>Language</td>
+            <td>Language</td>
+            <td>Language</td>
+        </tr>
+        <tr>
+            <td>Language</td>
+            <td>Language</td>
+            <td>Language</td>
+            <td>Language</td>
+        </tr>
+        <tr>
+            <td>Language</td>
+            <td>Language</td>
+            <td>Language</td>
+            <td>Language</td>
+        </tr>
+        <tr>
+            <td>Language</td>
+            <td>Language</td>
+            <td>Language</td>
+            <td>Language</td>
+        </tr>
+        <tr>
+            <td>Language</td>
+            <td>Language</td>
+            <td>Language</td>
+            <td>Language</td>
+        </tr>
+    </table>
+</div>
+
+@Html.Partial("MostPopularAndMostRequested")

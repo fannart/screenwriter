@@ -1,4 +1,4 @@
-﻿@model Screenwriter.ViewModels.SearchResultsViewModel
+@model Screenwriter.ViewModels.SearchResultsViewModel
 
 @{
     ViewBag.Title = "Search Results";
@@ -27,7 +27,7 @@
 	<div class="form-group">
 		<p>@Html.TextBox("YearPublished")
 		@Html.DropDownList("MediaLanguage")
-		@Html.DropDownList("SearchGenre")</p>
+		@{/*Html.DropDownList("SearchGenre")*/}</p>
 	</div>
 	<div class="form-group">
 		@Html.DropDownList("MediaType")
@@ -53,3 +53,4 @@
 		}
 
 	</table>
+
