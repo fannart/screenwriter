@@ -99,20 +99,51 @@ namespace Screenwriter.Controllers
 			}
 			return View(model);
 		}
-
+/*-----------------SEARCH RESULTS--------------------------------------------------*/
 		public ActionResult SearchResults(string titleSearch)
 		{
 			SearchResultsViewModel result = new SearchResultsViewModel();
 			HomeRepository repo = new HomeRepository();
 
-			result.LangSearch = repo.GetAllLanguages().ToList();
+			foreach (var item in repo.GetAllLanguages())
+			{
+				result.LangSearch.Add(new SelectListItem
+				{
+					Text = item.Name,
+					Value = item.ID.ToString(),
+					Selected = false
+				});
+			}
 
-			result.MediaLanguage = repo.GetAllLanguages().ToList();
+			foreach (var item in repo.GetAllLanguages())
+			{
+				result.MediaLanguage.Add(new SelectListItem
+				{
+					Text = item.Name,
+					Value = item.ID.ToString(),
+					Selected = false
+				});
+			}
 
-			result.MediaType = repo.GetAllMedia().ToList();
+			foreach (var item in repo.GetAllMedia())
+			{
+				result.MediaLanguage.Add(new SelectListItem
+				{
+					Text = item.length.ToString(),
+					Value = item.ID.ToString(),
+					Selected = false
+				});
+			}
 
-			//result.SearchGenre = repo.get
-
+			foreach (var item in repo.GetAllMedia())
+			{
+				result.SearchGenre.Add(new SelectListItem
+				{
+					Text = item.MediaGenres.ToString(),
+					Value = item.ID.ToString(),
+					Selected = false
+				});
+			}
 
 			if (!String.IsNullOrEmpty(titleSearch))
 			{

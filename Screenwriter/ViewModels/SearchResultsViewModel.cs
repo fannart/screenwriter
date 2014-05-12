@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace Screenwriter.ViewModels
 {	
@@ -26,12 +27,12 @@ namespace Screenwriter.ViewModels
 
 	public class SearchResultsViewModel
 	{
-		public List<Language> LangSearch { get; set; }
+		public List<SelectListItem> LangSearch { get; set; }
 		public List<SearchResult> Results { get; set; }
 		public string Title { get; set; }
-		public List<Language> SubLanguage { get; set; }
-		public List<Language> MediaLanguage { get; set; }
-		public List<MediaGenre> SearchGenre { get; set; }
+		public List<SelectListItem> SubLanguage { get; set; }
+		public List<SelectListItem> MediaLanguage { get; set; }
+		public List<SelectListItem> SearchGenre { get; set; }
 		public List<Media> MediaType { get; set; }
 		public string YearPublished { get; set; }
 		public int Season { get; set; }
