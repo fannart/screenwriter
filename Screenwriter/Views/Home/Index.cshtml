@@ -14,9 +14,13 @@
         padding: 15px;
         table-layout:fixed;
     }
-    #introduction
+    #introduction 
     {
         border: 2px solid black;
+        position: relative;
+        left: -110px;
+        top: -5px;
+        background-image: url(http://demo.templateworld.com/zero/in_action/mCube/images/footBg.png);
     }
     #textboxinput
     {
@@ -27,29 +31,31 @@
     {
         text-align:center;
     }
+    #login
+    {
+        margin-left:-80px;
+        margin-right:80px;
+    }
 </style>
 
 <div class="container">
     <div class="row">
-        <div class="col-md-8" id="introduction">
-            <h1>Instructions</h1>
+        <div class="col-md-9" id="introduction" style="color:grey;">
+            <h2>Instructions</h2>
             <ol>
-                <li>Step
-                <p> something</p>
+                <li>
+                <p>Search for your desired title in the search box below</p>
                 </li>
-                <li>Step
-                <p>Something else happens</p>
+                <li>
+                <p>If it exists you will be presented with the option to download the text file with the subtitles.</p>
                 </li>
-                <li>Step
-                <p>Something else happens</p>
-                </li>
-                <li>Step
-                <p>Something else happens</p>
+                <li>
+                <p>If your desired title has not been translated, you will see existing requests or you can request the title</p>
                 </li>
             </ol>
         </div>
-        <div class="col-md-4">
-            <div class="col-md-6">
+        <div class="col-md-3">
+            <div class="col-md-6" id="login">
                 <form method="post" action="LoggedInHomePage">
                     <h3>Login</h3>
                     <label accesskey="U" for="User">User name</label>
@@ -58,7 +64,7 @@
                     <input type="password" id="Pass" name="Pass"/>
                     <input type="submit" value="Log in" />
                     <p>Login with</p>
-                    <button>Facebook</button><br />
+                    <button>Facebook</button>
                     <button>Google</button>
                 </form>
             </div>
