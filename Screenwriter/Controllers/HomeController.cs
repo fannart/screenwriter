@@ -27,7 +27,7 @@ namespace Screenwriter.Controllers
 		public ActionResult Contact()
 		{
 			ViewBag.Message = "Your contact page.";
-			
+
 			return View();
 		}
 
@@ -77,29 +77,36 @@ namespace Screenwriter.Controllers
 								   }).Take(10).ToList();
 
 
-			
+
 			return View(model);
 
 		}
-		private Screenwriter.ViewModels.MultiSelectList GetCountries(string[] selectedValues);
-		
-		public ActionResult SearchResults(string titleSearch, string[] selectedValues)
+
+		public ActionResult SearchResults(string titleSearch)
 		{
 			SearchResultsViewModel result = new SearchResultsViewModel();
 
 			result.LangSearch = repo.GetAllLanguages().ToList();
 
-			if (!String.IsNullOrEmpty(titleSearch)) {
+			result.SearchInstance.MediaLanguage = repo.GetAllLanguages().ToList();
+
+			result.SearchInstance.MediaType = repo.GetAllMedia().ToList();
+
+			result.SearchInstance.SearchGenre = new List<MediaGenre>();
+
+
+			if (!String.IsNullOrEmpty(titleSearch))
+			{
 				result.Results = (from m in repo.GetAllMedia().ToList()
 								  join sub in repo.GetAllSubtitles().ToList()
 								  on m.ID equals sub.MediaID
 								  join lang in repo.GetAllLanguages().ToList()
 								  on sub.LanguageID equals lang.ID
-								where m.Title.Contains(titleSearch)
+								  where m.Title.Contains(titleSearch)
 								  orderby m.Title ascending
 								  select new SearchResult
 								  {
-									  Title= m.Title,
+									  Title = m.Title,
 									  Published = m.publishDate
 								  }).ToList();
 			}
@@ -118,6 +125,6 @@ namespace Screenwriter.Controllers
 
 			return View(result);
 		}
-		
+
 	}
 }
