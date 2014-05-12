@@ -13,7 +13,8 @@ namespace Screenwriter.Models
 		/// <summary>
 		/// A string containing the name of the language.</summary>
 		public string Name { get; set; }
-		// TODO: how to store an image in the database
-		// public System.Drawing.Image Flag { get; set; }
+		/// <summary>
+		/// Short version of the name for identification.</summary>
+		public string ShortName { get; set; }
 	}
 }
