@@ -27,5 +27,6 @@ namespace Screenwriter.Models
 		public DateTime publishDate { get; set; }
 
 		public virtual ICollection<MediaGenre> MediaGenres { get; set; }
+		public virtual ICollection<Subtitle> Subtitles { get; set; }
 	}
 }
