@@ -13,10 +13,6 @@
         padding: 15px;
         table-layout: fixed;
     }
-
-    #introduction {
-        border: 2px solid black;
-    }
     #textboxinput {
         height: 30px;
         width: 600px;
@@ -27,30 +23,32 @@
         padding:2px;
         text-decoration:none;
     }
+    #introduction {
+        border-radius: 10px;
+        box-shadow: 10px 10px 5px #808080;
+        position: relative;
+        left: -100px;
+        top: -2px;
+        background-image: url(http://demo.templateworld.com/zero/in_action/mCube/images/footBg.png);
+    }
+  
 </style>
 
 @Html.Partial("HeaderLoggedIn")
 
 <div class="container">
     <div class="row">
-        <div class="col-md-8" id="introduction">
+        <div class="col-md-8" id="introduction" style="color:grey;">
             <h1>Instructions</h1>
             <ol>
                 <li>
-                    Step
-                    <p> something happens</p>
+                    <p>Search for your desired title in the search box below</p>
                 </li>
                 <li>
-                    Step
-                    <p>Something else happens</p>
+                    <p>If it exists you will be presented with the option to download the text file with the subtitles.</p>
                 </li>
                 <li>
-                    Step
-                    <p>Something else happens</p>
-                </li>
-                <li>
-                    Step
-                    <p>Something else happens</p>
+                    <p>If your desired title has not been translated, you will see existing requests or you can request the title</p>
                 </li>
             </ol>
         </div>
