@@ -223,6 +223,8 @@
     <Content Include="Views\Home\SearchResults.cshtml" />
     <Content Include="Views\Home\Request.cshtml" />
     <Content Include="Views\Home\PendingRequests.cshtml" />
+    <Content Include="Views\Home\Header.cshtml" />
+    <Content Include="Views\Home\HeaderLoggedIn.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
