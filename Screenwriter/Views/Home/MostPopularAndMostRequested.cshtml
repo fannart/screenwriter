@@ -4,15 +4,26 @@
 }
 
 <style>
-    #mostpopular {
-        background: #B0B0B0;
+    #mostpopular
+    {
+        background-color:black;
         position: absolute;
-        width: 100%;
-        height: 100%;
-        right: 0px;
-        border-top: solid;
+        left: 0;
+        right:50px;
+        font-size: 15px;
+        text-align: center;
+    }
+    #mostrequested
+    {
+        background-color:black;
+        position:absolute;
+        left:675px;
+        right:0;
+        font-size: 15px;
+        text-align: center;
     }
 </style>
+<div class="container">
 <div class="row">
     <div class="col-md-6" id="mostpopular">
         <table>
@@ -57,7 +68,7 @@
             </tr>
         </table>
     </div>
-    <div class="col-md-6">
+    <div class="col-md-6" id="mostrequested">
         <table>
             <thead>
                 Most requested
@@ -100,4 +111,5 @@
             </tr>
         </table>
     </div>
+</div>
 </div>

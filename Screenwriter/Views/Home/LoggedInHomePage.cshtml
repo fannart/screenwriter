@@ -17,34 +17,51 @@
     #introduction {
         border: 2px solid black;
     }
-
-    #mostpopular {
-        border: 2px solid black;
-        background: #B0B0B0;
-    }
-
     #textboxinput {
-        height: auto;
-        width: 200px;
+        height: 30px;
+        width: 600px;
+    }
+    .linkbutton
+    {
+        border:4px outset;
+        padding:2px;
+        text-decoration:none;
     }
 </style>
 
 <div class="container">
     <div class="row">
-        <div class="col-md-6" id="introduction">
+        <div class="col-md-8" id="introduction">
             <h1>Instructions</h1>
-            <p class="lead">This is where the instructions will be</p>
+            <ol>
+                <li>
+                    Step
+                    <p> something happens</p>
+                </li>
+                <li>
+                    Step
+                    <p>Something else happens</p>
+                </li>
+                <li>
+                    Step
+                    <p>Something else happens</p>
+                </li>
+                <li>
+                    Step
+                    <p>Something else happens</p>
+                </li>
+            </ol>
         </div>
-        <div class="col-md-6">
-            <button>View requests</button><br />
-            <button>Create</button><br />
-            <button>History</button><br />
+        <div class="col-md-4">
+            @Html.ActionLink("View Requests", "PendingRequests", "Home")<br />
+            @Html.ActionLink("Create", "Create", "Home")<br />
+            @Html.ActionLink("History", "History", "Home")
         </div>
     </div>
     <div class="row">
         <div class="col-md-6 col-md-offset-4">
             <input type="text" id=textboxinput />
-            <button>Search</button>
+           @Html.ActionLink("Search", "SearchResults", "Home")
         </div>
     </div>
 </div>
@@ -90,3 +107,4 @@
     </table>
 </div>
 
+@Html.Partial("MostPopularAndMostRequested")

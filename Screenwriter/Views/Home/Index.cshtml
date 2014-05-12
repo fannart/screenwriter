@@ -23,6 +23,10 @@
         height:30px;
         width:600px;
     }
+    #languagecategories
+    {
+        text-align:center;
+    }
 </style>
 
 <div class="container">
@@ -46,13 +50,13 @@
         </div>
         <div class="col-md-4">
             <div class="col-md-6">
-                <form>
-                    <h3>login</h3>
-                    <p>User name:</p>
-                    <input type="text" /><br />
-                    <p>Password:</p>
-                    <input type="text" /><br />
-                    @Html.ActionLink("Log in", "LoggedInHomePage", "Home", routeValues: null, htmlAttributes: new { id = "loginLink" })
+                <form method="post" action="LoggedInHomePage">
+                    <h3>Login</h3>
+                    <label accesskey="U" for="User">User name</label>
+                    <input type="text" name="User" id="User"/>
+                    <label accesskey="P" for="Pass">Password</label>
+                    <input type="password" id="Pass" name="Pass"/>
+                    <input type="submit" value="Log in" />
                     <p>Login with</p>
                     <button>Facebook</button><br />
                     <button>Google</button>
@@ -72,13 +76,13 @@
     <div class="row">
         <div class="col-md-6 col-md-offset-4">
             <input type="text" id= textboxinput />
-            <button>Search</button>
+            @Html.ActionLink("Search", "SearchResults", "Home")
         </div>
     </div>
 </div>
 
 <div>
-    <table>
+    <table id="languagecategories">
          <tr>
              <td>Language</td>
              <td>Language</td>

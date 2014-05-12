@@ -30,7 +30,31 @@ namespace Screenwriter.Controllers
         {
             return View();
         }
+<<<<<<< HEAD
         public ActionResult UserProfile()
+=======
+        public ActionResult ViewRequests()
+        {
+            return View();
+        }
+        public ActionResult Create()
+        {
+            return View();
+        }
+        public ActionResult History()
+        {
+            return View();
+        }
+        public ActionResult SearchResults()
+        {
+            return View();
+        }
+        public ActionResult Request()
+        {
+            return View();
+        }
+        public ActionResult PendingRequests()
+>>>>>>> 88455e47636abab8f7f211c1d614ac045036418d
         {
             return View();
         }
