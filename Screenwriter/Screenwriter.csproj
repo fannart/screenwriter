@@ -226,6 +226,7 @@
     <Content Include="Views\Home\Header.cshtml" />
     <Content Include="Views\Home\HeaderLoggedIn.cshtml" />
     <Content Include="Views\Home\Profile.cshtml" />
+    <Content Include="Views\Home\Translate.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
