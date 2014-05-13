@@ -12,7 +12,7 @@ namespace Screenwriter.Migrations
         public Configuration()
         {
             AutomaticMigrationsEnabled = true;
-			AutomaticMigrationDataLossAllowed = false;
+			AutomaticMigrationDataLossAllowed = true;
         }
 
         protected override void Seed(Screenwriter.DAL.HomeContext context)
@@ -31,26 +31,50 @@ namespace Screenwriter.Migrations
 			//
 
 			context.Languages.AddOrUpdate(
-				new Language { ID = 1, Name = "English" },
-				new Language { ID = 2, Name = "Icelandic" },
-				new Language { ID = 3, Name = "Japanese" }
+				new Language { ID = 1, ShortName = "gb", Name = "English" },
+				new Language { ID = 2, ShortName = "is", Name = "Icelandic" },
+				new Language { ID = 3, ShortName = "jp", Name = "Japanese" },
+				new Language { ID = 4, ShortName = "cn", Name = "Chinese" },
+				new Language { ID = 5, ShortName = "de", Name = "German" },
+				new Language { ID = 6, ShortName = "dk", Name = "Danish" },
+				new Language { ID = 7, ShortName = "es", Name = "Spanish" },
+				new Language { ID = 8, ShortName = "fi", Name = "Finnish" },
+				new Language { ID = 9, ShortName = "fo", Name = "Faroese" },
+				new Language { ID = 10, ShortName = "fr", Name = "France" },
+				new Language { ID = 11, ShortName = "it", Name = "Italian" },
+				new Language { ID = 12, ShortName = "mt", Name = "Maltese" },
+				new Language { ID = 13, ShortName = "no", Name = "Norweigian" },
+				new Language { ID = 14, ShortName = "pl", Name = "Polish" },
+				new Language { ID = 15, ShortName = "pt", Name = "Portugese" },
+				new Language { ID = 16, ShortName = "ru", Name = "Russian" },
+				new Language { ID = 17, ShortName = "se", Name = "Swedish" }
 			);
 
+			// þarft væntanlega að laga þetta fyrir tvshows/movice etc
+			// j'a, þá verðum við með 3 töflur í stað einnar
+			// hvernig getum við þá náð í lista af öllum media?
+			// Í staðin fyrir að hafa 3 entity þá hafið þið eitt entity, hafið síðan type
+			// field sem er kannski int sem segir hvort þetta er tv/show/lecture. Getið þá t.d. query
+			// að gagnagrunnin eftir öllum sem eru með type = tvshow
+			// hljómar eins og það sem við þurfum. Hvernig höfum við þá eitt entity. Hvar stillum við það?
+			// Sleppið þessu tvshow/movie dóti og hafið bara Media. Ef það eru e-rjir sérstakir fields
+			// á tv shows þá hafið þið þá líka á media. Það mega alveg vera ónotaðir fields á media, hafa þá bara nullab.e
+			// ok. þannig að við eyðum bara út þessu þremur klösum og setjum í staðinn breytu sem geimir type? rétt. jibbí
 			context.Media.AddOrUpdate(
-				new Movie { ID = 1, LanguageID = 1, Title = "12 Years a Slave", publishDate = DateTime.Now },
-				new Movie { ID = 2, LanguageID = 1, Title = "Argo", publishDate = DateTime.Now },
-				new Movie { ID = 3, LanguageID = 1, Title = "The Artist", publishDate = DateTime.Now },
-				new Lecture { ID = 4, LanguageID = 2, Title = "Verklegt námskeið 2014 - kynning", YoutubeIdentifier = "-02FatEYyLo", Lecturer = "Daníel Brandur Sigurgeirsson", School = "HR", publishDate = DateTime.Now },
-				new TVShow { ID = 5, LanguageID = 3, Title = "One Piece", publishDate = DateTime.Now, ImdbURL = "//www.imdb.com/title/tt1046719/", Season = 8, Episode = 1 },
-				new Movie { ID = 6, LanguageID = 3, Title = "Seven Samurai", publishDate = DateTime.Now, ImdbURL = "//www.imdb.com/title/tt0047478/" },
-				new Movie { ID = 7, LanguageID = 3, Title = "Spirited Away", publishDate = DateTime.Now, ImdbURL = "//www.imdb.com/title/tt0245429/" },
-				new TVShow { ID = 8, LanguageID = 2, Title = "The Night Watch", publishDate = DateTime.Now, ImdbURL = "//www.imdb.com/title/tt1823510/", Season = 1, Episode = 1 }
+				new Media { ID = 1, LanguageID = 1, Type = 0, Title = "12 Years a Slave", publishDate = DateTime.Now },
+				new Media { ID = 2, LanguageID = 1, Type = 0, Title = "Argo", publishDate = DateTime.Now },
+				new Media { ID = 3, LanguageID = 1, Type = 0, Title = "The Artist", publishDate = DateTime.Now },
+				new Media { ID = 4, LanguageID = 2, Type = 2, Title = "Verklegt námskeið 2014 - kynning", YoutubeIdentifier = "-02FatEYyLo", Lecturer = "Daníel Brandur Sigurgeirsson", School = "HR", publishDate = DateTime.Now },
+				new Media { ID = 5, LanguageID = 3, Type = 1, Title = "One Piece", publishDate = DateTime.Now, ImdbURL = "//www.imdb.com/title/tt1046719/", Season = 8, Episode = 1 },
+				new Media { ID = 6, LanguageID = 3, Type = 0, Title = "Seven Samurai", publishDate = DateTime.Now, ImdbURL = "//www.imdb.com/title/tt0047478/" },
+				new Media { ID = 7, LanguageID = 3, Type = 0, Title = "Spirited Away", publishDate = DateTime.Now, ImdbURL = "//www.imdb.com/title/tt0245429/" },
+				new Media { ID = 8, LanguageID = 2, Type = 1, Title = "The Night Watch", publishDate = DateTime.Now, ImdbURL = "//www.imdb.com/title/tt1823510/", Season = 1, Episode = 1 }
 			);
 
 			context.Subtitles.AddOrUpdate(
 				new Subtitle() { 
 					ID = 1, 
-					MediaID = 1, 
+					MediaID = 1,
 					LanguageID = 2, 
 					TranslationIsCompleted = true, 
 					DownloadCount = 19, 
@@ -59,7 +83,7 @@ namespace Screenwriter.Migrations
 				},
 				new Subtitle() { 
 					ID = 2, 
-					MediaID = 3, 
+					MediaID = 3,
 					LanguageID = 3, 
 					TranslationIsCompleted = false, 
 					DownloadCount = 0, 
@@ -68,7 +92,7 @@ namespace Screenwriter.Migrations
 				},
 				new Subtitle() { 
 					ID = 3, 
-					MediaID = 1, 
+					MediaID = 1,
 					LanguageID = 3, 
 					TranslationIsCompleted = false, 
 					DownloadCount = 0, 
@@ -77,7 +101,7 @@ namespace Screenwriter.Migrations
 				},
 				new Subtitle() { 
 					ID = 4, 
-					MediaID = 2, 
+					MediaID = 2,
 					LanguageID = 1, 
 					TranslationIsCompleted = true, 
 					DownloadCount = 11, 
@@ -86,7 +110,7 @@ namespace Screenwriter.Migrations
 				},
 				new Subtitle() { 
 					ID = 5, 
-					MediaID = 1, 
+					MediaID = 1,
 					LanguageID = 1, 
 					TranslationIsCompleted = false, 
 					DownloadCount = 0, 
@@ -95,7 +119,7 @@ namespace Screenwriter.Migrations
 				},
 				new Subtitle() { 
 					ID = 6, 
-					MediaID = 3, 
+					MediaID = 3,
 					LanguageID = 1, 
 					TranslationIsCompleted = false, 
 					DownloadCount = 0, 
@@ -104,7 +128,7 @@ namespace Screenwriter.Migrations
 				},
 				new Subtitle() { 
 					ID = 7, 
-					MediaID = 3, 
+					MediaID = 3,
 					LanguageID = 2, 
 					TranslationIsCompleted = false, 
 					DownloadCount = 0, 
@@ -113,7 +137,7 @@ namespace Screenwriter.Migrations
 				},
 				new Subtitle() { 
 					ID = 8, 
-					MediaID = 2, 
+					MediaID = 2,
 					LanguageID = 3, 
 					TranslationIsCompleted = false, 
 					DownloadCount = 0, 
@@ -122,7 +146,7 @@ namespace Screenwriter.Migrations
 				},
 				new Subtitle() { 
 					ID = 9, 
-					MediaID = 2, 
+					MediaID = 2,
 					LanguageID = 2, 
 					TranslationIsCompleted = false, 
 					DownloadCount = 0, 
@@ -142,7 +166,7 @@ namespace Screenwriter.Migrations
 				new Entry { ID = 8, SubtitleID = 1, Line1 = "Text", Line2 = "More Text", StartTime = DateTime.Now, Stoptime = DateTime.Now },
 				new Entry { ID = 9, SubtitleID = 1, Line1 = "Text", Line2 = "More Text", StartTime = DateTime.Now, Stoptime = DateTime.Now }
 			);
-
+			/*
 			context.Requests.AddOrUpdate(
 				new Request { ID = 1, SubtitleID = 2, UserID = "e99ed7d6-69ee-4902-b751-e90e49504620" },
 				new Request { ID = 2, SubtitleID = 1, UserID = "d8b7faf3-a9f3-4c18-8398-edefb021a688" },
@@ -175,6 +199,7 @@ namespace Screenwriter.Migrations
 				new Comment() { ID = 3, EntryID = 1, TimeStamp = DateTime.Now, UserId = "d8b7faf3-a9f3-4c18-8398-edefb021a688", Text = "Ekki aftur?" },
 				new Comment() { ID = 4, EntryID = 1, TimeStamp = DateTime.Now, UserId = "d8b7faf3-a9f3-4c18-8398-edefb021a688", Text = "No way!" }
 			);
+			*/
         }
     }
 }
