@@ -31,9 +31,23 @@ namespace Screenwriter.Migrations
 			//
 
 			context.Languages.AddOrUpdate(
-				new Language { ID = 1, Name = "English" },
-				new Language { ID = 2, Name = "Icelandic" },
-				new Language { ID = 3, Name = "Japanese" }
+				new Language { ID = 1, ShortName = "gb", Name = "English" },
+				new Language { ID = 2, ShortName = "is", Name = "Icelandic" },
+				new Language { ID = 3, ShortName = "jp", Name = "Japanese" },
+				new Language { ID = 4, ShortName = "cn", Name = "Chinese" },
+				new Language { ID = 5, ShortName = "de", Name = "German" },
+				new Language { ID = 6, ShortName = "dk", Name = "Danish" },
+				new Language { ID = 7, ShortName = "es", Name = "Spanish" },
+				new Language { ID = 8, ShortName = "fi", Name = "Finnish" },
+				new Language { ID = 9, ShortName = "fo", Name = "Faroese" },
+				new Language { ID = 10, ShortName = "fr", Name = "France" },
+				new Language { ID = 11, ShortName = "it", Name = "Italian" },
+				new Language { ID = 12, ShortName = "mt", Name = "Maltese" },
+				new Language { ID = 13, ShortName = "no", Name = "Norweigian" },
+				new Language { ID = 14, ShortName = "pl", Name = "Polish" },
+				new Language { ID = 15, ShortName = "pt", Name = "Portugese" },
+				new Language { ID = 16, ShortName = "ru", Name = "Russian" },
+				new Language { ID = 17, ShortName = "se", Name = "Swedish" }
 			);
 
 			context.Media.AddOrUpdate(
@@ -50,7 +64,7 @@ namespace Screenwriter.Migrations
 			context.Subtitles.AddOrUpdate(
 				new Subtitle() { 
 					ID = 1, 
-					MediaID = 1, 
+					MediaID = 1,
 					LanguageID = 2, 
 					TranslationIsCompleted = true, 
 					DownloadCount = 19, 
@@ -59,7 +73,7 @@ namespace Screenwriter.Migrations
 				},
 				new Subtitle() { 
 					ID = 2, 
-					MediaID = 3, 
+					MediaID = 3,
 					LanguageID = 3, 
 					TranslationIsCompleted = false, 
 					DownloadCount = 0, 
@@ -68,7 +82,7 @@ namespace Screenwriter.Migrations
 				},
 				new Subtitle() { 
 					ID = 3, 
-					MediaID = 1, 
+					MediaID = 1,
 					LanguageID = 3, 
 					TranslationIsCompleted = false, 
 					DownloadCount = 0, 
@@ -77,7 +91,7 @@ namespace Screenwriter.Migrations
 				},
 				new Subtitle() { 
 					ID = 4, 
-					MediaID = 2, 
+					MediaID = 2,
 					LanguageID = 1, 
 					TranslationIsCompleted = true, 
 					DownloadCount = 11, 
@@ -86,7 +100,7 @@ namespace Screenwriter.Migrations
 				},
 				new Subtitle() { 
 					ID = 5, 
-					MediaID = 1, 
+					MediaID = 1,
 					LanguageID = 1, 
 					TranslationIsCompleted = false, 
 					DownloadCount = 0, 
@@ -95,7 +109,7 @@ namespace Screenwriter.Migrations
 				},
 				new Subtitle() { 
 					ID = 6, 
-					MediaID = 3, 
+					MediaID = 3,
 					LanguageID = 1, 
 					TranslationIsCompleted = false, 
 					DownloadCount = 0, 
@@ -104,7 +118,7 @@ namespace Screenwriter.Migrations
 				},
 				new Subtitle() { 
 					ID = 7, 
-					MediaID = 3, 
+					MediaID = 3,
 					LanguageID = 2, 
 					TranslationIsCompleted = false, 
 					DownloadCount = 0, 
@@ -113,7 +127,7 @@ namespace Screenwriter.Migrations
 				},
 				new Subtitle() { 
 					ID = 8, 
-					MediaID = 2, 
+					MediaID = 2,
 					LanguageID = 3, 
 					TranslationIsCompleted = false, 
 					DownloadCount = 0, 
@@ -122,7 +136,7 @@ namespace Screenwriter.Migrations
 				},
 				new Subtitle() { 
 					ID = 9, 
-					MediaID = 2, 
+					MediaID = 2,
 					LanguageID = 2, 
 					TranslationIsCompleted = false, 
 					DownloadCount = 0, 
