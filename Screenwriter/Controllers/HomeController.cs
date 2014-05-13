@@ -120,7 +120,8 @@ namespace Screenwriter.Controllers
 			return View(model);
 		}
 /*-----------------SEARCH RESULTS--------------------------------------------------*/
-		public ActionResult SearchResults(string titleSearch)
+		[HttpPost]
+		public ActionResult SearchResults(FormCollection searchForm)
 		{
 			SearchResultsViewModel result = new SearchResultsViewModel();
 			HomeRepository repo = new HomeRepository();
@@ -170,20 +171,26 @@ namespace Screenwriter.Controllers
 				});
 			}
 
-			if (!String.IsNullOrEmpty(titleSearch))
+			if (!String.IsNullOrEmpty(searchForm["titleSearch"]))
 			{
 				result.Results = (from m in repo.GetAllMedia().ToList()
 								  join sub in repo.GetAllSubtitles().ToList()
 								  on m.ID equals sub.MediaID
 								  join lang in repo.GetAllLanguages().ToList()
 								  on sub.LanguageID equals lang.ID
-								  where m.Title.Contains(titleSearch)
+								  where m.Title.Contains(searchForm["titleSearch"])
 								  orderby m.Title ascending
 								  select new SearchResult
 								  {
 									  Title = m.Title,
 									  Published = m.publishDate
 								  }).ToList();
+
+				if (searchForm["YearPublished"] != NULL)
+				{
+					result.Results = from r in result.Results.ToList()
+									 where r.Published.Year.CompareTo(searchForm["YearPublished"])
+				}
 			}
 			else result.Results = (from sub in repo.GetAllSubtitles().ToList()
 								   where sub.TranslationIsCompleted == false
