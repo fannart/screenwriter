@@ -18,7 +18,7 @@ ViewBag.Title = "Search";
 					@Html.ActionLink(@item.Media.Title, "Media", new { id = item.Media.ID })
 				</td>
 				<td>
-					@item.Language.Name
+					<img src="#" alt="@item.Language.Name" title="@item.Language.Name" class="flag flag-@item.Language.ShortName" />
 				</td>
 				<td>
 					@item.Subtitle.DownloadCount
@@ -44,7 +44,7 @@ ViewBag.Title = "Search";
 					@Html.ActionLink(@item.Media.Title, "Media", new { id = item.Media.ID })
 				</td>
 				<td>
-					@item.Language.Name
+					<img src="#" alt="@item.Language.Name" title="@item.Language.Name" class="flag flag-@item.Language.ShortName" />
 				</td>
 				<td>
 					@{TimeSpan days = (DateTime.Now - item.Subtitle.DateCompleted);}
@@ -71,7 +71,7 @@ ViewBag.Title = "Search";
 					@Html.ActionLink(@item.Media.Title, "Media", new { id = item.Media.ID })
 				</td>
 				<td>
-					@item.Language.Name
+					<img src="#" alt="@item.Language.Name" title="@item.Language.Name" class="flag flag-@item.Language.ShortName" />
 				</td>
 				<td>
 					@item.Subtitle.Requests.Count

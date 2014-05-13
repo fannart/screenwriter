@@ -25,6 +25,7 @@ namespace Screenwriter
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.min.css",
+					  "~/Content/flags/flags.css",
                       "~/Content/site.css"));
         }
     }

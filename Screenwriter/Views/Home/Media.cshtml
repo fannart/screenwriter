@@ -60,12 +60,12 @@
 		</tr>
 		@foreach (var item in Model.Subtitles)
 		{
-			<tr>
-				<td>@Html.ActionLink(item.LanguageID.ToString(), "Download", new { id = item.ID })</td>
-				<td>@item.DownloadCount</td>
-				<td>@item.DateCompleted</td>
-				<td>@item.TranslationIsCompleted</td>
-			</tr>
+		<tr>
+			<td>@Html.ActionLink(item.LanguageID.ToString(), "Download", new { id = item.ID })</td>
+			<td>@item.DownloadCount</td>
+			<td>@item.DateCompleted</td>
+			<td>@item.TranslationIsCompleted</td>
+		</tr>
 		}
 	</table>
 </div>
