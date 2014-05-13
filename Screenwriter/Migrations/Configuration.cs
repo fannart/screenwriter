@@ -12,7 +12,7 @@ namespace Screenwriter.Migrations
         public Configuration()
         {
             AutomaticMigrationsEnabled = true;
-			AutomaticMigrationDataLossAllowed = false;
+			AutomaticMigrationDataLossAllowed = true;
         }
 
         protected override void Seed(Screenwriter.DAL.HomeContext context)
@@ -156,14 +156,15 @@ namespace Screenwriter.Migrations
 				new Entry { ID = 8, SubtitleID = 1, Line1 = "Text", Line2 = "More Text", StartTime = DateTime.Now, Stoptime = DateTime.Now },
 				new Entry { ID = 9, SubtitleID = 1, Line1 = "Text", Line2 = "More Text", StartTime = DateTime.Now, Stoptime = DateTime.Now }
 			);
-
 			context.Requests.AddOrUpdate(
-				new Request { ID = 1, SubtitleID = 2, UserID = "e99ed7d6-69ee-4902-b751-e90e49504620" },
-				new Request { ID = 2, SubtitleID = 1, UserID = "d8b7faf3-a9f3-4c18-8398-edefb021a688" },
-				new Request { ID = 3, SubtitleID = 3, UserID = "e99ed7d6-69ee-4902-b751-e90e49504620" },
-				new Request { ID = 4, SubtitleID = 2, UserID = "d8b7faf3-a9f3-4c18-8398-edefb021a688" },
-				new Request { ID = 5, SubtitleID = 3, UserID = "d8b7faf3-a9f3-4c18-8398-edefb021a688" },
-				new Request { ID = 6, SubtitleID = 4, UserID = "d8b7faf3-a9f3-4c18-8398-edefb021a688" },
+				new Request { ID = 1, SubtitleID = 1, UserID = "1a3aa749-267b-4123-b921-9f6ed1d91ee8" },
+				new Request { ID = 2, SubtitleID = 2, UserID = "1a3aa749-267b-4123-b921-9f6ed1d91ee8" },
+				new Request { ID = 3, SubtitleID = 3, UserID = "1a3aa749-267b-4123-b921-9f6ed1d91ee8" },
+				new Request { ID = 4, SubtitleID = 4, UserID = "1a3aa749-267b-4123-b921-9f6ed1d91ee8" },
+				new Request { ID = 5, SubtitleID = 5, UserID = "1a3aa749-267b-4123-b921-9f6ed1d91ee8" },
+				new Request { ID = 6, SubtitleID = 6, UserID = "1a3aa749-267b-4123-b921-9f6ed1d91ee8" }
+			);
+			/*
 				new Request { ID = 7, SubtitleID = 5, UserID = "d8b7faf3-a9f3-4c18-8398-edefb021a688" },
 				new Request { ID = 8, SubtitleID = 6, UserID = "d8b7faf3-a9f3-4c18-8398-edefb021a688" },
 				new Request { ID = 9, SubtitleID = 7, UserID = "d8b7faf3-a9f3-4c18-8398-edefb021a688" },
@@ -189,6 +190,7 @@ namespace Screenwriter.Migrations
 				new Comment() { ID = 3, EntryID = 1, TimeStamp = DateTime.Now, UserId = "d8b7faf3-a9f3-4c18-8398-edefb021a688", Text = "Ekki aftur?" },
 				new Comment() { ID = 4, EntryID = 1, TimeStamp = DateTime.Now, UserId = "d8b7faf3-a9f3-4c18-8398-edefb021a688", Text = "No way!" }
 			);
-        }
+			*/
+		}
     }
 }

@@ -20,6 +20,9 @@ namespace Screenwriter.DAL
 		public DbSet<Subtitle> Subtitles { get; set; }
 		public DbSet<Language> Languages { get; set; }
 		public DbSet<Media> Media { get; set; }
+		public DbSet<Movie> Movies { get; set; }
+		public DbSet<TVShow> TVShows { get; set; }
+		public DbSet<Lecture> Lectures { get; set; }
 		public DbSet<Request> Requests { get; set; }
 		public DbSet<Comment> Comments { get; set; }
 
