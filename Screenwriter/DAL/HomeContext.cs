@@ -22,6 +22,7 @@ namespace Screenwriter.DAL
 		public DbSet<Media> Media { get; set; }
 		public DbSet<Request> Requests { get; set; }
 		public DbSet<Comment> Comments { get; set; }
+		public DbSet<MediaGenre> MediaGenre { get; set; }
 
 		protected override void OnModelCreating(DbModelBuilder modelBuilder)
 		{

@@ -148,11 +148,11 @@ namespace Screenwriter.Controllers
 			}
 			//Search Genre puting genres in dropdown to search by
 			result.SearchGenre = new List<SelectListItem>();
-			foreach (var item in repo.GetAllMedia())
+			foreach (var item in repo.GetAllGenres())
 			{
 				result.SearchGenre.Add(new SelectListItem
 				{
-					Text = item.MediaGenres.ToString(),
+					Text = item.Genre,
 					Value = item.ID.ToString(),
 					Selected = false
 				});
