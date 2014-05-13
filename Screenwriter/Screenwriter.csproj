@@ -245,10 +245,10 @@
     <Content Include="Views\Home\Request.cshtml" />
     <Content Include="Views\Home\PendingRequests.cshtml" />
     <Content Include="Views\Home\Media.cshtml" />
+    <Content Include="Views\Editor\Subtitle.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Editor\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

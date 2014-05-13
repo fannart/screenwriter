@@ -12,7 +12,7 @@ namespace Screenwriter.Migrations
         public Configuration()
         {
             AutomaticMigrationsEnabled = true;
-			AutomaticMigrationDataLossAllowed = true;
+			AutomaticMigrationDataLossAllowed = false;
         }
 
         protected override void Seed(Screenwriter.DAL.HomeContext context)
@@ -146,52 +146,49 @@ namespace Screenwriter.Migrations
 			);
 
 			context.Entries.AddOrUpdate(
-				new Entry { ID = 1, SubtitleID = 1, Line1 = "Text", Line2 = "More Text", StartTime = DateTime.Now, Stoptime = DateTime.Now },
-				new Entry { ID = 2, SubtitleID = 1, Line1 = "Text", Line2 = "More Text", StartTime = DateTime.Now, Stoptime = DateTime.Now },
-				new Entry { ID = 3, SubtitleID = 4, Line1 = "Text", Line2 = "More Text", StartTime = DateTime.Now, Stoptime = DateTime.Now },
-				new Entry { ID = 4, SubtitleID = 1, Line1 = "Text", Line2 = "More Text", StartTime = DateTime.Now, Stoptime = DateTime.Now },
+				new Entry { ID = 1, SubtitleID = 1, Line1 = "Here is some text", Line2 = "More Text", StartTime = DateTime.Now, Stoptime = DateTime.Now },
+				new Entry { ID = 2, SubtitleID = 1, Line1 = "And than there was text", Line2 = "More Text", StartTime = DateTime.Now, Stoptime = DateTime.Now },
+				new Entry { ID = 3, SubtitleID = 4, Line1 = "Text", Line2 = "where no text had been before", StartTime = DateTime.Now, Stoptime = DateTime.Now },
+				new Entry { ID = 4, SubtitleID = 1, Line1 = "Text", Line2 = "this, I mean test.", StartTime = DateTime.Now, Stoptime = DateTime.Now },
 				new Entry { ID = 5, SubtitleID = 1, Line1 = "Text", Line2 = "More Text", StartTime = DateTime.Now, Stoptime = DateTime.Now },
-				new Entry { ID = 6, SubtitleID = 4, Line1 = "Text", Line2 = "More Text", StartTime = DateTime.Now, Stoptime = DateTime.Now },
+				new Entry { ID = 6, SubtitleID = 4, Line1 = "Text", Line2 = "so no man would...", StartTime = DateTime.Now, Stoptime = DateTime.Now },
 				new Entry { ID = 7, SubtitleID = 4, Line1 = "Text", Line2 = "More Text", StartTime = DateTime.Now, Stoptime = DateTime.Now },
-				new Entry { ID = 8, SubtitleID = 1, Line1 = "Text", Line2 = "More Text", StartTime = DateTime.Now, Stoptime = DateTime.Now },
-				new Entry { ID = 9, SubtitleID = 1, Line1 = "Text", Line2 = "More Text", StartTime = DateTime.Now, Stoptime = DateTime.Now }
+				new Entry { ID = 8, SubtitleID = 1, Line1 = "Text", Line2 = "a day keeps the doctor", StartTime = DateTime.Now, Stoptime = DateTime.Now },
+				new Entry { ID = 9, SubtitleID = 1, Line1 = "Text", Line2 = "for my country!", StartTime = DateTime.Now, Stoptime = DateTime.Now }
 			);
-			/*
+
 			context.Requests.AddOrUpdate(
-				new Request { ID = 1, SubtitleID = 1, UserID = "1a3aa749-267b-4123-b921-9f6ed1d91ee8" },
-				new Request { ID = 2, SubtitleID = 2, UserID = "1a3aa749-267b-4123-b921-9f6ed1d91ee8" },
-				new Request { ID = 3, SubtitleID = 3, UserID = "1a3aa749-267b-4123-b921-9f6ed1d91ee8" },
-				new Request { ID = 4, SubtitleID = 4, UserID = "1a3aa749-267b-4123-b921-9f6ed1d91ee8" },
-				new Request { ID = 5, SubtitleID = 5, UserID = "1a3aa749-267b-4123-b921-9f6ed1d91ee8" },
-				new Request { ID = 6, SubtitleID = 6, UserID = "1a3aa749-267b-4123-b921-9f6ed1d91ee8" }
+				new Request { ID = 1, SubtitleID = 1, UserID = "faade00d-13ef-4042-85d9-dcd28f83cd14" },
+				new Request { ID = 2, SubtitleID = 2, UserID = "faade00d-13ef-4042-85d9-dcd28f83cd14" },
+				new Request { ID = 3, SubtitleID = 3, UserID = "faade00d-13ef-4042-85d9-dcd28f83cd14" },
+				new Request { ID = 4, SubtitleID = 4, UserID = "faade00d-13ef-4042-85d9-dcd28f83cd14" },
+				new Request { ID = 5, SubtitleID = 5, UserID = "faade00d-13ef-4042-85d9-dcd28f83cd14" },
+				new Request { ID = 6, SubtitleID = 6, UserID = "faade00d-13ef-4042-85d9-dcd28f83cd14" },
+				new Request { ID = 7, SubtitleID = 5, UserID = "5d0fee6a-6f8b-45b3-adba-e368c8cb81cc" },
+				new Request { ID = 8, SubtitleID = 6, UserID = "5d0fee6a-6f8b-45b3-adba-e368c8cb81cc" },
+				new Request { ID = 9, SubtitleID = 7, UserID = "5d0fee6a-6f8b-45b3-adba-e368c8cb81cc" },
+				new Request { ID = 10, SubtitleID = 1, UserID = "64958a1c-043f-4168-97e8-22fa51720640" },
+				new Request { ID = 11, SubtitleID = 2, UserID = "64958a1c-043f-4168-97e8-22fa51720640" },
+				new Request { ID = 12, SubtitleID = 3, UserID = "64958a1c-043f-4168-97e8-22fa51720640" },
+				new Request { ID = 13, SubtitleID = 5, UserID = "64958a1c-043f-4168-97e8-22fa51720640" },
+				new Request { ID = 14, SubtitleID = 7, UserID = "64958a1c-043f-4168-97e8-22fa51720640" },
+				new Request { ID = 15, SubtitleID = 3, UserID = "64958a1c-043f-4168-97e8-22fa51720640" },
+				new Request { ID = 16, SubtitleID = 5, UserID = "64958a1c-043f-4168-97e8-22fa51720640" },
+				new Request { ID = 17, SubtitleID = 6, UserID = "64958a1c-043f-4168-97e8-22fa51720640" },
+				new Request { ID = 18, SubtitleID = 6, UserID = "b3ce22ee-b52d-4bb2-9300-6a3a864d838a" },
+				new Request { ID = 19, SubtitleID = 5, UserID = "b3ce22ee-b52d-4bb2-9300-6a3a864d838a" },
+				new Request { ID = 20, SubtitleID = 3, UserID = "b3ce22ee-b52d-4bb2-9300-6a3a864d838a" },
+				new Request { ID = 21, SubtitleID = 6, UserID = "faade00d-13ef-4042-85d9-dcd28f83cd14" },
+				new Request { ID = 22, SubtitleID = 3, UserID = "faade00d-13ef-4042-85d9-dcd28f83cd14" },
+				new Request { ID = 23, SubtitleID = 5, UserID = "faade00d-13ef-4042-85d9-dcd28f83cd14" }
 			);
-			/*
-				new Request { ID = 7, SubtitleID = 5, UserID = "d8b7faf3-a9f3-4c18-8398-edefb021a688" },
-				new Request { ID = 8, SubtitleID = 6, UserID = "d8b7faf3-a9f3-4c18-8398-edefb021a688" },
-				new Request { ID = 9, SubtitleID = 7, UserID = "d8b7faf3-a9f3-4c18-8398-edefb021a688" },
-				new Request { ID = 10, SubtitleID = 1, UserID = "8104a076-a79b-43ad-b538-cfc8dcb3adc3" },
-				new Request { ID = 11, SubtitleID = 2, UserID = "8104a076-a79b-43ad-b538-cfc8dcb3adc3" },
-				new Request { ID = 12, SubtitleID = 3, UserID = "8104a076-a79b-43ad-b538-cfc8dcb3adc3" },
-				new Request { ID = 13, SubtitleID = 5, UserID = "8104a076-a79b-43ad-b538-cfc8dcb3adc3" },
-				new Request { ID = 14, SubtitleID = 7, UserID = "8104a076-a79b-43ad-b538-cfc8dcb3adc3" },
-				new Request { ID = 15, SubtitleID = 3, UserID = "8104a076-a79b-43ad-b538-cfc8dcb3adc3" },
-				new Request { ID = 16, SubtitleID = 5, UserID = "8104a076-a79b-43ad-b538-cfc8dcb3adc3" },
-				new Request { ID = 17, SubtitleID = 6, UserID = "8104a076-a79b-43ad-b538-cfc8dcb3adc3" },
-				new Request { ID = 18, SubtitleID = 6, UserID = "921cb03a-3f37-4f17-8dc3-f82f8b7bd58c" },
-				new Request { ID = 19, SubtitleID = 5, UserID = "921cb03a-3f37-4f17-8dc3-f82f8b7bd58c" },
-				new Request { ID = 20, SubtitleID = 3, UserID = "921cb03a-3f37-4f17-8dc3-f82f8b7bd58c" },
-				new Request { ID = 21, SubtitleID = 6, UserID = "fc814617-65ea-4fa2-a39f-e70c54fe5c31" },
-				new Request { ID = 22, SubtitleID = 3, UserID = "fc814617-65ea-4fa2-a39f-e70c54fe5c31" },
-				new Request { ID = 23, SubtitleID = 5, UserID = "fc814617-65ea-4fa2-a39f-e70c54fe5c31" }
-			);
-			
+
 			context.Comments.AddOrUpdate(
-				new Comment() { ID = 1, SubtitleID = 4, TimeStamp = DateTime.Now, UserId = "d8b7faf3-a9f3-4c18-8398-edefb021a688", Text = "Geggjað" },
-				new Comment() { ID = 2, SubtitleID = 4, TimeStamp = DateTime.Now, UserId = "d8b7faf3-a9f3-4c18-8398-edefb021a688", Text = "WAT!" },
-				new Comment() { ID = 3, EntryID = 1, TimeStamp = DateTime.Now, UserId = "d8b7faf3-a9f3-4c18-8398-edefb021a688", Text = "Ekki aftur?" },
-				new Comment() { ID = 4, EntryID = 1, TimeStamp = DateTime.Now, UserId = "d8b7faf3-a9f3-4c18-8398-edefb021a688", Text = "No way!" }
+				new Comment() { ID = 1, SubtitleID = 4, TimeStamp = DateTime.Now, UserId = "faade00d-13ef-4042-85d9-dcd28f83cd14", Text = "Geggjað" },
+				new Comment() { ID = 2, SubtitleID = 4, TimeStamp = DateTime.Now, UserId = "faade00d-13ef-4042-85d9-dcd28f83cd14", Text = "WAT!" },
+				new Comment() { ID = 3, EntryID = 1, TimeStamp = DateTime.Now, UserId = "faade00d-13ef-4042-85d9-dcd28f83cd14", Text = "Ekki aftur?" },
+				new Comment() { ID = 4, EntryID = 1, TimeStamp = DateTime.Now, UserId = "faade00d-13ef-4042-85d9-dcd28f83cd14", Text = "No way!" }
 			);
-			*/
 		}
     }
 }
