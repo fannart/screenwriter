@@ -113,51 +113,6 @@ namespace Screenwriter.Controllers
 		{
 			SearchResultsViewModel result = new SearchResultsViewModel();
 			HomeRepository repo = new HomeRepository();
-			//WIP!!!!!!Lang Search - puting list of languages into SelectedListItems List for dropdown for subtitle languages
-			result.LangSearch = new List<SelectListItem>();
-			foreach (var item in repo.GetAllLanguages()) //NEED TO GET MULTIPLE SELECTION TO WORK!
-			{
-				result.LangSearch.Add(new SelectListItem
-				{
-					Text = item.Name,
-					Value = item.ID.ToString(),
-					Selected = false
-				});
-			}
-			//Media Language - puting in languages for dropdown selection to chose media language
-			result.MediaLanguage = new List<SelectListItem>();
-			foreach (var item in repo.GetAllLanguages())
-			{
-				result.MediaLanguage.Add(new SelectListItem
-				{
-					Text = item.Name,
-					Value = item.ID.ToString(),
-					Selected = false
-				});
-			}
-			//Search Genre puting genres in dropdown to search by
-			result.SearchGenre = new List<SelectListItem>();
-			foreach (var item in repo.GetAllGenres())
-			{
-				result.SearchGenre.Add(new SelectListItem
-				{
-					Text = item.Genre,
-					Value = item.ID.ToString(),
-					Selected = false
-				});
-			}
-
-			//WIP!!!!!!!Media Type - puting types in dropdown to search by
-			result.MediaType = new List<SelectListItem>();
-			foreach (var item in repo.GetAllMedia())
-			{
-				result.SearchGenre.Add(new SelectListItem
-				{
-					Text = item.ID.ToString(), //NEED TO FIND A WAY TO ACCES MEDIA TYPE
-					Value = item.ID.ToString(),
-					Selected = false
-				});
-			}
 
 			if (!String.IsNullOrEmpty(searchForm["titleSearch"]))
 			{
@@ -174,11 +129,6 @@ namespace Screenwriter.Controllers
 									  Published = m.publishDate
 								  }).ToList();
 
-				/*if (searchForm["YearPublished"] != NULL)
-				{
-					result.Results = from r in result.Results.ToList()
-									 where r.Published.Year.CompareTo(searchForm["YearPublished"])
-				}*/
 			}
 			else result.Results = (from sub in repo.GetAllSubtitles().ToList()
 								   where sub.TranslationIsCompleted == false
