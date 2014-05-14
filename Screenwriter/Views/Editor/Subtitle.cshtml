@@ -4,16 +4,14 @@
     ViewBag.Title = "Editor";
 }
 
-<h2>@ViewBag.Title</h2>
+<h2>@ViewBag.Title - @Model.WorkingMedia.Title</h2>
 <div class="col-md-4">
 	<div class="panel panel-default">
 		<div class="panel-heading">
 			<h4>TODO: SubtitleLanguage</h4>
 		</div>
 		<div>
-			Content
-			<div>Entry</div>
-			<div>Entry</div>
+			@Html.DropDownList("referenceLanguage",Model.LanguageDropDownList)
 		</div>
 	</div>
 </div>

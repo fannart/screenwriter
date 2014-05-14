@@ -3,20 +3,33 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace Screenwriter.ViewModels
 {
+	public class SelectLanguage
+	{
+		public Language ReferenceLanguage { get; set; }
+		public int SubtitleID { get; set; }
+	}
+
 	public class EditorViewModel
 	{
-		public struct SubtitleLanguage
-		{
-			public Language LanguageReferenceOption { get; set; }
-			public int SubtitleID { get; set; }
-		}
-		public List<SubtitleLanguage> ReferenceLanguages { get; set; }
+		/// <summary>
+		/// The subtitle to be edited.</summary>
+		public Subtitle WorkingSubtitle { get; set; }
+		/// <summary>
+		/// The media to be translated.</summary>
+		public Media WorkingMedia { get; set; }
+		/// <summary>
+		/// A list of subtitles available for reference.</summary>
+		public List<SelectListItem> LanguageDropDownList { get; set; }
+
+
+
+		public List<SelectLanguage> ReferenceLanguages { get; set; }
 
 		public Subtitle ReferenceSubtitle { get; set; }
-		public Subtitle WorkingSubtitle { get; set; }
 		public Language WorkingLanguage { get; set; }
 	}
 }
