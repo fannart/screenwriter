@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNet.Identity.EntityFramework;
+using System.Collections.Generic;
 
 namespace Screenwriter.Models
 {
@@ -6,6 +7,8 @@ namespace Screenwriter.Models
     public class ApplicationUser : IdentityUser
     {
         public string Email { get; set; }
+
+        public IEnumerable<Languages> KnownLanguages { get; set; }
     }
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>

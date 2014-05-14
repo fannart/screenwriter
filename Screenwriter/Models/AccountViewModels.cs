@@ -46,7 +46,6 @@ namespace Screenwriter.Models
         [DataType(DataType.DateTime)]
         [Display(Name = "Last activity")]
         public DateTime LastActivityDate { get; set; } // user last activity
-
     }
 
     public class RegisterViewModel
@@ -85,7 +84,9 @@ namespace Screenwriter.Models
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
-        
+
+        [Display(Name = "Known languages")]
+        public string KnownLanguages { get; set; } // what languages user knows
     }
 
     public class DataCountViewModel
