@@ -186,11 +186,11 @@ namespace Screenwriter.Controllers
 									  Published = m.publishDate
 								  }).ToList();
 
-				if (searchForm["YearPublished"] != NULL)
+				/*if (searchForm["YearPublished"] != NULL)
 				{
 					result.Results = from r in result.Results.ToList()
 									 where r.Published.Year.CompareTo(searchForm["YearPublished"])
-				}
+				}*/
 			}
 			else result.Results = (from sub in repo.GetAllSubtitles().ToList()
 								   where sub.TranslationIsCompleted == false
