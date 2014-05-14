@@ -16,6 +16,7 @@
     }
     #introduction 
     {
+        margin:10px;
         border-radius:10px;
         box-shadow:10px 10px 5px #808080;
         position: relative;
@@ -51,7 +52,7 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-md-9" id="introduction" style="color:grey;">
+        <div id="introduction" style="color:grey;">
             <h2>Instructions</h2>
             <ol>
                 <li>
@@ -65,32 +66,6 @@
                 </li>
             </ol>
         </div>
-        <div class="col-md-3">
-            <div class="col-md-6" id="login">
-                <form method="post" action="LoggedInHomePage">
-                    <h3>Login</h3>
-                    <label accesskey="U" for="User">User name</label>
-                    <input type="text" name="User" id="User"/>
-                    <label accesskey="P" for="Pass">Password</label>
-                    <input type="password" id="Pass" name="Pass"/>
-                    <input type="submit" value="Log in" />
-                    <p>Login with</p>
-                    <button>Facebook</button>
-                    <button>Google</button>
-                </form>
-            </div>
-            <div class="col-md-6">
-                <form>
-                    <h3>Register</h3>
-                    @using (Html.BeginForm("Register", "Home"))
-                    {
-                        <input type="submit" value="Register" />
-                    }
-                    <p>You can also register via</p>
-                    <button>Facebook</button><br />
-                    <button>Google</button>
-                </form>
-            </div>
         </div>
     </div>
     <div class="row">
