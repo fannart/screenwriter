@@ -57,6 +57,10 @@
 			<th>DownloadCount</th>
 			<th>Date Completed</th>
 			<th>Translation Is Completed</th>
+			@if(User.Identity.IsAuthenticated)
+			{
+			<th>Edit</th>
+			}
 		</tr>
 		@foreach (var item in Model.Subtitles)
 		{
@@ -65,6 +69,10 @@
 			<td>@item.DownloadCount</td>
 			<td>@item.DateCompleted</td>
 			<td>@item.TranslationIsCompleted</td>
+			@if(User.Identity.IsAuthenticated)
+			{
+			<td>@Html.ActionLink("Edit", "Subtitle", "Editor", new { id = item.ID }, null)</td>
+			}
 		</tr>
 		}
 	</table>

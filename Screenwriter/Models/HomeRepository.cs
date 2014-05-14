@@ -63,6 +63,13 @@ namespace Screenwriter.Models
 						  select lang).AsQueryable();
 			return result;
 		}
+		public Language GetLanguageById(int id)
+		{
+			var result = (from lang in db.Languages
+						  where lang.ID == id
+						  select lang).FirstOrDefault();
+			return result;
+		}
 		public IQueryable<MediaGenre> GetAllGenres()
 		{
 			var result = (from gen in db.MediaGenre
