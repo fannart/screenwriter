@@ -24,19 +24,9 @@ namespace Screenwriter.ViewModels
 		public int Episode { get; set; }
 	}
 
-
 	public class SearchResultsViewModel
 	{
-		public List<SelectListItem> LangSearch { get; set; }
-		public string Title { get; set; }
-		public List<SelectListItem> MediaLanguage { get; set; }
-		public List<SelectListItem> SearchGenre { get; set; }
-		public List<SelectListItem> MediaType { get; set; }
-		public int? YearPublished { get; set; }
-		public int? Season { get; set; }
-		public int? Episode { get; set; }
-
-
+		public SearchFormViewModel SearchForm { get; set; }
 		public List<SearchResult> Results { get; set; }
 	}
 }
