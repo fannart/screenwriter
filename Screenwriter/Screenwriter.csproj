@@ -181,7 +181,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\SearchFormViewModel.cs" />
-    <Compile Include="ViewModels\SearchResultsViewModel.cs" />
     <Compile Include="ViewModels\EditorViewModel.cs" />
     <Compile Include="ViewModels\SearchViewModel.cs" />
   </ItemGroup>
@@ -241,12 +240,10 @@
     <Content Include="Views\Home\ViewRequests.cshtml" />
     <Content Include="Views\Home\Create.cshtml" />
     <Content Include="Views\Home\History.cshtml" />
-    <Content Include="Views\Home\SearchResults.cshtml" />
     <Content Include="Views\Home\Request.cshtml" />
     <Content Include="Views\Home\PendingRequests.cshtml" />
     <Content Include="Views\Home\Media.cshtml" />
     <Content Include="Views\Editor\Subtitle.cshtml" />
-    <Content Include="Views\Home\SearchViewPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -25,8 +25,6 @@ namespace Screenwriter.ViewModels
 		/// A list of subtitles available for reference.</summary>
 		public List<SelectListItem> LanguageDropDownList { get; set; }
 
-
-
 		public List<SelectLanguage> ReferenceLanguages { get; set; }
 
 		public Subtitle ReferenceSubtitle { get; set; }

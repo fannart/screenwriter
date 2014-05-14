@@ -6,8 +6,38 @@ ViewBag.Title = "Search";
 
 <h2>@ViewBag.Title</h2>
 
-@Html.Partial("SearchViewPartial", Model.SearchForm)
+@using (Html.BeginForm("Search", "Home", FormMethod.Post, htmlAttributes: new { role = "form" }))
+{
+    
+		<h3>
+			Title @Html.TextBox("titleSearch")
+			<button type="button" class="btn btn-default" id="advSearchButton">
+				<span class="glyphicon glyphicon-zoom-in"></span>
+			</button>
 
+			<button type="submit" class="btn btn-default">
+				<span class="glyphicon glyphicon-search"></span>
+			</button>
+		</h3>
+<div id="advancedSearch" class="container">
+	<div class="form-group">
+		<h4>
+			Year Published @Html.TextBox("YearPublished")
+			Media Language DROPDOWN
+			Media Genre DROPDOWN
+		</h4>
+	</div>
+	<div class="form-group">
+	<h4>
+		Season @Html.TextBox("Season")
+		Episode @Html.TextBox("Episode")
+	</h4>
+	</div>
+</div>
+}
+
+@if (Model.Results == null)
+{ 
 <div class="col-md-4">
 	<div class="panel panel-default">
 		<div class="panel-heading">
@@ -119,3 +149,19 @@ ViewBag.Title = "Search";
 		</div>
 	</div>
 </div>
+}
+else
+{
+<table class="table">
+	<tr>
+		<th>Title</th>
+	</tr>
+
+	@foreach (var item in Model.Results)
+	{
+	<tr>
+		<td>@item.Title</td>
+	</tr>
+	}
+</table>
+}
