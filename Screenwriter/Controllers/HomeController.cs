@@ -16,20 +16,6 @@ namespace Screenwriter.Controllers
 			return View();
 		}
 
-		public ActionResult About()
-		{
-			ViewBag.Message = "Your application description page.";
-
-			return View();
-		}
-
-		public ActionResult Contact()
-		{
-			ViewBag.Message = "Your contact page.";
-
-			return View();
-		}
-
 		public ActionResult Media(int? id)
 		{
 			// TODO: Create MediaViewModel for the view and recreate the view.
@@ -117,6 +103,8 @@ namespace Screenwriter.Controllers
 					Media = media
 				});
 			}
+
+			model.SearchForm = new SearchFormViewModel();
 			return View(model);
 		}
 /*-----------------SEARCH RESULTS--------------------------------------------------*/

@@ -7,7 +7,7 @@ using System.Web;
 using System.Web.Mvc;
 
 namespace Screenwriter.ViewModels
-{	
+{
 	public class MultiSelectList
 	{
 		IEnumerable Items {get; set;}
@@ -28,7 +28,6 @@ namespace Screenwriter.ViewModels
 	public class SearchResultsViewModel
 	{
 		public List<SelectListItem> LangSearch { get; set; }
-		public List<SearchResult> Results { get; set; }
 		public string Title { get; set; }
 		public List<SelectListItem> MediaLanguage { get; set; }
 		public List<SelectListItem> SearchGenre { get; set; }
@@ -36,5 +35,8 @@ namespace Screenwriter.ViewModels
 		public int? YearPublished { get; set; }
 		public int? Season { get; set; }
 		public int? Episode { get; set; }
+
+
+		public List<SearchResult> Results { get; set; }
 	}
 }
