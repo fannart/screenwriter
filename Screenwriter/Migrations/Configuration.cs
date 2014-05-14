@@ -1,4 +1,4 @@
-namespace Screenwriter.Migrations
+﻿namespace Screenwriter.Migrations
 {
 	using Screenwriter.Models;
 	using System;
@@ -54,7 +54,7 @@ namespace Screenwriter.Migrations
 				new Media { ID = 1, LanguageID = 1, Type = 0, Title = "12 Years a Slave", publishDate = DateTime.Now },
 				new Media { ID = 2, LanguageID = 1, Type = 0, Title = "Argo", publishDate = DateTime.Now },
 				new Media { ID = 3, LanguageID = 1, Type = 0, Title = "The Artist", publishDate = DateTime.Now },
-				new Media { ID = 4, LanguageID = 2, Type = 2, Title = "Verklegt n�mskei� 2014 - kynning", YoutubeIdentifier = "-02FatEYyLo", Lecturer = "Dan�el Brandur Sigurgeirsson", School = "HR", publishDate = DateTime.Now },
+				new Media { ID = 4, LanguageID = 2, Type = 2, Title = "Verklegt námskeið 2014 - kynning", YoutubeIdentifier = "-02FatEYyLo", Lecturer = "Daníel Brandur Sigurgeirsson", School = "HR", publishDate = DateTime.Now },
 				new Media { ID = 5, LanguageID = 3, Type = 1, Title = "One Piece", publishDate = DateTime.Now, ImdbURL = "//www.imdb.com/title/tt1046719/", Season = 8, Episode = 1 },
 				new Media { ID = 6, LanguageID = 3, Type = 0, Title = "Seven Samurai", publishDate = DateTime.Now, ImdbURL = "//www.imdb.com/title/tt0047478/" },
 				new Media { ID = 7, LanguageID = 3, Type = 0, Title = "Spirited Away", publishDate = DateTime.Now, ImdbURL = "//www.imdb.com/title/tt0245429/" },
@@ -84,7 +84,7 @@ namespace Screenwriter.Migrations
 					ID = 3, 
 					MediaID = 1,
 					LanguageID = 3, 
-					TranslationIsCompleted = false, 
+					TranslationIsCompleted = true, 
 					DownloadCount = 0, 
 					lastUpdated = DateTime.Today, 
 					DateCompleted = DateTime.Now 
@@ -154,7 +154,11 @@ namespace Screenwriter.Migrations
 				new Entry { ID = 6, SubtitleID = 4, Line1 = "Text", Line2 = "so no man would...", StartTime = DateTime.Now, Stoptime = DateTime.Now },
 				new Entry { ID = 7, SubtitleID = 4, Line1 = "Text", Line2 = "More Text", StartTime = DateTime.Now, Stoptime = DateTime.Now },
 				new Entry { ID = 8, SubtitleID = 1, Line1 = "Text", Line2 = "a day keeps the doctor", StartTime = DateTime.Now, Stoptime = DateTime.Now },
-				new Entry { ID = 9, SubtitleID = 1, Line1 = "Text", Line2 = "for my country!", StartTime = DateTime.Now, Stoptime = DateTime.Now }
+				new Entry { ID = 9, SubtitleID = 1, Line1 = "Text", Line2 = "for my country!", StartTime = DateTime.Now, Stoptime = DateTime.Now },
+				new Entry { ID = 10, SubtitleID = 3, Line1 = "私は戻ってきます", Line2 = "より良い日本の音", StartTime = DateTime.Now, Stoptime = DateTime.Now },
+				new Entry { ID = 11, SubtitleID = 3, Line1 = "私は世界の王だ", Line2 = "イエスは、ホイールを取る", StartTime = DateTime.Now, Stoptime = DateTime.Now },
+				new Entry { ID = 12, SubtitleID = 3, Line1 = "シンバ", Line2 = "私の心はあなたのために行く", StartTime = DateTime.Now, Stoptime = DateTime.Now },
+				new Entry { ID = 13, SubtitleID = 3, Line1 = "", Line2 = "コンピュータの愛のために", StartTime = DateTime.Now, Stoptime = DateTime.Now }
 			);
 			
 			context.Requests.AddOrUpdate(
@@ -187,7 +191,7 @@ namespace Screenwriter.Migrations
 			);
 
 			context.Comments.AddOrUpdate(
-				new Comment() { ID = 1, SubtitleID = 4, TimeStamp = DateTime.Now, UserId = "cbbfc2b4-6a3b-4a7d-80be-61e6d2f185e9", Text = "Geggja�" },
+				new Comment() { ID = 1, SubtitleID = 4, TimeStamp = DateTime.Now, UserId = "cbbfc2b4-6a3b-4a7d-80be-61e6d2f185e9", Text = "Geggjað" },
 				new Comment() { ID = 2, SubtitleID = 4, TimeStamp = DateTime.Now, UserId = "cbbfc2b4-6a3b-4a7d-80be-61e6d2f185e9", Text = "WAT!" },
 				new Comment() { ID = 3, EntryID = 1, TimeStamp = DateTime.Now, UserId = "cbbfc2b4-6a3b-4a7d-80be-61e6d2f185e9", Text = "Ekki aftur?" },
 				new Comment() { ID = 4, EntryID = 1, TimeStamp = DateTime.Now, UserId = "cbbfc2b4-6a3b-4a7d-80be-61e6d2f185e9", Text = "No way!" }

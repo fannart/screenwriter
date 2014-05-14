@@ -24,7 +24,7 @@ namespace Screenwriter.Controllers
 				int mediaID = translateSubtitle.MediaID;
 				Media media = repo.GetMediaById(mediaID);
 
-				model.WorkingMedia = media;
+				model.Media = media;
 
 				model.ReferenceLanguages = new List<SelectLanguage>();
 				model.LanguageDropDownList = new List<SelectListItem>();

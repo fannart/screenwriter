@@ -20,7 +20,7 @@ namespace Screenwriter.ViewModels
 		public Subtitle WorkingSubtitle { get; set; }
 		/// <summary>
 		/// The media to be translated.</summary>
-		public Media WorkingMedia { get; set; }
+		public Media Media { get; set; }
 		/// <summary>
 		/// A list of subtitles available for reference.</summary>
 		public List<SelectListItem> LanguageDropDownList { get; set; }
