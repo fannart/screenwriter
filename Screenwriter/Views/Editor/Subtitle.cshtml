@@ -1,0 +1,46 @@
+﻿@model Screenwriter.ViewModels.EditorViewModel
+
+@{
+    ViewBag.Title = "Editor";
+}
+
+<h2>@ViewBag.Title - @Model.WorkingMedia.Title</h2>
+<div class="col-md-4">
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<h4>TODO: SubtitleLanguage</h4>
+		</div>
+		<div>
+			@Html.DropDownList("referenceLanguage",Model.LanguageDropDownList)
+		</div>
+	</div>
+</div>
+<div class="col-md-4">
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<h4>@Model.WorkingLanguage.Name <img src="#" class="flag flag-@Model.WorkingLanguage.ShortName" alt="@Model.WorkingLanguage.Name" /></h4>
+		</div>
+		<div>
+			@foreach (var item in Model.WorkingSubtitle.Entries)
+			{
+			<ul>
+				<li>@item.Line1</li>
+				<li>@item.Line2</li>
+			</ul>
+			}
+		</div>
+	</div>
+</div>
+<div class="col-md-4">
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<h4>TODO: Comments</h4>
+		</div>
+		<div>
+			Content
+			<div>Entry</div>
+			<div>Entry</div>
+		</div>
+	</div>
+</div>
+<div class="clearfix"></div>
