@@ -119,7 +119,7 @@ namespace Screenwriter.Controllers
             }
             return RedirectToAction("Manage", new { Message = message });
         }
-
+        
         //
         // GET: /Account/Manage
         public ActionResult Manage(ManageMessageId? message)

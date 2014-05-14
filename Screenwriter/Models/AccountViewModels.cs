@@ -68,7 +68,6 @@ namespace Screenwriter.Models
         [Compare("Email", ErrorMessage = "The Email and confirmation Email do not match.")]
         public string ConfirmEmail { get; set; }
 
-        [Required]
         [Display(Name = "Country")]
         public string Country { get; set; }
 

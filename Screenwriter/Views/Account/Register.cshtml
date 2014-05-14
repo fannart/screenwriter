@@ -14,9 +14,6 @@
     @Html.ValidationSummary()
     
     
-    
-    
-    
     <div class="form-group">
         @Html.LabelFor(m => m.FirstName, new { @class = "col-md-2 control-label" })
         <div class="col-md-2">
@@ -31,9 +28,9 @@
     <div class="form-group">
         @Html.LabelFor(m => m.Country, new { @class = "col-md-2 control-label" })
         <div class="col-md-2">
-            <select style="width: 166px;" style="height: 200px;">
+           <select  style="width: 166px;" style="height: 200px;">
                 <option value="xx"> </option>
-                <option value="af">Afghanistan</option>
+                <option value="AF">Afghanistan</option>
                 <option value="AX">Åland Islands</option>
                 <option value="AL">Albania</option>
                 <option value="DZ">Algeria</option>
@@ -283,7 +280,7 @@
                 <option value="ZM">Zambia</option>
                 <option value="ZW">Zimbabwe</option>
         </select>
-        </div>
+        </div> 
     </div>
 
     <div class="form-group">
@@ -299,12 +296,10 @@
         </div>
     </div>
     
-    <br><br>
-
-    @Html.AntiForgeryToken()
+    <br><br/>
+    
     <h4>Login Information</h4>
     <hr />
-    @Html.ValidationSummary()
 
     <div class="form-group">
         @Html.LabelFor(m => m.UserName, new { @class = "col-md-2 control-label" })
