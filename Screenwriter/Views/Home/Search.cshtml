@@ -72,18 +72,20 @@ ViewBag.Title = "Search";
 			{
 			<tr>
 				<td>
-					@Html.ActionLink(@item.Media.Title, "Media", new { id = item.Media.ID })
+					@Html.ActionLink(@item.Media.Title, "Media", 
+						new { id = item.Media.ID }, 
+						new { title="See more about \"" + item.Media.Title + "\"" })
 				</td>
 				<td>
 					<img src="#" alt="@item.Language.Name" title="@item.Language.Name" class="flag flag-@item.Language.ShortName" />
 				</td>
 				<td>
-					@item.Subtitle.Requests.Count
+					<span title="Request Count">@item.Subtitle.Requests.Count</span>
 				</td>
 				<td>
-					@Html.ActionLink("Request", "UpvoteSubtitleRequest",
-						new { id = item.Subtitle.ID },
-						new { @class = "requestSubtitle", data_id = item.Subtitle.ID })
+					<a href="@Url.Action("UpvoteSubtitleRequest", new { id = item.Subtitle.ID })" class="requestSubtitle" title="Add request" data-id="@item.Subtitle.ID">
+						<span class="glyphicon glyphicon-plus-sign"></span>
+					</a>
 				</td>
 			</tr>
 			}
