@@ -5,6 +5,9 @@ ViewBag.Title = "Search";
 }
 
 <h2>@ViewBag.Title</h2>
+
+@Html.Partial("SearchViewPartial", Model.SearchForm)
+
 <div class="col-md-4">
 	<div class="panel panel-default">
 		<div class="panel-heading">
