@@ -174,12 +174,12 @@ namespace Screenwriter.Controllers
         {
             return View();
         }
-		
+		/*
         public ActionResult Request()
         {
             return View();
         }
-		
+		*/
         public ActionResult PendingRequests()
         {
             return View();

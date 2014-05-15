@@ -1,18 +1,15 @@
-﻿
+﻿﻿
 @{
     ViewBag.Title = "PendingRequests";
 }
-
 <style>
-    td
-    {
-        text-align:center;
+    td {
+        text-align: center;
     }
 </style>
-
 <div class="row">
     <div class="col-md-12">
-        <table>
+        <table style="margin:10px;">
             <tr>
                 <td>% Finished</td>
                 <td>Pending requests</td>
@@ -20,23 +17,31 @@
             <tr>
                 <td>%</td>
                 <td>TitleName...SpokenLanguage...SubtitleLanguage</td>
+                <td><button>Translate</button></td>
             </tr>
             <tr>
                 <td>%</td>
                 <td>TitleName...SpokenLanguage...SubtitleLanguage</td>
+                <td><button>Translate</button></td>
             </tr>
             <tr>
                 <td>%</td>
                 <td>TitleName...SpokenLanguage...SubtitleLanguage</td>
+                <td><button>Translate</button></td>
             </tr>
             <tr>
                 <td>%</td>
                 <td>TitleName...SpokenLanguage...SubtitleLanguage</td>
+                <td><button>Translate</button></td>
             </tr>
             <tr>
                 <td>%</td>
                 <td>TitleName...SpokenLanguage...SubtitleLanguage</td>
+                <td><button>Translate</button></td>
             </tr>
         </table>
     </div>
+</div>
+<div class="row">
+    @Html.Partial("MostPopularAndMostRequested")
 </div>
