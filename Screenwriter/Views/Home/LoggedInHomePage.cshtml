@@ -3,6 +3,10 @@
     ViewBag.Title = "LoggedInHomePage";
 }
 <style>
+    body
+    {
+        background-color:orange;
+    }
     .row {
         padding: 5px;
     }
@@ -14,58 +18,76 @@
         table-layout: fixed;
     }
 
-    #introduction {
-        border: 2px solid black;
-    }
     #textboxinput {
         height: 30px;
         width: 600px;
     }
-    .linkbutton
-    {
-        border:4px outset;
-        padding:2px;
-        text-decoration:none;
+
+    .linkbutton {
+        border: 4px outset;
+        padding: 2px;
+        text-decoration: none;
+    }
+
+    #introduction {
+        border-radius: 10px;
+        box-shadow: 10px 10px 5px #808080;
+        position: relative;
+        left: -100px;
+        top: -2px;
+        background-image: url(http://demo.templateworld.com/zero/in_action/mCube/images/footBg.png);
+    }
+
+    #button {
+        padding: 10px;
+        margin: 10px;
+        width: 200px;
+        box-shadow: 10px 10px 5px #808080;
+        background-image: url(http://demo.templateworld.com/zero/in_action/mCube/images/footBg.png);
+        border-radius: 10px;
+        color: grey;
     }
 </style>
-
 <div class="container">
     <div class="row">
-        <div class="col-md-8" id="introduction">
+        <div class="col-md-8" id="introduction" style="color:grey;">
             <h1>Instructions</h1>
             <ol>
                 <li>
-                    Step
-                    <p> something happens</p>
+                    <p>Search for your desired title in the search box below</p>
                 </li>
                 <li>
-                    Step
-                    <p>Something else happens</p>
+                    <p>If it exists you will be presented with the option to download the text file with the subtitles.</p>
                 </li>
                 <li>
-                    Step
-                    <p>Something else happens</p>
-                </li>
-                <li>
-                    Step
-                    <p>Something else happens</p>
+                    <p>If your desired title has not been translated, you will see existing requests or you can request the title</p>
                 </li>
             </ol>
         </div>
         <div class="col-md-4">
-            @Html.ActionLink("View Requests", "ViewRequests", "Home")<br />
-            @Html.ActionLink("Create", "Create", "Home")<br />
-            @Html.ActionLink("History", "History", "Home")
+            @using (Html.BeginForm("PendingRequests", "Home"))
+            {
+                <input type="submit" value="View Requests" id="button" />
+            }
+            @using (Html.BeginForm("Create", "Home"))
+            {
+                <input type="submit" value="Create" id="button" />
+            }
+            @using (Html.BeginForm("History", "Home"))
+            {
+                <input type="submit" value="History" id="button" />
+            }
         </div>
     </div>
     <div class="row">
-        <div class="col-md-6 col-md-offset-4">
-            <input type="text" id=textboxinput />
-            <button>Search</button>
-        </div>
+        <form name="input" action="SearchResults" method="get">
+            <div class="col-md-6 col-md-offset-4">
+                <input type="text" id=textboxinput />
+                @Html.ActionLink("Search", "SearchResults", "Home")
+            </div>
+        </form>
     </div>
 </div>
-
 <div>
     <table>
         <tr>
@@ -106,5 +128,4 @@
         </tr>
     </table>
 </div>
-
 @Html.Partial("MostPopularAndMostRequested")
