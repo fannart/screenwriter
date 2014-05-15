@@ -1,0 +1,13 @@
+﻿@model Screenwriter.Models.Subtitle
+
+<ul>
+	@foreach(var entry in Model.Entries)
+	{
+	<li>
+		<ul class="entry">
+			<li>@entry.Line1</li>
+			<li>@entry.Line2</li>
+		</ul>
+	</li>
+	}
+</ul>

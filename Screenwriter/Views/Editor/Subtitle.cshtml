@@ -4,14 +4,15 @@
     ViewBag.Title = "Editor";
 }
 
-<h2>@ViewBag.Title - @Model.WorkingMedia.Title</h2>
+<h2>@ViewBag.Title - @Model.Media.Title</h2>
 <div class="col-md-4">
 	<div class="panel panel-default">
 		<div class="panel-heading">
 			<h4>TODO: SubtitleLanguage</h4>
+			@Html.DropDownList("referenceLanguage", Model.LanguageDropDownList, new { data_url = @Url.Action("ReferenceLanguage") })
 		</div>
-		<div>
-			@Html.DropDownList("referenceLanguage",Model.LanguageDropDownList)
+		<div id="referenceWindow" class="panel-body subtitleWindow">
+			@Html.Partial("ReferenceWindow", Model.ReferenceSubtitle)
 		</div>
 	</div>
 </div>
@@ -20,14 +21,27 @@
 		<div class="panel-heading">
 			<h4>@Model.WorkingLanguage.Name <img src="#" class="flag flag-@Model.WorkingLanguage.ShortName" alt="@Model.WorkingLanguage.Name" /></h4>
 		</div>
-		<div>
-			@foreach (var item in Model.WorkingSubtitle.Entries)
-			{
+		<div class="panel-body subtitleWindow">
 			<ul>
-				<li>@item.Line1</li>
-				<li>@item.Line2</li>
+				@foreach (var item in Model.WorkingSubtitle.Entries)
+				{
+				<li>
+					<ul class="entry-@item.ID" >
+						<li><strong>StartTime -- EndTime</strong></li>
+						<li>
+							@Html.TextBox("entry-" + item.ID + "-1", 
+							item.Line1, 
+							new { data_line = "1", data_entry = item.ID })
+						</li>
+						<li>
+							@Html.TextBox("entry-" + item.ID + "-2", 
+							item.Line2, 
+							new { data_line = "2", data_entry = item.ID })
+						</li>
+					</ul>
+				</li>
+				}
 			</ul>
-			}
 		</div>
 	</div>
 </div>
@@ -37,9 +51,7 @@
 			<h4>TODO: Comments</h4>
 		</div>
 		<div>
-			Content
-			<div>Entry</div>
-			<div>Entry</div>
+			<div id="test">Entry</div>
 		</div>
 	</div>
 </div>

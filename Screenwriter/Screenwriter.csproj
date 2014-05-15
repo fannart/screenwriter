@@ -244,6 +244,7 @@
     <Content Include="Views\Home\PendingRequests.cshtml" />
     <Content Include="Views\Home\Media.cshtml" />
     <Content Include="Views\Editor\Subtitle.cshtml" />
+    <Content Include="Views\Editor\ReferenceWindow.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

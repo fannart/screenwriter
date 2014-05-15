@@ -29,7 +29,7 @@
             //      new Person { FullName = "Rowan Miller" }
             //    );
 			//
-
+			#region Languages
 			context.Languages.AddOrUpdate(
 				new Language { ID = 1, ShortName = "gb", Name = "English" },
 				new Language { ID = 2, ShortName = "is", Name = "Icelandic" },
@@ -49,7 +49,9 @@
 				new Language { ID = 16, ShortName = "ru", Name = "Russian" },
 				new Language { ID = 17, ShortName = "se", Name = "Swedish" }
 			);
-
+			#endregion
+			
+			#region Media
 			context.Media.AddOrUpdate(
 				new Media { ID = 1, LanguageID = 1, Type = 0, Title = "12 Years a Slave", publishDate = DateTime.Now },
 				new Media { ID = 2, LanguageID = 1, Type = 0, Title = "Argo", publishDate = DateTime.Now },
@@ -60,7 +62,9 @@
 				new Media { ID = 7, LanguageID = 3, Type = 0, Title = "Spirited Away", publishDate = DateTime.Now, ImdbURL = "//www.imdb.com/title/tt0245429/" },
 				new Media { ID = 8, LanguageID = 2, Type = 1, Title = "The Night Watch", publishDate = DateTime.Now, ImdbURL = "//www.imdb.com/title/tt1823510/", Season = 1, Episode = 1 }
 			);
-
+			#endregion
+			
+			#region Subtitles
 			context.Subtitles.AddOrUpdate(
 				new Subtitle() { 
 					ID = 1, 
@@ -84,8 +88,8 @@
 					ID = 3, 
 					MediaID = 1,
 					LanguageID = 3, 
-					TranslationIsCompleted = true, 
-					DownloadCount = 0, 
+					TranslationIsCompleted = true,
+					DownloadCount = 1337, 
 					lastUpdated = DateTime.Today, 
 					DateCompleted = DateTime.Now 
 				},
@@ -102,8 +106,8 @@
 					ID = 5, 
 					MediaID = 1,
 					LanguageID = 1, 
-					TranslationIsCompleted = false, 
-					DownloadCount = 0, 
+					TranslationIsCompleted = true, 
+					DownloadCount = 3, 
 					lastUpdated = DateTime.Today, 
 					DateCompleted = DateTime.Now 
 				},
@@ -144,7 +148,9 @@
 					DateCompleted = DateTime.Now 
 				}
 			);
+			#endregion
 
+			#region Entries
 			context.Entries.AddOrUpdate(
 				new Entry { ID = 1, SubtitleID = 1, Line1 = "Here is some text", Line2 = "More Text", StartTime = DateTime.Now, Stoptime = DateTime.Now },
 				new Entry { ID = 2, SubtitleID = 1, Line1 = "And than there was text", Line2 = "More Text", StartTime = DateTime.Now, Stoptime = DateTime.Now },
@@ -158,9 +164,16 @@
 				new Entry { ID = 10, SubtitleID = 3, Line1 = "私は戻ってきます", Line2 = "より良い日本の音", StartTime = DateTime.Now, Stoptime = DateTime.Now },
 				new Entry { ID = 11, SubtitleID = 3, Line1 = "私は世界の王だ", Line2 = "イエスは、ホイールを取る", StartTime = DateTime.Now, Stoptime = DateTime.Now },
 				new Entry { ID = 12, SubtitleID = 3, Line1 = "シンバ", Line2 = "私の心はあなたのために行く", StartTime = DateTime.Now, Stoptime = DateTime.Now },
-				new Entry { ID = 13, SubtitleID = 3, Line1 = "", Line2 = "コンピュータの愛のために", StartTime = DateTime.Now, Stoptime = DateTime.Now }
+				new Entry { ID = 13, SubtitleID = 3, Line1 = "", Line2 = "コンピュータの愛のために", StartTime = DateTime.Now, Stoptime = DateTime.Now },
+				new Entry { ID = 14, SubtitleID = 5, Line1 = "Here is some text", Line2 = "More Text", StartTime = DateTime.Now, Stoptime = DateTime.Now },
+				new Entry { ID = 15, SubtitleID = 5, Line1 = "And than there was text", Line2 = "More Text", StartTime = DateTime.Now, Stoptime = DateTime.Now },
+				new Entry { ID = 16, SubtitleID = 5, Line1 = "Text", Line2 = "where no text had been before", StartTime = DateTime.Now, Stoptime = DateTime.Now },
+				new Entry { ID = 17, SubtitleID = 5, Line1 = "Text", Line2 = "this, I mean test.", StartTime = DateTime.Now, Stoptime = DateTime.Now },
+				new Entry { ID = 18, SubtitleID = 5, Line1 = "Text", Line2 = "More Text", StartTime = DateTime.Now, Stoptime = DateTime.Now }
 			);
-			
+			#endregion
+
+			#region Requests
 			context.Requests.AddOrUpdate(
 				new Request { ID = 1, SubtitleID = 1, UserID = "d10c617e-639c-4814-9b46-7fc3f0f0b9ba" },
 				new Request { ID = 2, SubtitleID = 2, UserID = "d10c617e-639c-4814-9b46-7fc3f0f0b9ba" },
@@ -189,13 +202,16 @@
 				new Request { ID = 25, SubtitleID = 3, UserID = "95e26a86-113a-4978-9557-39755ab1fef7" },
 				new Request { ID = 26, SubtitleID = 5, UserID = "95e26a86-113a-4978-9557-39755ab1fef7" }
 			);
+			#endregion
 
+			#region Comments
 			context.Comments.AddOrUpdate(
 				new Comment() { ID = 1, SubtitleID = 4, TimeStamp = DateTime.Now, UserId = "cbbfc2b4-6a3b-4a7d-80be-61e6d2f185e9", Text = "Geggjað" },
 				new Comment() { ID = 2, SubtitleID = 4, TimeStamp = DateTime.Now, UserId = "cbbfc2b4-6a3b-4a7d-80be-61e6d2f185e9", Text = "WAT!" },
 				new Comment() { ID = 3, EntryID = 1, TimeStamp = DateTime.Now, UserId = "cbbfc2b4-6a3b-4a7d-80be-61e6d2f185e9", Text = "Ekki aftur?" },
 				new Comment() { ID = 4, EntryID = 1, TimeStamp = DateTime.Now, UserId = "cbbfc2b4-6a3b-4a7d-80be-61e6d2f185e9", Text = "No way!" }
 			);
+			#endregion
 		}
     }
 }
