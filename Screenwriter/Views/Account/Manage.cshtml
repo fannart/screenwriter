@@ -4,7 +4,10 @@
     ViewBag.Title = "Manage Account";
 }
 
-<h2>@ViewBag.Title.</h2>
+@Styles.Render("~/Content/css")
+
+
+<h2>@ViewBag.Title</h2>
 
 <p class="text-success">@ViewBag.StatusMessage</p>
 <div class="row">
@@ -24,6 +27,7 @@
         </section>
     </div>
 </div>
+
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }
