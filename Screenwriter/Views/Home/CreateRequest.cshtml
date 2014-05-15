@@ -4,14 +4,12 @@
     ViewBag.Title = "Create Subtitle Request";
 }
 
-<h2>Create Subtitle Request</h2>
+<h2>@ViewBag.Title</h2>
 
 @using (Html.BeginForm()) 
 {
     @Html.AntiForgeryToken()
     <div class="form-horizontal">
-        <h4>Subtitle</h4>
-        <hr />
         @Html.ValidationSummary(true)
         <div class="form-group">
             @Html.LabelFor(model => model.MediaID, new { @class = "control-label col-md-2" })
