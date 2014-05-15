@@ -90,6 +90,7 @@ namespace Screenwriter.Controllers
 			repo.AddSubtitle(subtitle, User.Identity.GetUserId());
 			repo.Save();
 			int mediaID = subtitle.MediaID;
+			// TODO: Where to send the user after he/she requests a subtitle.
 			return RedirectToAction("Media", new { id = mediaID });
 		}
 
