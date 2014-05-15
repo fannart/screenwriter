@@ -12,10 +12,15 @@ namespace Screenwriter.Controllers
     public class EditorController : Controller
     {
 		[HttpPost]
-		public void UpdateEntry(int id, int line, string text)
+		public void UpdateEntry(Entry entry)
 		{
-			return;
+			if (ModelState.IsValid)
+			{
+				HomeRepository repo = new HomeRepository();
+				repo.UpdateEntry(entry);
+			}
 		}
+
 		public ActionResult ReferenceLanguage(int id)
 		{
 			HomeRepository repo = new HomeRepository();
@@ -23,6 +28,7 @@ namespace Screenwriter.Controllers
 			Subtitle model = repo.GetSubtitleById(id);
 			return PartialView("ReferenceWindow", model);
 		}
+
         // GET: /Editor/Subtitle/
         public ActionResult Subtitle(int? id)
         {

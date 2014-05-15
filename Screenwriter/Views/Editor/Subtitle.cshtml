@@ -26,17 +26,20 @@
 				@foreach (var item in Model.WorkingSubtitle.Entries)
 				{
 				<li>
-					<ul class="entry-@item.ID" >
-						<li><strong>StartTime -- EndTime</strong></li>
+					<ul class="entry-@item.ID" data-subtitleID="@Model.WorkingSubtitle.ID" >
 						<li>
-							@Html.TextBox("entry-" + item.ID + "-1", 
-							item.Line1, 
-							new { data_line = "1", data_entry = item.ID })
+							<input type="datetime" value="@item.StartTime" data-entry="@item.ID" name="startTime" />
+							<input type="datetime" value="@item.Stoptime" data-entry="@item.ID" name="stopTime" />
 						</li>
 						<li>
-							@Html.TextBox("entry-" + item.ID + "-2", 
-							item.Line2, 
-							new { data_line = "2", data_entry = item.ID })
+							@Html.TextBox("line1-" + item.ID, 
+							item.Line1, 
+							new { data_entry = item.ID })
+						</li>
+						<li>
+							@Html.TextBox("line2-" + item.ID, 
+							item.Line2,
+							new { data_entry = item.ID})
 						</li>
 					</ul>
 				</li>
