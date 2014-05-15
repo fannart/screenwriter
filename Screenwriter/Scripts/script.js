@@ -1,8 +1,17 @@
 
 $(function () {
+	//Hiding and displaying Advanced search features
 	$( '#advSearchButton' ).on('click', function() {
 		$('#advancedSearch').slideToggle('slow');
 	});
+	//Multiple selection for dropdown
+	$('#subtitleLanguages').multiselect({
+		nonSelectedText: 'Subtitle Languages'
+	});
+	$('#mediaLanguages').multiselect({
+		nonSelectedText: 'Media Languages'
+	});
+
 	// Handles all actions to request an existing subtitle.
 	$('.requestSubtitle').on('click', function (e) {
 		e.preventDefault();

@@ -21,12 +21,15 @@ namespace Screenwriter
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/Scripts/bootstrap.min.js",
-                      "~/Scripts/respond.min.js"));
+                      "~/Scripts/respond.min.js",
+					  "~/Scripts/bootstrap-multiselect.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.min.css",
+					  "~/Content/bootstrap-multiselect.css",
 					  "~/Content/flags/flags.css",
-                      "~/Content/site.css"));
+                      "~/Content/site.css"
+					  ));
         }
     }
 }
