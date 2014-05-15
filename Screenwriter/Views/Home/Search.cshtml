@@ -4,11 +4,50 @@
 ViewBag.Title = "Search";
 }
 
+<style>
+    body
+    {
+        background-color:orange;
+    }
+    #mostpopular {
+        position: absolute;
+        left: -10px;
+        right: 50px;
+        font-size: 15px;
+        text-align: center;
+    }
+
+    #mostrequested {
+        position: absolute;
+        left: 675px;
+        right: -5px;
+        font-size: 15px;
+        text-align: center;
+    }
+
+    .panel-heading
+    {
+        background-image: url(http://demo.templateworld.com/zero/in_action/mCube/images/footBg.png);
+        text-align: center;
+        height: 42px;
+        font-size: 24px;
+        border-radius: 10px;
+        box-shadow: 10px 10px 5px #808080;
+    }
+    h4 
+    {
+        color: #888888;
+    }
+    .panel panel-default
+    {
+        border-radius:30px;
+    }
+</style>
+
 <h2>@ViewBag.Title</h2>
 <div class="col-md-4">
-	<div class="panel panel-default">
-		<div class="panel-heading">
-			<h4>Most Downloaded</h4>
+        <div class="panel-heading">
+			<h4>Most Popular</h4>
 		</div>
 		<table class="table">
 			@foreach (var item in Model.MostDownloaded)
@@ -29,37 +68,8 @@ ViewBag.Title = "Search";
 			</tr>
 			}
 		</table>
-	</div>
 </div>
 <div class="col-md-4">
-	<div class="panel panel-default">
-		<div class="panel-heading">
-			<h4>Latest Subtitles</h4>
-		</div>
-		<table class="table">
-			@foreach (var item in Model.NewestSubtitles)
-			{
-			<tr>
-				<td>
-					@Html.ActionLink(@item.Media.Title, "Media", new { id = item.Media.ID })
-				</td>
-				<td>
-					<img src="#" alt="@item.Language.Name" title="@item.Language.Name" class="flag flag-@item.Language.ShortName" />
-				</td>
-				<td>
-					@{TimeSpan days = (DateTime.Now - item.Subtitle.DateCompleted);}
-					@days.Minutes minutes ago
-				</td>
-				<td>
-					@Html.ActionLink("Download", "Download", new { id = item.Subtitle.ID })
-				</td>
-			</tr>
-			}
-		</table>
-	</div>
-</div>
-<div class="col-md-4">
-	<div class="panel panel-default">
 		<div class="panel-heading">
 			<h4>Most Requested</h4>
 		</div>
@@ -84,7 +94,6 @@ ViewBag.Title = "Search";
 			</tr>
 			}
 		</table>
-	</div>
 </div>
 <div class="clearfix"></div>
 
