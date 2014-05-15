@@ -85,14 +85,6 @@ namespace Screenwriter.Models
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
 
-        [Display(Name = "Known languages")]
-        public string KnownLanguages { get; set; } // what languages user knows
-    }
-
-    public class DataCountViewModel
-    {
-        public int DownloadCount { get; set; } // how many downloads user has made
-
-        public int UploadCount { get; set; } // how many uploads user has made
     }
 }
+

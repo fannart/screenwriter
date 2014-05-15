@@ -1,0 +1,79 @@
+﻿@model Screenwriter.Models.Media
+
+@{
+	ViewBag.Title = "Media";
+}
+
+<h2>@Model.Title</h2>
+<div>
+	<hr />
+	<dl class="dl-horizontal">
+		<dt>
+			@Html.DisplayNameFor(model => model.LanguageID)
+		</dt>
+		<dd>
+			@Html.DisplayFor(model => model.LanguageID)
+		</dd>
+		<dt>
+			@Html.DisplayNameFor(model => model.Title)
+		</dt>
+		<dd>
+			@Html.DisplayFor(model => model.Title)
+		</dd>
+		<dt>
+			@Html.DisplayNameFor(model => model.length)
+		</dt>
+		<dd>
+			@Html.DisplayFor(model => model.length)
+		</dd>
+
+		<dt>
+			@Html.DisplayNameFor(model => model.YoutubeIdentifier)
+		</dt>
+		<dd>
+			@Html.DisplayFor(model => model.YoutubeIdentifier)
+		</dd>
+		<dt>
+			@Html.DisplayNameFor(model => model.VimeoIdentifier)
+		</dt>
+		<dd>
+			@Html.DisplayFor(model => model.VimeoIdentifier)
+		</dd>
+		<dt>
+			@Html.DisplayNameFor(model => model.publishDate)
+		</dt>
+		<dd>
+			@Html.DisplayFor(model => model.publishDate)
+		</dd>
+	</dl>
+</div>
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<h4>Subtitles</h4>
+	</div>
+	<table class="table">
+		<tr>
+			<th>Language ID</th>
+			<th>DownloadCount</th>
+			<th>Date Completed</th>
+			<th>Translation Is Completed</th>
+			@if(User.Identity.IsAuthenticated)
+			{
+			<th>Edit</th>
+			}
+		</tr>
+		@foreach (var item in Model.Subtitles)
+		{
+		<tr>
+			<td>@Html.ActionLink(item.LanguageID.ToString(), "Download", new { id = item.ID })</td>
+			<td>@item.DownloadCount</td>
+			<td>@item.DateCompleted</td>
+			<td>@item.TranslationIsCompleted</td>
+			@if(User.Identity.IsAuthenticated)
+			{
+			<td>@Html.ActionLink("Edit", "Subtitle", "Editor", new { id = item.ID }, null)</td>
+			}
+		</tr>
+		}
+	</table>
+</div>
