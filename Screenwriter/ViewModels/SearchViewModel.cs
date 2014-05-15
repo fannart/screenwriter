@@ -29,6 +29,7 @@ namespace Screenwriter.ViewModels
 		public SearchFormViewModel SearchForm { get; set; }
 
 		public List<SearchResult> Results { get; set; }
+		public List<SearchResult> RequestResults { get; set; }
 
 		public SearchViewModel()
 		{

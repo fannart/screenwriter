@@ -72,7 +72,7 @@
 					LanguageID = 2, 
 					TranslationIsCompleted = true, 
 					DownloadCount = 19, 
-					lastUpdated = DateTime.Today, 
+					LastUpdated = DateTime.Today, 
 					DateCompleted = DateTime.Now 
 				},
 				new Subtitle() { 
@@ -81,7 +81,7 @@
 					LanguageID = 3, 
 					TranslationIsCompleted = false, 
 					DownloadCount = 0, 
-					lastUpdated = DateTime.Today, 
+					LastUpdated = DateTime.Today, 
 					DateCompleted = DateTime.Now 
 				},
 				new Subtitle() { 
@@ -90,7 +90,7 @@
 					LanguageID = 3, 
 					TranslationIsCompleted = true,
 					DownloadCount = 1337, 
-					lastUpdated = DateTime.Today, 
+					LastUpdated = DateTime.Today, 
 					DateCompleted = DateTime.Now 
 				},
 				new Subtitle() { 
@@ -99,7 +99,7 @@
 					LanguageID = 1, 
 					TranslationIsCompleted = true, 
 					DownloadCount = 11, 
-					lastUpdated = DateTime.Today, 
+					LastUpdated = DateTime.Today, 
 					DateCompleted = DateTime.Now 
 				},
 				new Subtitle() { 
@@ -108,7 +108,7 @@
 					LanguageID = 1, 
 					TranslationIsCompleted = true, 
 					DownloadCount = 3, 
-					lastUpdated = DateTime.Today, 
+					LastUpdated = DateTime.Today, 
 					DateCompleted = DateTime.Now 
 				},
 				new Subtitle() { 
@@ -117,7 +117,7 @@
 					LanguageID = 1, 
 					TranslationIsCompleted = false, 
 					DownloadCount = 0, 
-					lastUpdated = DateTime.Today, 
+					LastUpdated = DateTime.Today, 
 					DateCompleted = DateTime.Now 
 				},
 				new Subtitle() { 
@@ -126,7 +126,7 @@
 					LanguageID = 2, 
 					TranslationIsCompleted = false, 
 					DownloadCount = 0, 
-					lastUpdated = DateTime.Today, 
+					LastUpdated = DateTime.Today, 
 					DateCompleted = DateTime.Now 
 				},
 				new Subtitle() { 
@@ -135,7 +135,7 @@
 					LanguageID = 3, 
 					TranslationIsCompleted = false, 
 					DownloadCount = 0, 
-					lastUpdated = DateTime.Today, 
+					LastUpdated = DateTime.Today, 
 					DateCompleted = DateTime.Now 
 				},
 				new Subtitle() { 
@@ -144,7 +144,7 @@
 					LanguageID = 2, 
 					TranslationIsCompleted = false, 
 					DownloadCount = 0, 
-					lastUpdated = DateTime.Today, 
+					LastUpdated = DateTime.Today, 
 					DateCompleted = DateTime.Now 
 				}
 			);

@@ -13,7 +13,7 @@ namespace Screenwriter.Controllers
 	{
 		public ActionResult Index()
 		{
-			return View();
+			return RedirectToAction("Search");
 		}
 
 		public ActionResult Media(int? id)
@@ -77,6 +77,23 @@ namespace Screenwriter.Controllers
 		}
 
 		[Authorize]
+		public ActionResult CreateRequest()
+		{
+			return View(new Subtitle());
+		}
+
+		[Authorize]
+		[HttpPost]
+		public ActionResult CreateRequest(Subtitle subtitle)
+		{
+			HomeRepository repo = new HomeRepository();
+			repo.AddSubtitle(subtitle, User.Identity.GetUserId());
+			repo.Save();
+			int mediaID = subtitle.MediaID;
+			return RedirectToAction("Media", new { id = mediaID });
+		}
+
+		[Authorize]
 		public ActionResult UpvoteSubtitleRequest(int? id)
 		{
 			bool requestCreated = false;
@@ -94,6 +111,7 @@ namespace Screenwriter.Controllers
 				{
 					// Create new request from the current user.
 					repo.AddRequest(subtitleID, userID);
+					repo.Save();
 					requestCreated = true;
 				}
 				// Get number of requests for the subtitle

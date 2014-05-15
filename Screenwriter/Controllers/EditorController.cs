@@ -70,6 +70,8 @@ namespace Screenwriter.Controllers
 				model.WorkingSubtitle = repo.GetSubtitleById(subtitleID);
 				model.WorkingLanguage = repo.GetLanguageById(model.WorkingSubtitle.LanguageID);
 
+				// TODO: Fix bug when trying to change a subtitle with no entries.
+
 				return View(model);
 			}
             return View("Error");

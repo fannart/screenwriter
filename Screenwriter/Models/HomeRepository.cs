@@ -14,7 +14,7 @@ namespace Screenwriter.Models
 		public void AddRequest(int subtitleId, string userId)
 		{
 			db.Requests.Add(new Request { SubtitleID = subtitleId, UserID = userId });
-			db.SaveChanges();
+			Save();
 		}
 
 		public bool RequestExists(int subtitleId, string userId)
@@ -39,6 +39,14 @@ namespace Screenwriter.Models
 		#endregion
 
 		#region Subtitles
+		public void AddSubtitle(Subtitle subtitle, string userID)
+		{
+			subtitle.ID = (from sub in GetAllSubtitles()
+						   select sub.ID).Max() + 1;
+			db.Subtitles.Add(subtitle);
+			AddRequest(subtitle.ID, userID);
+		}
+
 		public IQueryable<Subtitle> GetAllSubtitles()
 		{
 			var result = db.Subtitles.AsQueryable();
@@ -118,7 +126,6 @@ namespace Screenwriter.Models
 				e.StartTime = entry.StartTime;
 				e.Stoptime = entry.Stoptime;
 			}
-			Save();
 		}
 		#endregion
 
