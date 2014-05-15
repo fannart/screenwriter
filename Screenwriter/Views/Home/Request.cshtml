@@ -1,22 +1,22 @@
-﻿
+﻿﻿
 @{
     ViewBag.Title = "Request";
 }
-
+@Html.Partial("HeaderLoggedIn")
 <h2>Request Information</h2>
 <div>
-    <form>
+    <form name="input" action="SearchResults" method="get">
         <label>Title</label>
-        <input type="text"  id="title"/><br />
+        <input type="text" id="title" style="margin:7px;" /><br />
         <label>Type</label>
-        <select>
+        <select style="margin:7px;">
             <option value="tv-show">TV Show</option>
             <option value="movie">Movie</option>
         </select><br />
         <label>Season/Episode</label>
-        <input type="number" id="season"/> <input type="number" id="episode"/><br />
+        <input type="number" id="season" style="margin:10px;" /> <input type="number" id="episode" style="margin:7px;" /><br />
         <label>Language of media</label>
-        <select style="width: 166px;" style="height: 200px;">
+        <select style="width: 166px; height: 25px; margin:7px;">
             <option value="xx"> </option>
             <option value="af">Afghanistan</option>
             <option value="AX">Åland Islands</option>
@@ -269,7 +269,7 @@
             <option value="ZW">Zimbabwe</option>
         </select><br />
         <label>Language of subtitle</label>
-        <select style="width: 166px;" style="height: 200px;">
+        <select style="width: 166px; height: 25px; margin:7px;">
             <option value="xx"> </option>
             <option value="af">Afghanistan</option>
             <option value="AX">Åland Islands</option>
@@ -522,10 +522,8 @@
             <option value="ZW">Zimbabwe</option>
         </select><br />
         <label>IMDB link URL</label>
-        <input type="url" id="imdbUrl"/><br />
-        <input type="submit" value="Confirm Request" />
+        <input type="url" id="imdbUrl" style="margin:7px;" /><br />
+        <input type="submit" value="Confirm Request" style="margin:7px;" />
     </form>
 </div>
-
-@Html.Partial("MostPopular")
-
+@Html.Partial("MostPopularAndMostRequested")

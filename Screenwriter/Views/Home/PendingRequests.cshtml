@@ -1,18 +1,16 @@
-﻿
+﻿﻿
 @{
     ViewBag.Title = "PendingRequests";
 }
-
 <style>
-    td
-    {
-        text-align:center;
+    td {
+        text-align: center;
     }
 </style>
-
+@Html.Partial("HeaderLoggedIn")
 <div class="row">
     <div class="col-md-12">
-        <table>
+        <table style="margin:10px;">
             <tr>
                 <td>% Finished</td>
                 <td>Pending requests</td>
@@ -45,5 +43,6 @@
         </table>
     </div>
 </div>
-
-@Html.Partial("MostPopularAndMostRequested")
+<div class="row">
+    @Html.Partial("MostPopularAndMostRequested")
+</div>
