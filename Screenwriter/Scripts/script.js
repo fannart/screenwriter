@@ -35,6 +35,7 @@ $(function () {
 	var lastEntryID;
 	$('.subtitleWindow input').focusin(function () {
 		$this = $(this);
+		// TODO: Keep an eye out for changes in markup.
 		var entry = $this.parent().parent();
 		var thisEntryID = $this.attr('data-entry');
 		// 
@@ -59,8 +60,7 @@ $(function () {
 		lastEntryID = thisEntryID;
 
 		$this = $(this);
-		// TODO: Keep an eye out for changes in markup.
-		$this.parent().parent().css({ 'background-color': 'gainsboro' });
+		entry.css({ 'background-color': 'gainsboro' });
 	});
 	$('input').focusout(function () {
 		$this = $(this);
