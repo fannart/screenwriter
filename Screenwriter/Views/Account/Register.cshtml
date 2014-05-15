@@ -3,12 +3,22 @@
     ViewBag.Title = "Register";
 }
 
-<h2>@ViewBag.Title.</h2>
+<h2>@ViewBag.Title</h2>
+
+
+<style>
+    
+    body {
+        background-color: #FF9933;
+    }
+
+
+</style>
 
 @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
 {
     @Html.AntiForgeryToken()
-    <h4>Create a new account.</h4>
+    <h4>Create a new account</h4>
     <hr />
     @Html.ValidationSummary()
     <div class="form-group">
