@@ -5,7 +5,7 @@ ViewBag.Title = "Search";
 }
 
 <h2>@ViewBag.Title</h2>
-
+<!--  Search Form-->
 @using (Html.BeginForm("Search", "Home", FormMethod.Post, htmlAttributes: new { role = "form", @class="container search"}))
 {
 	<div class="row text-center">
@@ -20,7 +20,7 @@ ViewBag.Title = "Search";
 				<input type="number" class="form-inline" id="Year" placeholder="Year of publish" name="YearPublished">
 
 				<label class="sr-only" for="Genre">Media Genre</label>
-				<input type="text" class="form-inline" id="Genre" placeholder="MediaGenre" name="MediaGenre">
+				<input type="text" class="form-inline" id="Genre" placeholder="MediaGenre" name="mediaGenre">
 					
 				<select multiple="multiple" name="subtitleLanguage" class="multiselect" id="subtitleLanguages" title="Subtitle Languages">
 					@{ foreach (var i in Model.SearchForm.Languages)
@@ -29,7 +29,7 @@ ViewBag.Title = "Search";
 					 }
 					}
 				</select>
-				<select multiple="multiple" name="mediaLanguage" class="multiselect"  id="mediaLanguages"title="Media Languages">
+				<select multiple="multiple" name="mediaLanguage" class="multiselect"  id="mediaLanguages" title="Media Languages">
 					@{ foreach (var i in Model.SearchForm.Languages)
 					 {
 						<option value=@i.Value>@i.Text</option>
@@ -72,6 +72,7 @@ ViewBag.Title = "Search";
 
 @if (Model.Results == null)
 { 
+<!--Top lists of subtitles-->
 <div class="col-md-4">
 	<div class="panel panel-default">
 		<div class="panel-heading">

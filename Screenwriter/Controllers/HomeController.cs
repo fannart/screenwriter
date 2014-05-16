@@ -54,28 +54,20 @@ namespace Screenwriter.Controllers
 			HomeRepository repo = new HomeRepository();
 
 			SearchViewModel model = new SearchViewModel();
-
+			//Initializing Top Lists to display if no search string is entered
 			model.MostDownloaded = GetTopTenMostDownloadedSubtitles();
 			model.NewestSubtitles = GetTopTenNewestSubtitles();
 			model.MostRequested = GetTopTenMostRequested();
 
+			//Search Logic
 
+			//Begin checking if title search is NULL or empty
 			if (!String.IsNullOrEmpty(searchForm["titleSearch"]))
 			{
-				model.Results = (from m in repo.GetAllMedia().ToList()
-								  join sub in repo.GetAllSubtitles().ToList()
-								  on m.ID equals sub.MediaID
-								  join lang in repo.GetAllLanguages().ToList()
-								  on sub.LanguageID equals lang.ID
-								  where m.Title.Contains(searchForm["titleSearch"])
-								  orderby m.Title ascending
-								  select new SearchResult
-								  {
-									  Title = m.Title,
-									  Published = m.publishDate
-								  }).ToList();
+			model.Results = from m in repo.GetAllMedia().ToList()
 
 			}
+
 			return View(model);
 		}
 
@@ -218,5 +210,75 @@ namespace Screenwriter.Controllers
 			}
 			return topTen;
 		}
+
+		private List<SearchResult> NewSearch()
+		{
+			HomeRepository repo = new HomeRepository();
+			List<SearchResult> NewSearch = new List<SearchResult>();
+			NewSearch = (from m in repo.GetAllMedia().ToList()
+						 join l in repo.GetAllLanguages().ToList()
+						 on m.LanguageID equals l.ID
+						 orderby m.Title ascending
+						 select new SearchResult
+						 {
+							 Title = m.Title,
+							 course = m.Course,
+							 Episode = m.Episode,
+							 Season = m.Season,
+							 MediaLanguage = l,
+							 MediaID = m.ID,
+							 Published = m.publishDate,
+							 MediaType = m.Type
+
+						 }
+
+				).ToList();
+
+			return NewSearch;
+		}
+
+		private List<SearchResult> SearchByTitle(List<SearchResult> Results, string title) 
+		{
+			HomeRepository repo = new HomeRepository();
+			Results = (from m in repo.GetAllMedia().ToList()
+							 join sub in repo.GetAllSubtitles().ToList()
+							 on m.ID equals sub.MediaID
+							 join lang in repo.GetAllLanguages().ToList()
+							 on sub.LanguageID equals lang.ID
+							 where m.Title.ToLower().Contains(title.ToLower())
+							 orderby m.Title ascending
+							 select new SearchResult
+							 {
+								 Title = m.Title,
+								 Published = m.publishDate
+							 }).ToList();
+			return Results;
+		}
+		private List<SearchResult> SearchByLanguage(List<SearchResult> Results, List<SelectListItem> languages)
+		{
+			HomeRepository repo = new HomeRepository();
+			List<SearchResult> LangResult = new List<SearchResult>();
+			List<SearchResult> Temp = new List<SearchResult>();
+			foreach (var l in languages)
+			{
+				if (l.Selected == true)
+				{
+
+					Temp = (from r in Results.ToList()
+					 join sub in repo.GetAllSubtitles().ToList()
+						on r.MediaID equals sub.MediaID
+					 join la in repo.GetAllLanguages().ToList()
+					 on l.Text equals la.Name
+					 orderby r.Title ascending
+					 select new SearchResult
+					 {
+						 Title = r.Title
+
+					 }).ToList();
+				}
+				foreach (var r in Temp) { LangResult.Add(r); }
+			
+			}
+		return LangResult;}
 	}
 }
