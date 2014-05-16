@@ -13,25 +13,73 @@ namespace Screenwriter.Controllers
 	{
 		public ActionResult Index()
 		{
-			return View();
+			return RedirectToAction("Search");
 		}
 
 		public ActionResult Media(int? id)
 		{
-			// TODO: Create MediaViewModel for the view and recreate the view.
-
 			// Make sure request is for a specific media.
 			if (id.HasValue)
 			{
 				// Repository to access database.
 				HomeRepository repo = new HomeRepository();
+				// ViewModel to send to the view.
+				MediaViewModel model = new MediaViewModel();
 				// ID of requested media.
 				int mediaID = id.Value;
-				Media media = repo.GetMediaById(mediaID);
+				
+				// Feed model with information.
+				model.Media = repo.GetMediaById(mediaID);
+				model.MediaLanguage = repo.GetLanguageById(model.Media.LanguageID);
 
-				return View(media);
+				model.FinishedSubtitles = new List<SubtitleResult>();
+				foreach (var subtitle in model.Media.Subtitles
+					.Where(s => s.TranslationIsCompleted)
+					.ToList()
+					)
+				{
+					var language = repo.GetAllLanguages()
+						.Where(l => l.ID == subtitle.LanguageID)
+						.FirstOrDefault();
+					model.FinishedSubtitles.Add(new SubtitleResult
+					{
+						Subtitle = subtitle,
+						Language = language
+					});
+				}
+
+				model.UnfinishedSubtitles = new List<SubtitleResult>();
+				foreach (var subtitle in model.Media.Subtitles
+					.Where(s => !s.TranslationIsCompleted)
+					.ToList()
+					)
+				{
+					var language = repo.GetAllLanguages()
+						.Where(l => l.ID == subtitle.LanguageID)
+						.FirstOrDefault();
+					model.UnfinishedSubtitles.Add(new SubtitleResult
+					{
+						Subtitle = subtitle,
+						Language = language
+					});
+				}
+
+				return View(model);
 			}
 			// Getting this far means an unexpected error.
+			return View("Error");
+		}
+
+		public ActionResult EditMedia(int? id)
+		{
+			if(id.HasValue)
+			{
+				int mediaID = id.Value;
+				HomeRepository repo = new HomeRepository();
+				Media model = repo.GetMediaById(mediaID);
+				return View(model);
+			}
+			// TODO: Error View for media not found error.
 			return View("Error");
 		}
 
@@ -52,34 +100,66 @@ namespace Screenwriter.Controllers
 		public ActionResult Search(FormCollection searchForm)
 		{
 			HomeRepository repo = new HomeRepository();
-
 			SearchViewModel model = new SearchViewModel();
-			//Initializing Top Lists to display if no search string is entered
+
 			model.MostDownloaded = GetTopTenMostDownloadedSubtitles();
 			model.NewestSubtitles = GetTopTenNewestSubtitles();
 			model.MostRequested = GetTopTenMostRequested();
 
-			//Search Logic
-
-			//Begin checking if title search is NULL or empty
-			if (!String.IsNullOrEmpty(searchForm["titleSearch"]))
+			List<Media> mediaResults = new List<Media>();
+			
+			// Check for search string within media titles.
+			string titleSearch = searchForm["titleSearch"].ToLower();
+			if (!String.IsNullOrEmpty(titleSearch))
 			{
-				model.Results = (from m in repo.GetAllMedia().ToList()
-						   join sub in repo.GetAllSubtitles().ToList()
-						   on m.ID equals sub.MediaID
-						   join lang in repo.GetAllLanguages().ToList()
-						   on sub.LanguageID equals lang.ID
-								 where m.Title.ToLower().Contains(searchForm["titleSearch"].ToLower())
-						   orderby m.Title ascending
-						   select new SearchResult
-						   {
-							   Title = m.Title,
-							   Published = m.publishDate,
+				mediaResults = repo.GetAllMedia()
+					.Where(m => m.Title.ToLower().Contains(titleSearch))
+					.ToList();
+			}
+			else { mediaResults = repo.GetAllMedia().ToList(); }
 
-						   }).ToList();
+			// Convert media list to a list of SearchResults
+			model.Results = new List<SearchResult>();
+			foreach(var media in mediaResults)
+			{
+				Language language = repo.GetLanguageById(media.LanguageID);
+				string mediaTypeString;
+				if (media.Type == 0) { mediaTypeString = "Movie"; }
+				else if (media.Type == 1) { mediaTypeString = "TVShow"; }
+				else { mediaTypeString = "Lecture"; }
+				model.Results.Add(new SearchResult
+				{
+					MediaID = media.ID,
+					Title = media.Title,
+					Course = media.Course,
+					Season = media.Season,
+					Episode = media.Episode,
+					MediaType = media.Type,
+					MediaTypeString = mediaTypeString,
+					MediaLanguage = language,
+					Published = media.publishDate
+				});
 			}
 
 			return View(model);
+		}
+
+		[Authorize]
+		public ActionResult CreateRequest()
+		{
+			return View(new Subtitle());
+		}
+
+		[Authorize]
+		[HttpPost]
+		public ActionResult CreateRequest(Subtitle subtitle)
+		{
+			HomeRepository repo = new HomeRepository();
+			repo.AddSubtitle(subtitle, User.Identity.GetUserId());
+			repo.Save();
+			int mediaID = subtitle.MediaID;
+			// TODO: Where to send the user after he/she requests a subtitle.
+			return RedirectToAction("Media", new { id = mediaID });
 		}
 
 		[Authorize]
@@ -100,6 +180,7 @@ namespace Screenwriter.Controllers
 				{
 					// Create new request from the current user.
 					repo.AddRequest(subtitleID, userID);
+					repo.Save();
 					requestCreated = true;
 				}
 				// Get number of requests for the subtitle
@@ -233,18 +314,14 @@ namespace Screenwriter.Controllers
 						 select new SearchResult
 						 {
 							 Title = m.Title,
-							 course = m.Course,
+							 Course = m.Course,
 							 Episode = m.Episode,
 							 Season = m.Season,
 							 MediaLanguage = l,
 							 MediaID = m.ID,
 							 Published = m.publishDate,
 							 MediaType = m.Type
-
-						 }
-
-				).ToList();
-
+						 }).ToList();
 			return NewSearch;
 		}
 
@@ -252,17 +329,17 @@ namespace Screenwriter.Controllers
 		{
 			HomeRepository repo = new HomeRepository();
 			Results = (from m in repo.GetAllMedia().ToList()
-							 join sub in repo.GetAllSubtitles().ToList()
-							 on m.ID equals sub.MediaID
-							 join lang in repo.GetAllLanguages().ToList()
-							 on sub.LanguageID equals lang.ID
-							 where m.Title.ToLower().Contains(title.ToLower())
-							 orderby m.Title ascending
-							 select new SearchResult
-							 {
-								 Title = m.Title,
-								 Published = m.publishDate
-							 }).ToList();
+					   join sub in repo.GetAllSubtitles().ToList()
+					   on m.ID equals sub.MediaID
+					   join lang in repo.GetAllLanguages().ToList()
+					   on sub.LanguageID equals lang.ID
+					   where m.Title.ToLower().Contains(title.ToLower())
+					   orderby m.Title ascending
+					   select new SearchResult
+					   {
+						   Title = m.Title,
+						   Published = m.publishDate
+					   }).ToList();
 			return Results;
 		}
 		private List<SearchResult> SearchByLanguage(List<SearchResult> Results, List<SelectListItem> languages)
@@ -274,22 +351,23 @@ namespace Screenwriter.Controllers
 			{
 				if (l.Selected == true)
 				{
-
 					Temp = (from r in Results.ToList()
-					 join sub in repo.GetAllSubtitles().ToList()
-						on r.MediaID equals sub.MediaID
-					 join la in repo.GetAllLanguages().ToList()
-					 on l.Text equals la.Name
-					 orderby r.Title ascending
-					 select new SearchResult
-					 {
-						 Title = r.Title
-
-					 }).ToList();
+							join sub in repo.GetAllSubtitles().ToList()
+							on r.MediaID equals sub.MediaID
+							join la in repo.GetAllLanguages().ToList()
+							on l.Text equals la.Name
+							orderby r.Title ascending
+							select new SearchResult
+							{
+								Title = r.Title
+							}).ToList();
 				}
-				foreach (var r in Temp) { LangResult.Add(r); }
-			
+				foreach (var r in Temp)
+				{
+					LangResult.Add(r);
+				}
 			}
-		return LangResult;}
+			return LangResult;
+		}
 	}
 }

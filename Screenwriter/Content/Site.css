@@ -41,10 +41,32 @@ input[type="checkbox"].input-validation-error {
     display: none;
 }
 
+/* Search */
 #advancedSearch{
 	display:none;
 }
 
 .search{
 	width: 70%;
+	margin: 7% auto;
+}
+
+/* Editor */
+#referenceWindow li{
+	padding: 1px 0px;
+}
+#referenceWindow > ul > li:nth-child(even){
+	background: gainsboro;
+}
+.subtitleWindow ul{
+	list-style: none;
+	padding: 0;
+}
+.subtitleWindow input{
+	width: 100%;
+	border-width: 0;
+	background: inherit;
+}
+.subtitleWindow input:focus{
+	outline: none;
 }

@@ -8,10 +8,28 @@ using System.Web.Mvc;
 
 namespace Screenwriter.Controllers
 {
+	[Authorize]
     public class EditorController : Controller
     {
+		[HttpPost]
+		public void UpdateEntry(Entry entry)
+		{
+			if (ModelState.IsValid)
+			{
+				HomeRepository repo = new HomeRepository();
+				repo.UpdateEntry(entry);
+			}
+		}
+
+		public ActionResult ReferenceLanguage(int id)
+		{
+			HomeRepository repo = new HomeRepository();
+			int subtitleID = id;
+			Subtitle model = repo.GetSubtitleById(id);
+			return PartialView("ReferenceWindow", model);
+		}
+
         // GET: /Editor/Subtitle/
-		[Authorize]
         public ActionResult Subtitle(int? id)
         {
 			if(id.HasValue)
@@ -19,6 +37,7 @@ namespace Screenwriter.Controllers
 				EditorViewModel model = new EditorViewModel();
 				HomeRepository repo = new HomeRepository();
 				int subtitleID = id.Value;
+
 				Subtitle translateSubtitle = repo.GetSubtitleById(subtitleID);
 
 				int mediaID = translateSubtitle.MediaID;
@@ -30,7 +49,9 @@ namespace Screenwriter.Controllers
 				model.LanguageDropDownList = new List<SelectListItem>();
 				List<Subtitle> existingSubtitles = repo.GetAllSubtitles()
 					.Where(s => s.TranslationIsCompleted
-					&& s.MediaID == mediaID)
+					&& s.MediaID == mediaID
+					)
+					// TODO: UNCOMMENT THIS --> && s.ID != translateSubtitle.ID)
 					.ToList();
 				foreach(var sub in existingSubtitles)
 				{
@@ -45,8 +66,11 @@ namespace Screenwriter.Controllers
 					});
 				}
 
+				model.ReferenceSubtitle = existingSubtitles.FirstOrDefault();
 				model.WorkingSubtitle = repo.GetSubtitleById(subtitleID);
 				model.WorkingLanguage = repo.GetLanguageById(model.WorkingSubtitle.LanguageID);
+
+				// TODO: Fix bug when trying to change a subtitle with no entries.
 
 				return View(model);
 			}

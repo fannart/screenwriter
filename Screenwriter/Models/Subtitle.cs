@@ -25,11 +25,11 @@ namespace Screenwriter.Models
 		public DateTime DateAdded { get; set; }
 		/// <summary>
 		/// The date when the subtitle translation was last updated.</summary>
-		public DateTime lastUpdated { get; set; }
+		public DateTime LastUpdated { get; set; }
 		/// <summary>
 		/// The timestamp when this translation was completed 
 		/// and became available for download.</summary>
-		public DateTime DateCompleted { get; set; }
+		public DateTime? DateCompleted { get; set; }
 
 		public virtual ICollection<Entry> Entries { get; set; }
 		public virtual ICollection<Comment> Comments { get; set; }
@@ -38,6 +38,10 @@ namespace Screenwriter.Models
 		public Subtitle()
 		{
 			DateAdded = DateTime.Now;
+			LastUpdated = DateTime.Now;
+			DateCompleted = null;
+			TranslationIsCompleted = false;
+			DownloadCount = 0;
 		}
 	}
 }

@@ -20,8 +20,9 @@ namespace Screenwriter.ViewModels
 		public int Season { get; set; }
 		public int Episode { get; set; }
 		public Language MediaLanguage { get; set; }
-		public string course { get; set; }
+		public string Course { get; set; }
 		public int MediaType { get; set; }
+		public string MediaTypeString { get; set; }
 		public int MediaID { get; set; }
 	}
 	
@@ -33,6 +34,7 @@ namespace Screenwriter.ViewModels
 		public SearchFormViewModel SearchForm { get; set; }
 
 		public List<SearchResult> Results { get; set; }
+		public List<SearchResult> RequestResults { get; set; }
 
 		public SearchViewModel()
 		{
