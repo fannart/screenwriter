@@ -83,7 +83,7 @@ ViewBag.Title = "Search";
 					<img src="#" alt="@item.Language.Name" title="@item.Language.Name" class="flag flag-@item.Language.ShortName" />
 				</td>
 				<td>
-					<span title="Download Count">@item.Subtitle.DownloadCount</span>
+					<span title="Download count">@item.Subtitle.DownloadCount</span>
 				</td>
 				<td>
 					<a href="@Url.Action("Download", new { id = item.Subtitle.ID })" title="Download">
@@ -140,7 +140,7 @@ ViewBag.Title = "Search";
 					<img src="#" alt="@item.Language.Name" title="@item.Language.Name" class="flag flag-@item.Language.ShortName" />
 				</td>
 				<td>
-					<span title="Request Count">@item.Subtitle.Requests.Count</span>
+					<span title="Request count">@item.Subtitle.Requests.Count</span>
 				</td>
 				<td>
 					<a href="@Url.Action("UpvoteSubtitleRequest", new { id = item.Subtitle.ID })" class="requestSubtitle" title="Add request" data-id="@item.Subtitle.ID">
@@ -150,7 +150,7 @@ ViewBag.Title = "Search";
 				@if(User.Identity.IsAuthenticated)
 				{
 				<td>
-					<a href="@Url.Action("Subtitle", "Editor", new { id = item.Subtitle.ID })" title="Edit Subtitle">
+					<a href="@Url.Action("Subtitle", "Editor", new { id = item.Subtitle.ID })" title="Edit subtitle">
 						<span class="glyphicon glyphicon-pencil"></span>
 					</a>
 				</td>
