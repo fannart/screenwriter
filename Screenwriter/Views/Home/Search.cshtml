@@ -5,32 +5,68 @@ ViewBag.Title = "Search";
 }
 
 <h2>@ViewBag.Title</h2>
-
-@using (Html.BeginForm("Search", "Home", FormMethod.Post, htmlAttributes: new { role = "form" }))
+<!--  Search Form-->
+@using (Html.BeginForm("Search", "Home", FormMethod.Post, htmlAttributes: new { role = "form", @class="container search"}))
 {
-<h3>
-	Title @Html.TextBox("titleSearch")
+<div class="row text-center">
+	<div class="form-group">
+		<label class="sr-only" for="Title">Search</label>
+		<input type="text" class="form-control" id="Title" placeholder="Search" name="titleSearch">
+	</div>
+	<div id="advancedSearch" class="form-horizontal">
+		<div class="form-group">
+				
+			<label class="sr-only" for="Year">Year of Publish</label>
+			<input type="number" class="form-inline" id="Year" placeholder="Year of publish" name="YearPublished">
+
+			<label class="sr-only" for="Genre">Media Genre</label>
+			<input type="text" class="form-inline" id="Genre" placeholder="MediaGenre" name="mediaGenre">
+					
+			<select multiple="multiple" name="subtitleLanguage" class="multiselect" id="subtitleLanguages" title="Subtitle Languages">
+				@{ foreach (var i in Model.SearchForm.Languages)
+					{
+					<option value=@i.Value>@i.Text</option>
+					}
+				}
+			</select>
+			<select multiple="multiple" name="mediaLanguage" class="multiselect"  id="mediaLanguages" title="Media Languages">
+				@{ foreach (var i in Model.SearchForm.Languages)
+					{
+					<option value=@i.Value>@i.Text</option>
+					}
+				}
+			</select>
+		</div>
+		<div class="form-group">
+			<select name="mediaType" class="btn btn-default" >
+					<option value="0">Media Type</option>
+				@{ foreach (var i in Model.SearchForm.MediaTypes)
+					{
+					<option value=@i.Value>@i.Text</option>
+					}
+				}
+			</select>
+			<label class="sr-only" for="Season">Season</label>
+			<input type="number" class="form-inline" id="Season" placeholder="Show Season" name="Season">
+			<label class="sr-only" for="Episode">Episode</label>
+			<input type="number" class="form-inline" id="Episode" placeholder="Show Episode" name="Episode">
+		</div>
+		<div class="form-group">
+			<label class="sr-only" for="School">School</label>
+			<input type="text" class="form-inline" id="School" placeholder="School" name="School">
+			<label class="sr-only" for="Course">Course</label>
+			<input type="text" class="form-inline" id="Course" placeholder="Course" name="Course">
+			<label class="sr-only" for="Lecturer">Lecturer</label>
+			<input type="text" class="form-inline" id="Lecturer" placeholder="Lecturer" name="Lecturer">
+		</div>
+	</div>
 	<button type="button" class="btn btn-default" id="advSearchButton">
 		<span class="glyphicon glyphicon-zoom-in"></span>
 	</button>
+
 	<button type="submit" class="btn btn-default">
 		<span class="glyphicon glyphicon-search"></span>
 	</button>
-</h3>
-<div id="advancedSearch" class="container">
-	<div class="form-group">
-		<h4>
-			Year Published @Html.TextBox("YearPublished")
-			Media Language DROPDOWN
-			Media Genre DROPDOWN
-		</h4>
-	</div>
-	<div class="form-group">
-		<h4>
-			Season @Html.TextBox("Season")
-			Episode @Html.TextBox("Episode")
-		</h4>
-	</div>
 </div>
 }
 

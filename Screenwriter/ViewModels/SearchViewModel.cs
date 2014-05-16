@@ -19,6 +19,11 @@ namespace Screenwriter.ViewModels
 		public DateTime Published { get; set; }
 		public int Season { get; set; }
 		public int Episode { get; set; }
+		public Language MediaLanguage { get; set; }
+		public string Course { get; set; }
+		public int MediaType { get; set; }
+		public string MediaTypeString { get; set; }
+		public int MediaID { get; set; }
 	}
 	
 	public class SearchViewModel
@@ -36,6 +41,7 @@ namespace Screenwriter.ViewModels
 			MostDownloaded = new List<TopTen>();
 			NewestSubtitles = new List<TopTen>();
 			MostRequested = new List<TopTen>();
+			SearchForm = new SearchFormViewModel();
 		}
 	}
 }

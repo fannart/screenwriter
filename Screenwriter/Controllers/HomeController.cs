@@ -106,21 +106,41 @@ namespace Screenwriter.Controllers
 			model.NewestSubtitles = GetTopTenNewestSubtitles();
 			model.MostRequested = GetTopTenMostRequested();
 
-			if (!String.IsNullOrEmpty(searchForm["titleSearch"]))
+			List<Media> mediaResults = new List<Media>();
+			
+			// Check for search string within media titles.
+			string titleSearch = searchForm["titleSearch"].ToLower();
+			if (!String.IsNullOrEmpty(titleSearch))
 			{
-				model.Results = (from m in repo.GetAllMedia().ToList()
-								  join sub in repo.GetAllSubtitles().ToList()
-								  on m.ID equals sub.MediaID
-								  join lang in repo.GetAllLanguages().ToList()
-								  on sub.LanguageID equals lang.ID
-								  where m.Title.Contains(searchForm["titleSearch"])
-								  orderby m.Title ascending
-								  select new SearchResult
-								  {
-									  Title = m.Title,
-									  Published = m.publishDate
-								  }).ToList();
+				mediaResults = repo.GetAllMedia()
+					.Where(m => m.Title.ToLower().Contains(titleSearch))
+					.ToList();
 			}
+			else { mediaResults = repo.GetAllMedia().ToList(); }
+
+			// Convert media list to a list of SearchResults
+			model.Results = new List<SearchResult>();
+			foreach(var media in mediaResults)
+			{
+				Language language = repo.GetLanguageById(media.LanguageID);
+				string mediaTypeString;
+				if (media.Type == 0) { mediaTypeString = "Movie"; }
+				else if (media.Type == 1) { mediaTypeString = "TVShow"; }
+				else { mediaTypeString = "Lecture"; }
+				model.Results.Add(new SearchResult
+				{
+					MediaID = media.ID,
+					Title = media.Title,
+					Course = media.Course,
+					Season = media.Season,
+					Episode = media.Episode,
+					MediaType = media.Type,
+					MediaTypeString = mediaTypeString,
+					MediaLanguage = language,
+					Published = media.publishDate
+				});
+			}
+
 			return View(model);
 		}
 
@@ -281,6 +301,73 @@ namespace Screenwriter.Controllers
 				});
 			}
 			return topTen;
+		}
+
+		private List<SearchResult> NewSearch()
+		{
+			HomeRepository repo = new HomeRepository();
+			List<SearchResult> NewSearch = new List<SearchResult>();
+			NewSearch = (from m in repo.GetAllMedia().ToList()
+						 join l in repo.GetAllLanguages().ToList()
+						 on m.LanguageID equals l.ID
+						 orderby m.Title ascending
+						 select new SearchResult
+						 {
+							 Title = m.Title,
+							 Course = m.Course,
+							 Episode = m.Episode,
+							 Season = m.Season,
+							 MediaLanguage = l,
+							 MediaID = m.ID,
+							 Published = m.publishDate,
+							 MediaType = m.Type
+						 }).ToList();
+			return NewSearch;
+		}
+
+		private List<SearchResult> SearchByTitle(List<SearchResult> Results, string title) 
+		{
+			HomeRepository repo = new HomeRepository();
+			Results = (from m in repo.GetAllMedia().ToList()
+					   join sub in repo.GetAllSubtitles().ToList()
+					   on m.ID equals sub.MediaID
+					   join lang in repo.GetAllLanguages().ToList()
+					   on sub.LanguageID equals lang.ID
+					   where m.Title.ToLower().Contains(title.ToLower())
+					   orderby m.Title ascending
+					   select new SearchResult
+					   {
+						   Title = m.Title,
+						   Published = m.publishDate
+					   }).ToList();
+			return Results;
+		}
+		private List<SearchResult> SearchByLanguage(List<SearchResult> Results, List<SelectListItem> languages)
+		{
+			HomeRepository repo = new HomeRepository();
+			List<SearchResult> LangResult = new List<SearchResult>();
+			List<SearchResult> Temp = new List<SearchResult>();
+			foreach (var l in languages)
+			{
+				if (l.Selected == true)
+				{
+					Temp = (from r in Results.ToList()
+							join sub in repo.GetAllSubtitles().ToList()
+							on r.MediaID equals sub.MediaID
+							join la in repo.GetAllLanguages().ToList()
+							on l.Text equals la.Name
+							orderby r.Title ascending
+							select new SearchResult
+							{
+								Title = r.Title
+							}).ToList();
+				}
+				foreach (var r in Temp)
+				{
+					LangResult.Add(r);
+				}
+			}
+			return LangResult;
 		}
 	}
 }
