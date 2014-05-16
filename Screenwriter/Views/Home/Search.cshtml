@@ -190,13 +190,47 @@ else
 	
 <table class="table">
 	<tr>
-		<th>Title</th>
+		<th colspan="3">Search results</th>
 	</tr>
 
 	@foreach (var item in Model.Results)
 	{
 	<tr>
 		<td>@item.Title</td>
+		<td><img src="#" class="flag flag-@item.MediaLanguage.ShortName" title="@item.MediaLanguage.Name"/> @item.MediaLanguage</td>
+		@{
+			if (@item.MediaType == 1)
+			{
+				<td>Movie</td>
+			}
+			if (@item.MediaType == 2)
+			{
+				<td>TV Show</td>
+			}
+			if (@item.MediaType == 3)
+			{
+				<td>Lecture</td>
+			}
+			else
+			{
+				<td>Other</td>
+			}
+		}
+
+		@{
+			if (@item.MediaType == 2)
+			{
+				<td>S: @item.Season - E: @item.Episode</td>
+			}
+			if (@item.MediaType == 3)
+			{
+				<td>@item.course</td>
+			}
+			else
+			{
+				<td></td>
+			}
+		 }
 	</tr>
 	}
 </table>

@@ -64,8 +64,19 @@ namespace Screenwriter.Controllers
 			//Begin checking if title search is NULL or empty
 			if (!String.IsNullOrEmpty(searchForm["titleSearch"]))
 			{
-			model.Results = from m in repo.GetAllMedia().ToList()
+				model.Results = (from m in repo.GetAllMedia().ToList()
+						   join sub in repo.GetAllSubtitles().ToList()
+						   on m.ID equals sub.MediaID
+						   join lang in repo.GetAllLanguages().ToList()
+						   on sub.LanguageID equals lang.ID
+								 where m.Title.ToLower().Contains(searchForm["titleSearch"].ToLower())
+						   orderby m.Title ascending
+						   select new SearchResult
+						   {
+							   Title = m.Title,
+							   Published = m.publishDate,
 
+						   }).ToList();
 			}
 
 			return View(model);
