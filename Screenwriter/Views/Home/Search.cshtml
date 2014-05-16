@@ -8,71 +8,99 @@ ViewBag.Title = "Search";
 <!--  Search Form-->
 @using (Html.BeginForm("Search", "Home", FormMethod.Post, htmlAttributes: new { role = "form", @class="container search"}))
 {
-	<div class="row text-center">
-		<div class="form-group">
-			<label class="sr-only" for="Title">Search</label>
-			<input type="text" class="form-control" id="Title" placeholder="Search" name="titleSearch">
-		</div>
-		<div id="advancedSearch" class="form-horizontal">
-			<div class="form-group">
-				
-				<label class="sr-only" for="Year">Year of Publish</label>
-				<input type="number" class="form-inline" id="Year" placeholder="Year of publish" name="YearPublished">
-
-				<label class="sr-only" for="Genre">Media Genre</label>
-				<input type="text" class="form-inline" id="Genre" placeholder="MediaGenre" name="mediaGenre">
-					
-				<select multiple="multiple" name="subtitleLanguage" class="multiselect" id="subtitleLanguages" title="Subtitle Languages">
-					@{ foreach (var i in Model.SearchForm.Languages)
-					 {
-						<option value=@i.Value>@i.Text</option>
-					 }
-					}
-				</select>
-				<select multiple="multiple" name="mediaLanguage" class="multiselect"  id="mediaLanguages" title="Media Languages">
-					@{ foreach (var i in Model.SearchForm.Languages)
-					 {
-						<option value=@i.Value>@i.Text</option>
-					 }
-					}
-				</select>
-			</div>
-			<div class="form-group">
-				<select name="mediaType" class="btn btn-default" >
-						<option value="0">Media Type</option>
-					@{ foreach (var i in Model.SearchForm.MediaTypes)
-					 {
-						<option value=@i.Value>@i.Text</option>
-					 }
-					}
-				</select>
-				<label class="sr-only" for="Season">Season</label>
-				<input type="number" class="form-inline" id="Season" placeholder="Show Season" name="Season">
-				<label class="sr-only" for="Episode">Episode</label>
-				<input type="number" class="form-inline" id="Episode" placeholder="Show Episode" name="Episode">
-			</div>
-			<div class="form-group">
-				<label class="sr-only" for="School">School</label>
-				<input type="text" class="form-inline" id="School" placeholder="School" name="School">
-				<label class="sr-only" for="Course">Course</label>
-				<input type="text" class="form-inline" id="Course" placeholder="Course" name="Course">
-				<label class="sr-only" for="Lecturer">Lecturer</label>
-				<input type="text" class="form-inline" id="Lecturer" placeholder="Lecturer" name="Lecturer">
-			</div>
-		</div>
-		<button type="button" class="btn btn-default" id="advSearchButton">
-			<span class="glyphicon glyphicon-zoom-in"></span>
-		</button>
-
-		<button type="submit" class="btn btn-default">
-			<span class="glyphicon glyphicon-search"></span>
-		</button>
+<div class="row text-center">
+	<div class="form-group">
+		<label class="sr-only" for="Title">Search</label>
+		<input type="text" class="form-control" id="Title" placeholder="Search" name="titleSearch">
 	</div>
+	<div id="advancedSearch" class="form-horizontal">
+		<div class="form-group">
+				
+			<label class="sr-only" for="Year">Year of Publish</label>
+			<input type="number" class="form-inline" id="Year" placeholder="Year of publish" name="YearPublished">
+
+			<label class="sr-only" for="Genre">Media Genre</label>
+			<input type="text" class="form-inline" id="Genre" placeholder="MediaGenre" name="mediaGenre">
+					
+			<select multiple="multiple" name="subtitleLanguage" class="multiselect" id="subtitleLanguages" title="Subtitle Languages">
+				@{ foreach (var i in Model.SearchForm.Languages)
+					{
+					<option value=@i.Value>@i.Text</option>
+					}
+				}
+			</select>
+			<select multiple="multiple" name="mediaLanguage" class="multiselect"  id="mediaLanguages" title="Media Languages">
+				@{ foreach (var i in Model.SearchForm.Languages)
+					{
+					<option value=@i.Value>@i.Text</option>
+					}
+				}
+			</select>
+		</div>
+		<div class="form-group">
+			<select name="mediaType" class="btn btn-default" >
+					<option value="0">Media Type</option>
+				@{ foreach (var i in Model.SearchForm.MediaTypes)
+					{
+					<option value=@i.Value>@i.Text</option>
+					}
+				}
+			</select>
+			<label class="sr-only" for="Season">Season</label>
+			<input type="number" class="form-inline" id="Season" placeholder="Show Season" name="Season">
+			<label class="sr-only" for="Episode">Episode</label>
+			<input type="number" class="form-inline" id="Episode" placeholder="Show Episode" name="Episode">
+		</div>
+		<div class="form-group">
+			<label class="sr-only" for="School">School</label>
+			<input type="text" class="form-inline" id="School" placeholder="School" name="School">
+			<label class="sr-only" for="Course">Course</label>
+			<input type="text" class="form-inline" id="Course" placeholder="Course" name="Course">
+			<label class="sr-only" for="Lecturer">Lecturer</label>
+			<input type="text" class="form-inline" id="Lecturer" placeholder="Lecturer" name="Lecturer">
+		</div>
+	</div>
+	<button type="button" class="btn btn-default" id="advSearchButton">
+		<span class="glyphicon glyphicon-zoom-in"></span>
+	</button>
+
+	<button type="submit" class="btn btn-default">
+		<span class="glyphicon glyphicon-search"></span>
+	</button>
+</div>
 }
 
-@if (Model.Results == null)
-{ 
-<!--Top lists of subtitles-->
+@if (Model.Results != null)
+{
+<table class="table">
+	<tr>
+		<th>Title</th>
+	</tr>
+
+	@foreach (var item in Model.Results)
+	{
+	<tr>
+		<td>@item.Title</td>
+	</tr>
+	}
+</table>
+}
+@if (Model.RequestResults != null)
+{
+<table class="table">
+	<tr>
+		<th>Title</th>
+	</tr>
+	@foreach(var item in Model.RequestResults)
+	{
+	<tr>
+		<td>
+			@item.Title
+		</td>
+	</tr>
+	}
+</table>
+}
 <div class="col-md-4">
 	<div class="panel panel-default">
 		<div class="panel-heading">
@@ -83,13 +111,15 @@ ViewBag.Title = "Search";
 			{
 			<tr>
 				<td>
-					@Html.ActionLink(@item.Media.Title, "Media", new { id = item.Media.ID })
+					@Html.ActionLink(@item.Media.Title, "Media",
+						new { id = item.Media.ID },
+						new { title = "See more about \"" + item.Media.Title + "\"" })
 				</td>
 				<td>
 					<img src="#" alt="@item.Language.Name" title="@item.Language.Name" class="flag flag-@item.Language.ShortName" />
 				</td>
 				<td>
-					@item.Subtitle.DownloadCount
+					<span title="Download count">@item.Subtitle.DownloadCount</span>
 				</td>
 				<td>
 					<a href="@Url.Action("Download", new { id = item.Subtitle.ID })" title="Download">
@@ -111,14 +141,12 @@ ViewBag.Title = "Search";
 			{
 			<tr>
 				<td>
-					@Html.ActionLink(@item.Media.Title, "Media", new { id = item.Media.ID })
+					@Html.ActionLink(@item.Media.Title, "Media",
+						new { id = item.Media.ID },
+						new { title = "See more about \"" + item.Media.Title + "\"" })
 				</td>
 				<td>
 					<img src="#" alt="@item.Language.Name" title="@item.Language.Name" class="flag flag-@item.Language.ShortName" />
-				</td>
-				<td>
-					@{TimeSpan days = (DateTime.Now - item.Subtitle.DateCompleted);}
-					@days.Minutes minutes ago
 				</td>
 				<td>
 					<a href="@Url.Action("Download", new { id = item.Subtitle.ID })" title="Download">
@@ -148,13 +176,21 @@ ViewBag.Title = "Search";
 					<img src="#" alt="@item.Language.Name" title="@item.Language.Name" class="flag flag-@item.Language.ShortName" />
 				</td>
 				<td>
-					<span title="Request Count">@item.Subtitle.Requests.Count</span>
+					<span title="Request count">@item.Subtitle.Requests.Count</span>
 				</td>
 				<td>
 					<a href="@Url.Action("UpvoteSubtitleRequest", new { id = item.Subtitle.ID })" class="requestSubtitle" title="Add request" data-id="@item.Subtitle.ID">
 						<span class="glyphicon glyphicon-plus-sign"></span>
 					</a>
 				</td>
+				@if(User.Identity.IsAuthenticated)
+				{
+				<td>
+					<a href="@Url.Action("Subtitle", "Editor", new { id = item.Subtitle.ID })" title="Edit subtitle">
+						<span class="glyphicon glyphicon-pencil"></span>
+					</a>
+				</td>
+				}
 			</tr>
 			}
 		</table>
@@ -163,41 +199,26 @@ ViewBag.Title = "Search";
 <div class="clearfix"></div>
 
 
-
-<!-- TODO: Make pop up Error Window partial and use for other errors -->
+@{
+	// TODO: Make pop up Error Window partial and use for other errors.
+}
 <div class="modal fade" id="registerToRequestError" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 				<h4 class="modal-title" id="registerToRequestErrorLabel">
-					Request Error - Unregistered User
+					Request Error - User not logged in
 				</h4>
 			</div>
 			<div class="modal-body">
-				You have to register to be able to request subtitles.
+				You have to log in to be able to request subtitles.
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-				@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { @class = "btn btn-primary" })
+				@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { @class = "btn btn-default" })
+				@Html.ActionLink("Login", "Login", "Account", routeValues: null, htmlAttributes: new { @class = "btn btn-primary" })
 			</div>
 		</div>
 	</div>
 </div>
-}
-else
-{
-	
-<table class="table">
-	<tr>
-		<th>Title</th>
-	</tr>
-
-	@foreach (var item in Model.Results)
-	{
-	<tr>
-		<td>@item.Title</td>
-	</tr>
-	}
-</table>
-}
