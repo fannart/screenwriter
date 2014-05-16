@@ -1,51 +1,56 @@
-﻿@model Screenwriter.Models.Media
+﻿@model Screenwriter.ViewModels.MediaViewModel
 
 @{
 	ViewBag.Title = "Media";
 }
 
-<h2>@Model.Title</h2>
-<div>
-	<hr />
-	<dl class="dl-horizontal">
-		<dt>
-			@Html.DisplayNameFor(model => model.LanguageID)
-		</dt>
-		<dd>
-			@Html.DisplayFor(model => model.LanguageID)
-		</dd>
-		<dt>
-			@Html.DisplayNameFor(model => model.Title)
-		</dt>
-		<dd>
-			@Html.DisplayFor(model => model.Title)
-		</dd>
-		<dt>
-			@Html.DisplayNameFor(model => model.length)
-		</dt>
-		<dd>
-			@Html.DisplayFor(model => model.length)
-		</dd>
-
-		<dt>
-			@Html.DisplayNameFor(model => model.YoutubeIdentifier)
-		</dt>
-		<dd>
-			@Html.DisplayFor(model => model.YoutubeIdentifier)
-		</dd>
-		<dt>
-			@Html.DisplayNameFor(model => model.VimeoIdentifier)
-		</dt>
-		<dd>
-			@Html.DisplayFor(model => model.VimeoIdentifier)
-		</dd>
-		<dt>
-			@Html.DisplayNameFor(model => model.publishDate)
-		</dt>
-		<dd>
-			@Html.DisplayFor(model => model.publishDate)
-		</dd>
-	</dl>
+<h2>@Model.Media.Title<small>(@Html.ActionLink("edit","EditMedia", new { id = Model.Media.ID }))</small></h2>
+<div class="panel clearfix">
+	<div class="col-md-6 col-sm-6">
+		<dl>
+			<dt>Spoken language:</dt>
+			<dd><img src="#" class="flag flag-@Model.MediaLanguage.ShortName" alt="@Model.MediaLanguage.Name" /> @Model.MediaLanguage.Name</dd>
+			<dt>Publish date:</dt>
+			<dd>@Model.Media.publishDate</dd>
+			@if (Model.Media.length > 0)
+			{
+			<dt>Length:</dt>
+			<dd>@Model.Media.length</dd>
+			}
+			@if (!String.IsNullOrEmpty(Model.Media.YoutubeIdentifier))
+			{
+			<dt>Youtube:</dt>
+			<dd>
+				<a href="//www.youtube.com/watch?v=@Model.Media.YoutubeIdentifier">
+					www.youtube.com/watch?v=@Model.Media.YoutubeIdentifier
+				</a>
+			</dd>
+			}
+		</dl>
+	</div>
+	@if(Model.Media.Type != 0)
+	{
+	<div class="col-md-6 col-sm-6">
+		<dl>
+			@if(Model.Media.Type == 1)
+			{
+				<dt>Season:</dt>
+				<dd>@Model.Media.Season</dd>
+				<dt>Episode:</dt>
+				<dd>@Model.Media.Episode</dd>
+			}
+			else if(Model.Media.Type == 2)
+			{
+				<dt>Course:</dt>
+				<dd>@Model.Media.Course</dd>
+				<dt>School:</dt>
+				<dd>@Model.Media.School</dd>
+				<dt>Lecturer:</dt>
+				<dd>@Model.Media.Lecturer</dd>
+			}
+		</dl>
+	</div>
+	}
 </div>
 <div class="panel panel-default">
 	<div class="panel-heading">
@@ -53,27 +58,74 @@
 	</div>
 	<table class="table">
 		<tr>
-			<th>Language ID</th>
-			<th>DownloadCount</th>
-			<th>Date Completed</th>
-			<th>Translation Is Completed</th>
-			@if(User.Identity.IsAuthenticated)
+			<th>Language</th>
+			<th>Last updated</th>
+			<th>Download count</th>
+			<th>Download</th>
+			@if (User.Identity.IsAuthenticated)
 			{
-			<th>Edit</th>
+				<th>Edit</th>
 			}
 		</tr>
-		@foreach (var item in Model.Subtitles)
+		@foreach (var item in Model.FinishedSubtitles)
 		{
+			<tr>
+				<td><img src="#" class="flag flag-@item.Language.ShortName" alt="@item.Language.Name" /> @item.Language.Name</td>
+				<td>@item.Subtitle.LastUpdated</td>
+				<td><span title="Download count">@item.Subtitle.DownloadCount</span></td>
+				<td>
+					<a href="@Url.Action("Download", new { id = item.Subtitle.ID })" title="Download">
+						<span class="glyphicon glyphicon-download"></span>
+					</a>
+				</td>
+				@if (User.Identity.IsAuthenticated)
+				{
+					<td>
+						<a href="@Url.Action("Subtitle", "Editor", new { id = item.Subtitle.ID })" title="Edit subtitle">
+							<span class="glyphicon glyphicon-pencil"></span>
+						</a>
+					</td>
+				}
+			</tr>
+		}
+	</table>
+</div>
+
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<h4>Requests</h4>
+	</div>
+	<table class="table">
 		<tr>
-			<td>@Html.ActionLink(item.LanguageID.ToString(), "Download", new { id = item.ID })</td>
-			<td>@item.DownloadCount</td>
-			<td>@item.DateCompleted</td>
-			<td>@item.TranslationIsCompleted</td>
-			@if(User.Identity.IsAuthenticated)
+			<th>Language</th>
+			<th>Last updated</th>
+			<th>Request count</th>
+			<th>Request</th>
+			@if (User.Identity.IsAuthenticated)
 			{
-			<td>@Html.ActionLink("Edit", "Subtitle", "Editor", new { id = item.ID }, null)</td>
+				<th>Edit</th>
 			}
 		</tr>
+		@foreach (var item in Model.UnfinishedSubtitles)
+		{
+			<tr>
+				<td><img src="#" class="flag flag-@item.Language.ShortName" alt="@item.Language.Name" /> @item.Language.Name</td>
+				<td>@item.Subtitle.LastUpdated</td>
+				<td><span title="Request count">@item.Subtitle.Requests.Count</span></td>
+				<td>
+					<a href="@Url.Action("UpvoteSubtitleRequest", new { id = item.Subtitle.ID })" class="requestSubtitle" title="Add request" data-id="@item.Subtitle.ID">
+						<span class="glyphicon glyphicon-plus-sign"></span>
+					</a>
+				</td>
+				@if (User.Identity.IsAuthenticated)
+				{
+					<td>
+						<a href="@Url.Action("Subtitle", "Editor", new { id = item.Subtitle.ID })" title="Edit subtitle">
+							<span class="glyphicon glyphicon-pencil"></span>
+						</a>
+					</td>
+				}
+			</tr>
 		}
 	</table>
 </div>

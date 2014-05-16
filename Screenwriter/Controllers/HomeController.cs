@@ -18,20 +18,68 @@ namespace Screenwriter.Controllers
 
 		public ActionResult Media(int? id)
 		{
-			// TODO: Create MediaViewModel for the view and recreate the view.
-
 			// Make sure request is for a specific media.
 			if (id.HasValue)
 			{
 				// Repository to access database.
 				HomeRepository repo = new HomeRepository();
+				// ViewModel to send to the view.
+				MediaViewModel model = new MediaViewModel();
 				// ID of requested media.
 				int mediaID = id.Value;
-				Media media = repo.GetMediaById(mediaID);
+				
+				// Feed model with information.
+				model.Media = repo.GetMediaById(mediaID);
+				model.MediaLanguage = repo.GetLanguageById(model.Media.LanguageID);
 
-				return View(media);
+				model.FinishedSubtitles = new List<SubtitleResult>();
+				foreach (var subtitle in model.Media.Subtitles
+					.Where(s => s.TranslationIsCompleted)
+					.ToList()
+					)
+				{
+					var language = repo.GetAllLanguages()
+						.Where(l => l.ID == subtitle.LanguageID)
+						.FirstOrDefault();
+					model.FinishedSubtitles.Add(new SubtitleResult
+					{
+						Subtitle = subtitle,
+						Language = language
+					});
+				}
+
+				model.UnfinishedSubtitles = new List<SubtitleResult>();
+				foreach (var subtitle in model.Media.Subtitles
+					.Where(s => !s.TranslationIsCompleted)
+					.ToList()
+					)
+				{
+					var language = repo.GetAllLanguages()
+						.Where(l => l.ID == subtitle.LanguageID)
+						.FirstOrDefault();
+					model.UnfinishedSubtitles.Add(new SubtitleResult
+					{
+						Subtitle = subtitle,
+						Language = language
+					});
+				}
+
+				return View(model);
 			}
 			// Getting this far means an unexpected error.
+			return View("Error");
+		}
+
+		public ActionResult EditMedia(int? id)
+		{
+			if(id.HasValue)
+			{
+				int mediaID = id.Value;
+				HomeRepository repo = new HomeRepository();
+				Media model = repo.GetMediaById(mediaID);
+				return View(model);
+			}
+			// TODO: Error View for media not found error.
 			return View("Error");
 		}
 
