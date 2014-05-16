@@ -23,6 +23,7 @@ namespace Screenwriter.Models
 		/// <summary>
 		/// The second line of subtitle entry.</summary>
 		public string Line2 { get; set; }
+		public string TimeStamp { get; set; }
 		
 		public virtual ICollection<Comment> Comments { get; set; }
 		public virtual Subtitle Subtitle { get; set; }

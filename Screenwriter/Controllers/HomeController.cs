@@ -34,10 +34,26 @@ namespace Screenwriter.Controllers
 			fileName += language;
 			fileName += ".srt";
 
-
-			// TODO: Write from database to string
-
-			var data_string = "Data wat!";
+			var data_string = "";
+			int i = 1;
+			List<Entry> entries = subtitle.Entries
+				.OrderBy(s => s.ID)
+				.ToList();
+			foreach(var entry in entries)
+			{
+				data_string += i.ToString() + Environment.NewLine;
+				data_string += entry.TimeStamp + Environment.NewLine;
+				if (!string.IsNullOrEmpty(entry.Line1))
+				{
+					data_string += entry.Line1 + Environment.NewLine;
+				}
+				if (!string.IsNullOrEmpty(entry.Line2))
+				{
+					data_string += entry.Line2 + Environment.NewLine;
+				}
+				data_string += Environment.NewLine;
+				i++;
+			}
 
 			var byteArray = Encoding.UTF8.GetBytes(data_string);
 			var stream = new MemoryStream(byteArray);

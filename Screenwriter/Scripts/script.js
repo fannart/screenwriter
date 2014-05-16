@@ -75,9 +75,4 @@ $(function () {
 		$this = $(this);
 		$this.parent().parent().css({ 'background-color': '' });
 	});
-
-	// File upload
-	$('.uploadFile').on('click', function () {
-		var reader = new FileReader();
-	});
 });

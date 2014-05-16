@@ -122,7 +122,8 @@
 			<th>Request</th>
 			@if (User.Identity.IsAuthenticated)
 			{
-				<th>Edit</th>
+			<th>Edit</th>
+			<th>Upload</th>
 			}
 		</tr>
 		@foreach (var item in Model.UnfinishedSubtitles)
@@ -142,6 +143,9 @@
 						<a href="@Url.Action("Subtitle", "Editor", new { id = item.Subtitle.ID })" title="Edit subtitle">
 							<span class="glyphicon glyphicon-pencil"></span>
 						</a>
+					</td>
+					<td>
+						<input type="file" class="fileUpload" id="@item.Subtitle.ID" name="files[]" />
 					</td>
 				}
 			</tr>
