@@ -152,24 +152,24 @@
 
 			#region Entries
 			context.Entries.AddOrUpdate(
-				new Entry { ID = 1, SubtitleID = 1, Line1 = "Here is some text", Line2 = "More Text", StartTime = DateTime.Now, Stoptime = DateTime.Now },
-				new Entry { ID = 2, SubtitleID = 1, Line1 = "And than there was text", Line2 = "More Text", StartTime = DateTime.Now, Stoptime = DateTime.Now },
-				new Entry { ID = 3, SubtitleID = 4, Line1 = "Text", Line2 = "where no text had been before", StartTime = DateTime.Now, Stoptime = DateTime.Now },
-				new Entry { ID = 4, SubtitleID = 1, Line1 = "Text", Line2 = "this, I mean test.", StartTime = DateTime.Now, Stoptime = DateTime.Now },
-				new Entry { ID = 5, SubtitleID = 1, Line1 = "Text", Line2 = "More Text", StartTime = DateTime.Now, Stoptime = DateTime.Now },
-				new Entry { ID = 6, SubtitleID = 4, Line1 = "Text", Line2 = "so no man would...", StartTime = DateTime.Now, Stoptime = DateTime.Now },
-				new Entry { ID = 7, SubtitleID = 4, Line1 = "Text", Line2 = "More Text", StartTime = DateTime.Now, Stoptime = DateTime.Now },
-				new Entry { ID = 8, SubtitleID = 1, Line1 = "Text", Line2 = "a day keeps the doctor", StartTime = DateTime.Now, Stoptime = DateTime.Now },
-				new Entry { ID = 9, SubtitleID = 1, Line1 = "Text", Line2 = "for my country!", StartTime = DateTime.Now, Stoptime = DateTime.Now },
-				new Entry { ID = 10, SubtitleID = 3, Line1 = "私は戻ってきます", Line2 = "より良い日本の音", StartTime = DateTime.Now, Stoptime = DateTime.Now },
-				new Entry { ID = 11, SubtitleID = 3, Line1 = "私は世界の王だ", Line2 = "イエスは、ホイールを取る", StartTime = DateTime.Now, Stoptime = DateTime.Now },
-				new Entry { ID = 12, SubtitleID = 3, Line1 = "シンバ", Line2 = "私の心はあなたのために行く", StartTime = DateTime.Now, Stoptime = DateTime.Now },
-				new Entry { ID = 13, SubtitleID = 3, Line1 = "", Line2 = "コンピュータの愛のために", StartTime = DateTime.Now, Stoptime = DateTime.Now },
-				new Entry { ID = 14, SubtitleID = 5, Line1 = "Here is some text", Line2 = "More Text", StartTime = DateTime.Now, Stoptime = DateTime.Now },
-				new Entry { ID = 15, SubtitleID = 5, Line1 = "And than there was text", Line2 = "More Text", StartTime = DateTime.Now, Stoptime = DateTime.Now },
-				new Entry { ID = 16, SubtitleID = 5, Line1 = "Text", Line2 = "where no text had been before", StartTime = DateTime.Now, Stoptime = DateTime.Now },
-				new Entry { ID = 17, SubtitleID = 5, Line1 = "Text", Line2 = "this, I mean test.", StartTime = DateTime.Now, Stoptime = DateTime.Now },
-				new Entry { ID = 18, SubtitleID = 5, Line1 = "Text", Line2 = "More Text", StartTime = DateTime.Now, Stoptime = DateTime.Now }
+				new Entry { ID = 1, SubtitleID = 1, Line1 = "Gott og vel nýju negrar.", Line2 = "Þið verðið partur af skurðarleiknum.", StartTime = DateTime.Now, Stoptime = DateTime.Now, TimeStamp = "00:01:08,600 --> 00:01:12,902" },
+				new Entry { ID = 2, SubtitleID = 1, Line1 = "Mjög einfalt!", Line2 = "Ég vil að þið takið hnífinn ykkar..", StartTime = DateTime.Now, Stoptime = DateTime.Now, TimeStamp = "00:01:13,100 --> 00:01:15,802" },
+				new Entry { ID = 3, SubtitleID = 4, Line1 = "ARGO", Line2 = "where no text had been before", StartTime = DateTime.Now, Stoptime = DateTime.Now, TimeStamp = "00:00:33,088 --> 00:00:36,088" },
+				new Entry { ID = 4, SubtitleID = 1, Line1 = "takið í reyrinn,", Line2 = "og látið hann syngja.", StartTime = DateTime.Now, Stoptime = DateTime.Now, TimeStamp = "00:01:16,000 --> 00:01:19,802" },
+				new Entry { ID = 5, SubtitleID = 1, Line1 = "Takið reyrinn af.", Line2 = "", StartTime = DateTime.Now, Stoptime = DateTime.Now, TimeStamp = "00:01:20,000 --> 00:01:21,802" },
+				new Entry { ID = 6, SubtitleID = 4, Line1 = "This is the Persian Empire", Line2 = "", StartTime = DateTime.Now, Stoptime = DateTime.Now, TimeStamp = "00:00:38,750 --> 00:00:40,597" },
+				new Entry { ID = 7, SubtitleID = 4, Line1 = "known today as Iran.", Line2 = "", StartTime = DateTime.Now, Stoptime = DateTime.Now, TimeStamp = "00:00:41,278 --> 00:00:43,073" },
+				new Entry { ID = 8, SubtitleID = 1, Line1 = "Skerið ofan af og hreinsið stilkana af.", Line2 = "", StartTime = DateTime.Now, Stoptime = DateTime.Now, TimeStamp = "00:01:22,000 --> 00:01:25,852" },
+				new Entry { ID = 9, SubtitleID = 1, Line1 = "Safnið honum í hrúgu þar sem", Line2 = "hann verður settur niður aftur.", StartTime = DateTime.Now, Stoptime = DateTime.Now, TimeStamp = "00:01:26,050 --> 00:01:29,402" },
+				new Entry { ID = 10, SubtitleID = 3, Line1 = "実話に基づいた映画", Line2 = "", StartTime = DateTime.Now, Stoptime = DateTime.Now, TimeStamp = "00:00:54,600 --> 00:00:58,911" },
+				new Entry { ID = 11, SubtitleID = 3, Line1 = "よし いいか！新米", Line2 = "切り方のお手本だ", StartTime = DateTime.Now, Stoptime = DateTime.Now, TimeStamp = "00:01:08,600 --> 00:01:12,911" },
+				new Entry { ID = 12, SubtitleID = 3, Line1 = "誰でもできる", Line2 = "ナイフを持って...", StartTime = DateTime.Now, Stoptime = DateTime.Now, TimeStamp = "00:01:13,100 --> 00:01:15,868" },
+				new Entry { ID = 13, SubtitleID = 3, Line1 = "茎を持ち上げ", Line2 = "束にして", StartTime = DateTime.Now, Stoptime = DateTime.Now, TimeStamp = "00:01:16,000 --> 00:01:19,900" },
+				new Entry { ID = 14, SubtitleID = 5, Line1 = "All right now.", Line2 = "Y'all fresh niggers.", StartTime = DateTime.Now, Stoptime = DateTime.Now, TimeStamp = "00:01:10,112 --> 00:01:12,530" },
+				new Entry { ID = 15, SubtitleID = 5, Line1 = "Y'all gonna be", Line2 = "in a cutting gang.", StartTime = DateTime.Now, Stoptime = DateTime.Now, TimeStamp = "00:01:12,698 --> 00:01:14,240" },
+				new Entry { ID = 16, SubtitleID = 5, Line1 = "Very simple. I want", Line2 = "you to take your knife.", StartTime = DateTime.Now, Stoptime = DateTime.Now, TimeStamp = "00:01:14,658 --> 00:01:17,451" },
+				new Entry { ID = 17, SubtitleID = 5, Line1 = "Get in them cane.", Line2 = "", StartTime = DateTime.Now, Stoptime = DateTime.Now, TimeStamp = "00:01:17,619 --> 00:01:19,370" },
+				new Entry { ID = 18, SubtitleID = 5, Line1 = "Make it sing.", Line2 = "", StartTime = DateTime.Now, Stoptime = DateTime.Now, TimeStamp = "00:01:20,038 --> 00:01:21,414" }
 			);
 			#endregion
 

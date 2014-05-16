@@ -28,8 +28,7 @@
 				<li>
 					<ul class="entry-@item.ID" data-subtitleID="@Model.WorkingSubtitle.ID" >
 						<li>
-							<input type="datetime" value="@item.StartTime" data-entry="@item.ID" name="startTime" />
-							<input type="datetime" value="@item.Stoptime" data-entry="@item.ID" name="stopTime" />
+							<input type="datetime" value="@item.TimeStamp" data-entry="@item.ID" name="timeStamp" />
 						</li>
 						<li>
 							@Html.TextBox("line1-" + item.ID, 

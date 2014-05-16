@@ -26,6 +26,15 @@
 				</a>
 			</dd>
 			}
+			@if (!String.IsNullOrEmpty(Model.Media.ImdbURL))
+			{
+			<dt>IMDB:</dt>
+			<dd>
+				<a href="@Model.Media.ImdbURL" target="_blank">
+					See this media's imdb site
+				</a>
+			</dd>
+			}
 		</dl>
 	</div>
 	@if(Model.Media.Type != 0)

@@ -75,4 +75,19 @@ $(function () {
 		$this = $(this);
 		$this.parent().parent().css({ 'background-color': '' });
 	});
+
+	// Upload .srt file
+	$('.fileUpload').change(function () {
+		var $input = $(this);
+		var inputFiles = this.files;
+		if (inputFiles == undefined || inputFiles.length == 0) return;
+		var inputFile = inputFiles[0];
+
+		var reader = new FileReader();
+		reader.onload = function (event) {
+			// TODO: Parse as json and send to Upload Action.
+			alert(event.target.result);
+		};
+		reader.readAsText(inputFile);
+	});
 });

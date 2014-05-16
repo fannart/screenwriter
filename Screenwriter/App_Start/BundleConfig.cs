@@ -24,6 +24,9 @@ namespace Screenwriter
                       "~/Scripts/respond.min.js",
 					  "~/Scripts/bootstrap-multiselect.js"));
 
+			bundles.Add(new ScriptBundle("~/bundles/scripts").Include(
+						"~/Scripts/script.js"));
+
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.min.css",
 					  "~/Content/bootstrap-multiselect.css",

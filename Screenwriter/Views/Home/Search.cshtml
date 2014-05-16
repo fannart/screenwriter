@@ -87,7 +87,7 @@ if(Model.Results.Any())
 						new { id = item.MediaID },
 						new { title="See more about \"" + item.Title + "\"" })
 				</td>
-				<td><img src="#" class="flag flag-@item.MediaLanguage.ShortName" title="Spoken language" alt="@item.MediaLanguage.Name" /> @item.MediaLanguage.Name</td>
+				<td><span title="Spoken language"><img src="#" class="flag flag-@item.MediaLanguage.ShortName" alt="@item.MediaLanguage.Name" /> @item.MediaLanguage.Name</span></td>
 				<td><span title="Media type">@item.MediaTypeString</span></td>
 				@{
 					if (item.MediaType == 1)

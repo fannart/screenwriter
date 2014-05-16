@@ -43,7 +43,10 @@ input[type="checkbox"].input-validation-error {
 
 /* Search */
 #advancedSearch{
-	display:none;
+	display: none;
+}
+#advSearchButton{
+	display: none;
 }
 
 .search{
