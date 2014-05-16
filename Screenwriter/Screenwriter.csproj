@@ -250,6 +250,8 @@
     <Content Include="Views\Editor\ReferenceWindow.cshtml" />
     <Content Include="Views\Home\CreateRequest.cshtml" />
     <Content Include="Views\Home\EditMedia.cshtml" />
+    <Content Include="Views\Home\MediaFormPartial.cshtml" />
+    <Content Include="Views\Home\CreateMedia.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

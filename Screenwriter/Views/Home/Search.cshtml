@@ -71,6 +71,8 @@ ViewBag.Title = "Search";
 
 @if (Model.Results != null)
 {
+if(Model.Results.Any())
+{
 <div>
 	<div class="panel panel-default">
 		<div class="panel-heading">
@@ -80,9 +82,13 @@ ViewBag.Title = "Search";
 			@foreach (var item in Model.Results)
 			{
 			<tr>
-				<td>@Html.ActionLink(@item.Title, "Media", new { id = item.MediaID })</td>
-				<td><img src="#" class="flag flag-@item.MediaLanguage.ShortName" title="@item.MediaLanguage.Name" alt="@item.MediaLanguage.Name" /> @item.MediaLanguage.Name</td>
-				<td>@item.MediaTypeString</td>
+				<td>
+					@Html.ActionLink(@item.Title, "Media",
+						new { id = item.MediaID },
+						new { title="See more about \"" + item.Title + "\"" })
+				</td>
+				<td><img src="#" class="flag flag-@item.MediaLanguage.ShortName" title="Spoken language" alt="@item.MediaLanguage.Name" /> @item.MediaLanguage.Name</td>
+				<td><span title="Media type">@item.MediaTypeString</span></td>
 				@{
 					if (item.MediaType == 1)
 					{
@@ -102,7 +108,7 @@ ViewBag.Title = "Search";
 		</table>
 	</div>
 </div>
-
+}
 }
 @if (Model.RequestResults != null)
 {
@@ -120,6 +126,9 @@ ViewBag.Title = "Search";
 	}
 </table>
 }
+<div class="panel text-center">
+	<button type="button" class="btn btn-primary btn-lg" onclick="window.location = 'CreateMedia/';">Request a subtitle for a non-existing media</button>
+</div>
 <div class="col-md-4 col-sm-6">
 	<div class="panel panel-default">
 		<div class="panel-heading">

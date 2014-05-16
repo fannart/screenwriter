@@ -3,7 +3,9 @@ using Screenwriter.Models;
 using Screenwriter.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Text;
 using System.Web;
 using System.Web.Mvc;
 
@@ -14,6 +16,33 @@ namespace Screenwriter.Controllers
 		public ActionResult Index()
 		{
 			return RedirectToAction("Search");
+		}
+
+		public FileStreamResult Download(int id)
+		{
+			HomeRepository repo = new HomeRepository();
+			Subtitle subtitle = repo.GetSubtitleById(id);
+			Media media = repo.GetMediaById(subtitle.MediaID);
+
+			// Generate the filename to download.
+			string fileName = media.Title.Replace(" ", "");
+			if(media.Type == 1)
+			{
+				fileName += "S" + media.Season + "E" + media.Episode;
+			}
+			string language = repo.GetLanguageById(subtitle.LanguageID).Name;
+			fileName += language;
+			fileName += ".srt";
+
+
+			// TODO: Write from database to string
+
+			var data_string = "Data wat!";
+
+			var byteArray = Encoding.UTF8.GetBytes(data_string);
+			var stream = new MemoryStream(byteArray);
+
+			return File(stream, "text/plain", fileName);
 		}
 
 		public ActionResult Media(int? id)
@@ -70,19 +99,56 @@ namespace Screenwriter.Controllers
 			return View("Error");
 		}
 
+		[Authorize]
 		public ActionResult EditMedia(int? id)
 		{
 			if(id.HasValue)
 			{
 				int mediaID = id.Value;
 				HomeRepository repo = new HomeRepository();
-				Media model = repo.GetMediaById(mediaID);
+				Media media = repo.GetMediaById(mediaID);
+				Language language = repo.GetLanguageById(media.LanguageID);
+				MediaViewModel model = new MediaViewModel();
+				model.Media = media;
+				model.MediaLanguage = language;
+				model.Languages.First(x => x.Value == media.LanguageID.ToString()).Selected = true;
+				model.MediaTypes.First(x => x.Value == media.Type.ToString()).Selected = true;
 				return View(model);
 			}
 			// TODO: Error View for media not found error.
 			return View("Error");
 		}
 
+		[Authorize]
+		[HttpPost]
+		public ActionResult EditMedia(Media media)
+		{
+			HomeRepository repo = new HomeRepository();
+			Media m = repo.GetMediaById(media.ID);
+			if (m != null)
+			{
+				repo.UpdateMedia(media);
+				repo.Save();
+			}
+			return RedirectToAction("Media", new { id = media.ID });
+		}
+		
+		[Authorize]
+		public ActionResult CreateMedia()
+		{
+			return View(new MediaViewModel());
+		}
+
+		[Authorize]
+		[HttpPost]
+		public ActionResult CreateMedia(Media media)
+		{
+			HomeRepository repo = new HomeRepository();
+			int mediaID = repo.AddMedia(media);
+			repo.Save();
+			return RedirectToAction("CreateRequest", new { mediaID = mediaID });
+		}
+		
 		public ActionResult Search()
 		{
 			HomeRepository repo = new HomeRepository();
@@ -342,6 +408,7 @@ namespace Screenwriter.Controllers
 					   }).ToList();
 			return Results;
 		}
+		
 		private List<SearchResult> SearchByLanguage(List<SearchResult> Results, List<SelectListItem> languages)
 		{
 			HomeRepository repo = new HomeRepository();

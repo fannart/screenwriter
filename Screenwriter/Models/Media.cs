@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -11,10 +12,13 @@ namespace Screenwriter.Models
 	public class Media
 	{
 		public int ID { get; set; }
+		[Required]
 		public int LanguageID { get; set; }
+		[Required]
 		public string Title { get; set; }
 		/// <summary>
 		/// MediaType: Movie = 0, TVShow = 1, Lecture = 2.</summary>
+		[Required]
 		public int Type { get; set; }
 		/// <summary>
 		/// The lengt of the media represented in minutes.</summary>

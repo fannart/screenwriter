@@ -12,13 +12,6 @@
     <div class="form-horizontal">
         @Html.ValidationSummary(true)
         <div class="form-group">
-            @Html.LabelFor(model => model.MediaID, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.MediaID)
-                @Html.ValidationMessageFor(model => model.MediaID)
-            </div>
-        </div>
-        <div class="form-group">
             @Html.LabelFor(model => model.LanguageID, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.LanguageID)

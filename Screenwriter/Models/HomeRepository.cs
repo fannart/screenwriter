@@ -130,6 +130,14 @@ namespace Screenwriter.Models
 		#endregion
 
 		#region Media
+		public int AddMedia(Media media)
+		{
+			media.ID = (from m in GetAllMedia()
+						select m.ID).Max() + 1;
+			db.Media.Add(media);
+			return media.ID;
+		}
+
 		public IQueryable<Media> GetAllMedia()
 		{
 			var result = db.Media.AsQueryable();
@@ -142,6 +150,28 @@ namespace Screenwriter.Models
 						  where m.ID == id
 						  select m).SingleOrDefault();
 			return result;
+		}
+
+		public void UpdateMedia(Media media)
+		{
+			Media m = GetMediaById(media.ID);
+			if(m != null)
+			{
+				m.Title = media.Title;
+				m.Course = media.Course;
+				m.Episode = media.Episode;
+				m.ImdbID = media.ImdbID;
+				m.ImdbURL = media.ImdbURL;
+				m.LanguageID = media.LanguageID;
+				m.Lecturer = media.Lecturer;
+				m.length = media.length;
+				m.publishDate = media.publishDate;
+				m.School = media.School;
+				m.Season = media.Season;
+				m.Type = media.Type;
+				m.VimeoIdentifier = media.VimeoIdentifier;
+				m.YoutubeIdentifier = media.YoutubeIdentifier;
+			}
 		}
 		#endregion
 
